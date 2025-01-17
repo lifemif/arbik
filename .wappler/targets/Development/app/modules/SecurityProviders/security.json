@@ -1,0 +1,40 @@
+{
+  "name": "security",
+  "module": "auth",
+  "action": "provider",
+  "options": {
+    "secret": "DEvgWLUgdh9s3sk",
+    "provider": "Database",
+    "connection": "db_demo",
+    "users": {
+      "table": "user",
+      "identity": "UUID",
+      "username": "username",
+      "password": "password"
+    },
+    "permissions": {
+      "Useris": {
+        "table": "user",
+        "identity": "UUID",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "user"
+          },
+          {
+            "column": "status",
+            "operator": "=",
+            "value": "open"
+          }
+        ]
+      }
+    }
+  },
+  "meta": [
+    {
+      "name": "identity",
+      "type": "text"
+    }
+  ]
+}

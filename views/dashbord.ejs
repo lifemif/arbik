@@ -1,2 +1,15 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="dashbord" appConnect="local" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="dashbord" appConnect="local" components="{dmxBrowser:{}}" -->
+<div is="dmx-browser" id="browser1"></div>
+<div class="container wappler-block pt-5 pb-5">
+    <div class="row align-items-center">
+        <div class="text-center col-12 col-sm-6 col">
+            <h4>Дашборд<br><small class="text-muted">With faded secondary text</small></h4>
+            <p>A nice paragraph</p>
+            <button class="btn btn-primary mb-4" dmx-on:click="browser1.goto('/')">Button</button>
+        </div>
+        <div class="col-12 col-sm-6">
+            <img height="500" class="wappler-type-picture w-100">
+        </div>
+    </div>
+</div>
 <meta name="ac:route" content="/dashbord">

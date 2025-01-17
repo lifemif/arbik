@@ -1,32 +1,36 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appConnect="local" components="{dmxBrowser:{},dmxCharts:{}}" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appConnect="local" components="{dmxBrowser:{},dmxCharts:{},dmxNotifications:{},dmxValidator:{}}" -->
+<dmx-serverconnect id="sc_identificat" url="/api/user/identification" noload></dmx-serverconnect>
 <div class="container">
-    <form id="login1">
+    <form id="login1" is="dmx-serverconnect-form" method="post" action="/api/user/login" dmx-on:unauthorized="notifies1.danger('Логин или пароль не верен');login1.reset()" dmx-on:success="sc_identificat.load();browser1.goto('/dashbord')" dmx-on:forbidden="notifies1.warning('Что-то пошло не так!!!')">
         <div class="row">
             <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-start">
                 <div class="row">
                     <div class="col">
-                        <h1>Log In</h1>
-                        <p class="text-h3">Enter your details below.</p>
+                        <h1>Логин</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mt-4">
-                        <input type="text" id="inp_email" name="email" class="form-control" placeholder="Email">
+                        <input type="text" id="inp_login" name="login" class="form-control form-control-sm" placeholder="Email" required="" data-msg-required="Обязательное поле!">
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col">
-                        <input type="password" id="inp_password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" id="inp_password" name="password" class="form-control form-control-sm" placeholder="Password" required="" data-msg-required="Обязательное поле!">
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col">
-                        <button id="login1_submit" class="btn" type="button">Submit</button>
+                    <div class="col d-flex justify-content-between">
+                        <button id="btn1" class="btn btn-sm" dmx-on:click="browser1.goto('/registration')">Регистрация</button>
+                        <button id="login1_submit" class="btn btn-sm btn-primary" type="button">Вход</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
 </div>
-<div is="dmx-browser" id="browser1" dmx-on:click="browser1.goto('/registration')"></div>
+<dmx-notifications id="notifies1"></dmx-notifications>
+<div is="dmx-browser" id="browser1">
+
+</div>
 <meta name="ac:route" content="/">
