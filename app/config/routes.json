@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "page": "index",
+      "routeType": "page",
+      "layout": "main"
+    },
+    {
+      "path": "/registration",
+      "page": "registration",
+      "layout": "main"
+    },
+    {
+      "path": "/dashbord",
+      "page": "dashbord",
+      "layout": "sistem"
+    }
+  ]
+}

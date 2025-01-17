@@ -1,0 +1,15 @@
+{
+  "name": "db_demo",
+  "module": "dbconnector",
+  "action": "connect",
+  "options": {
+    "client": "mysql",
+    "connection": {
+      "host": "lifemif.beget.tech",
+      "user": "lifemif_demo_arb",
+      "password": "Lm3275723",
+      "database": "lifemif_demo_arb"
+    }
+  },
+  "fileName": "db_demo.json"
+}

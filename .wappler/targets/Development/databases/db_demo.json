@@ -1,0 +1,213 @@
+{
+  "type": "mysql",
+  "connection": {
+    "host": "lifemif.beget.tech",
+    "user": "lifemif_demo_arb",
+    "password": "Lm3275723",
+    "database": "lifemif_demo_arb"
+  },
+  "direct": true,
+  "schema": {
+    "tables": {
+      "user": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "setting_bukmaker": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "setting_line": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "setting_vid_sporta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "setting_vid_stavki": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "setting_strategi": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "svazka_valuta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "valuta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "bukmaker_valuta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "money": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "fin_rez": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "sobitie": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      }
+    },
+    "views": {},
+    "collations": [
+      {
+        "collation": "utf8_general_ci",
+        "charset": "utf8"
+      },
+      {
+        "collation": "utf8_general_mysql500_ci",
+        "charset": "utf8"
+      },
+      {
+        "collation": "utf8mb4_general_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_bin",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_unicode_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_icelandic_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_latvian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_romanian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_slovenian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_polish_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_estonian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_spanish_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_swedish_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_turkish_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_czech_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_danish_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_lithuanian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_slovak_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_spanish2_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_roman_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_persian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_esperanto_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_hungarian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_sinhala_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_german2_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_croatian_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_unicode_520_ci",
+        "charset": "utf8mb4"
+      },
+      {
+        "collation": "utf8mb4_vietnamese_ci",
+        "charset": "utf8mb4"
+      }
+    ]
+  }
+}
