@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "module": "auth",
+  "action": "restrict",
+  "options": {
+    "provider": "security",
+    "permissions": [
+      "Useris"
+    ],
+    "loginUrl": "/logining",
+    "forbiddenUrl": "/bloking"
+  }
+}

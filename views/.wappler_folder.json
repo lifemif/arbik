@@ -10,5 +10,13 @@
   "index.ejs": {
     "layoutPage": "main",
     "description": ""
+  },
+  "logining.ejs": {
+    "layoutPage": "sistem",
+    "description": ""
+  },
+  "bloking.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

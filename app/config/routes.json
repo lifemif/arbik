@@ -15,6 +15,21 @@
       "path": "/dashbord",
       "page": "dashbord",
       "layout": "sistem"
+    },
+    {
+      "path": "/logining",
+      "page": "logining",
+      "layout": "sistem"
+    },
+    {
+      "path": "/bloking",
+      "page": "bloking",
+      "layout": "main"
     }
-  ]
+  ],
+  "layouts": {
+    "sistem": {
+      "exec": "/api/user/sekuriti"
+    }
+  }
 }
