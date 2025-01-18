@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/registration.ejs",
+      "linkedForm": "serverconnectform1"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "username",
+        "name": "username"
+      },
+      {
+        "type": "text",
+        "fieldName": "password",
+        "name": "password"
+      },
+      {
+        "type": "text",
+        "fieldName": "email",
+        "name": "email"
+      },
+      {
+        "type": "text",
+        "fieldName": "tip_svazi",
+        "name": "tip_svazi"
+      },
+      {
+        "type": "number",
+        "fieldName": "telefon",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "telefon"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "UUiD",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{UUID.substr(-10, 12)}}"
+        },
+        "meta": [],
+        "outputType": "text",
+        "output": false
+      },
+      {
+        "name": "insert_users",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db_demo",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "user",
+                "column": "UUID",
+                "type": "text",
+                "value": "{{UUiD}}"
+              },
+              {
+                "table": "user",
+                "column": "username",
+                "type": "text",
+                "value": "{{$_POST.username}}"
+              },
+              {
+                "table": "user",
+                "column": "password",
+                "type": "text",
+                "value": "{{$_POST.password}}"
+              },
+              {
+                "table": "user",
+                "column": "email",
+                "type": "text",
+                "value": "{{$_POST.email}}"
+              },
+              {
+                "table": "user",
+                "column": "tip_svazi",
+                "type": "text",
+                "value": "{{$_POST.tip_svazi}}"
+              },
+              {
+                "table": "user",
+                "column": "telefon",
+                "type": "text",
+                "value": "{{$_POST.telefon}}"
+              },
+              {
+                "table": "user",
+                "column": "marketmaker",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "table": "user",
+                "column": "role",
+                "type": "text",
+                "value": "user"
+              },
+              {
+                "table": "user",
+                "column": "status",
+                "type": "text",
+                "value": "open"
+              }
+            ],
+            "table": "user",
+            "returning": "userID",
+            "query": "INSERT INTO user\n(UUID, username, password, email, tip_svazi, telefon, marketmaker, role, status) VALUES (:P1 /* {{UUiD}} */, :P2 /* {{$_POST.username}} */, :P3 /* {{$_POST.password}} */, :P4 /* {{$_POST.email}} */, :P5 /* {{$_POST.tip_svazi}} */, :P6 /* {{$_POST.telefon}} */, '1', 'user', 'open')",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{UUiD}}"
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{$_POST.username}}"
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.password}}"
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.email}}"
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.tip_svazi}}"
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.telefon}}"
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ],
+        "output": false
+      }
+    ]
+  }
+}

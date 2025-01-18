@@ -1,4 +1,66 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="registration" appConnect="local" -->
+<div class="container">
+    <div class="row">
+        <div class="col d-flex flex-column">
+            <h4 class="text-center">Регистрация</h4>
+            <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="/api/user/new_users" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:success="notifies1.success('Создано успешно!');serverconnectform1.reset();browser1.goto('/')" dmx-on:error="notifies1.danger('Что-то пошло не так!');serverconnectform1.reset()">
+
+                <div class="form-group mb-3">
+                    <label for="inp_username" class="col-form-label-sm">Логин</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_username" name="username" aria-describedby="inp_username_help" placeholder="Логин" required="" data-msg-required="Обязательное поле!">
+                </div>
+
+
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <div class="form-group mb-3 col-6">
+                            <label for="inp_password1" class="col-form-label-sm">Пароль</label>
+                            <input type="password" class="form-control me-2 form-control-sm" id="inp_password1" name="password1" aria-describedby="inp_password_help" placeholder="Пароль" required="" data-msg-required="Обязательное поле!">
+
+                        </div>
+                        <div class="form-group mb-3 col-6">
+                            <label for="inp_password" class="ms-2 col-form-label-sm">Повтори пароль</label>
+                            <input type="password" class="form-control ms-2 form-control-sm" id="inp_password" name="password" aria-describedby="inp_password_help" placeholder="Повтори пароль" required="" data-msg-required="Обязательное поле!" data-rule-equalto="password1" data-msg-equalto="Пароли не совпадают!">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label for="inp_email" class="col-form-label-sm">Email</label>
+                    <input type="email" class="form-control form-control-sm" id="inp_email" name="email" aria-describedby="inp_email_help" placeholder="Мыло" required="" data-msg-required="Обязательное поле!" data-rule-email="" data-msg-email="Это всё что хочешь, но только не мыло">
+                </div>
+                <div class="row">
+                    <div class="d-flex flex-row col-12">
+                        <div class="form-group col-6 mb-3 me-2">
+                            <label for="inp_tip_svazi" class="col-form-label-sm">Как с вами связаться</label>
+                            <select id="inp_tip_svazi" class="form-select me-2 form-select-sm" name="tip_svazi" required="" data-msg-required="Обязательное поле!">
+                                <option selected="" value=""></option>
+                                <option value="Телеграм">Телеграм</option>
+                                <option value="Ватсап">Ватсап</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6 mb-3 ms-0">
+                            <label for="inp_telefon" class="col-form-label-sm">Номер телефона</label>
+                            <input type="number" class="form-control form-control-sm" id="inp_telefon" name="telefon" aria-describedby="inp_telefon_help" placeholder="Номер телефона без &quot;+&quot;" required="" data-msg-required="Обязательное поле!" data-rule-number="" data-msg-number="Введи цифра с кодом страны, пример 79991112233">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-between">
+                        <button id="btn1" class="btn btn-sm" dmx-on:click="browser1.goto('/')">Вход в систему</button>
+                        <button type="submit" class="btn btn-primary btn-sm" dmx-bind:disabled="state.executing">Создать</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div><!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="registration" appConnect="local" components="{dmxNotifications:{},dmxValidator:{},dmxBrowser:{}}" -->
+<div is="dmx-browser" id="browser1"></div>
+
+<dmx-notifications id="notifies1"></dmx-notifications>
+
 <meta name="ac:route" content="/registration">
-<h1>Регистрация</h1>
 <!-- New Wappler Page -->

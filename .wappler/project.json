@@ -28,9 +28,13 @@
   "targets": [
     {
       "name": "Development",
-      "remoteURL": "http://localhost:3000/",
+      "remoteURL": "http://localhost:3000",
       "access": "local",
-      "targetType": "wappler"
+      "targetType": "wappler",
+      "webLoggingMaxFiles": "5",
+      "webLoggingMaxFileSize": "10m",
+      "databaseLoggingMaxFiles": "5",
+      "databaseLoggingMaxFileSize": "10m"
     }
   ],
   "activeTarget": "Development",

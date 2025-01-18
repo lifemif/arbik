@@ -6,5 +6,9 @@
   "dashbord.ejs": {
     "layoutPage": "sistem",
     "description": ""
+  },
+  "index.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }
