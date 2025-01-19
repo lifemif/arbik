@@ -1,6 +1,6 @@
 {
   "sport_line.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_sport_line",
     "description": ""
   }
 }

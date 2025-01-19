@@ -1,6 +1,6 @@
 {
   "report.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_report",
     "description": ""
   }
 }

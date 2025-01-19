@@ -1,6 +1,6 @@
 {
   "wallet.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_wallet",
     "description": ""
   }
 }

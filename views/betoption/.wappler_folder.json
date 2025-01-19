@@ -1,6 +1,6 @@
 {
   "bet_option.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_betoption",
     "description": ""
   }
 }

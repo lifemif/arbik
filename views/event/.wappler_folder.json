@@ -1,6 +1,6 @@
 {
   "event.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_event",
     "description": ""
   }
 }

@@ -1,6 +1,6 @@
 {
   "currencu.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_current",
     "description": ""
   }
 }

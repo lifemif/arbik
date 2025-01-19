@@ -1,6 +1,6 @@
 {
   "express.ejs": {
-    "layoutPage": "main",
+    "layoutPage": "la_pakege",
     "description": ""
   }
 }

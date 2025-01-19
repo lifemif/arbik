@@ -39,47 +39,57 @@
     {
       "path": "/event/event",
       "page": "event/event",
-      "layout": "main"
+      "layout": "la_event"
     },
     {
       "path": "/wallet/wallet",
       "page": "wallet/wallet",
-      "layout": "main"
+      "layout": "la_wallet"
     },
     {
       "path": "/spotr_line/sport_line",
       "page": "spotr_line/sport_line",
-      "layout": "main"
+      "layout": "la_sport_line"
     },
     {
       "path": "/currency/currencu",
       "page": "currency/currencu",
-      "layout": "main"
+      "layout": "la_current"
     },
     {
       "path": "/pacydge/express",
       "page": "pacydge/express",
-      "layout": "main"
+      "layout": "la_pakege"
     },
     {
       "path": "/strategy/strategi",
       "page": "strategy/strategi",
-      "layout": "main"
+      "layout": "la_strategi"
     },
     {
       "path": "/betoption/bet_option",
       "page": "betoption/bet_option",
-      "layout": "main"
+      "layout": "la_betoption"
     },
     {
       "path": "/fin_rez/report",
       "page": "fin_rez/report",
-      "layout": "main"
+      "layout": "la_report"
     },
     {
       "path": "/download/downloading",
       "page": "download/downloading",
       "layout": "sistem"
+    },
+    {
+      "path": "/strategy/scrap/scraping",
+      "page": "strategy/scrap/scraping",
+      "layout": "la_strategi"
+    },
+    {
+      "path": "/strategy/aziat/aziating",
+      "page": "strategy/aziat/aziating",
+      "layout": "la_strategi"
     }
   ],
   "layouts": {
