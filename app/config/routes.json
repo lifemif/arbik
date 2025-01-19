@@ -25,6 +25,61 @@
       "path": "/bloking",
       "page": "bloking",
       "layout": "main"
+    },
+    {
+      "path": "/profile",
+      "page": "profile",
+      "layout": "sistem"
+    },
+    {
+      "path": "/setting",
+      "page": "setting",
+      "layout": "sistem"
+    },
+    {
+      "path": "/event/event",
+      "page": "event/event",
+      "layout": "main"
+    },
+    {
+      "path": "/wallet/wallet",
+      "page": "wallet/wallet",
+      "layout": "main"
+    },
+    {
+      "path": "/spotr_line/sport_line",
+      "page": "spotr_line/sport_line",
+      "layout": "main"
+    },
+    {
+      "path": "/currency/currencu",
+      "page": "currency/currencu",
+      "layout": "main"
+    },
+    {
+      "path": "/pacydge/express",
+      "page": "pacydge/express",
+      "layout": "main"
+    },
+    {
+      "path": "/strategy/strategi",
+      "page": "strategy/strategi",
+      "layout": "main"
+    },
+    {
+      "path": "/betoption/bet_option",
+      "page": "betoption/bet_option",
+      "layout": "main"
+    },
+    {
+      "path": "/fin_rez/report",
+      "page": "fin_rez/report",
+      "layout": "main"
+    },
+    {
+      "path": "/download/downloading",
+      "page": "download/downloading",
+      "layout": "sistem"
     }
   ],
   "layouts": {

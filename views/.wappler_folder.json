@@ -18,5 +18,17 @@
   "bloking.ejs": {
     "layoutPage": "main",
     "description": ""
+  },
+  "profile.ejs": {
+    "layoutPage": "sistem",
+    "description": ""
+  },
+  "setting.ejs": {
+    "layoutPage": "sistem",
+    "description": ""
+  },
+  "currencu.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

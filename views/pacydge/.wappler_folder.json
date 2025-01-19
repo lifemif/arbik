@@ -1,0 +1,6 @@
+{
+  "express.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  }
+}
