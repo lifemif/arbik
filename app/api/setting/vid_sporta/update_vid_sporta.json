@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "vid_sporta"
+      },
+      {
+        "type": "number",
+        "name": "sorting"
+      },
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update_vid_sporta",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta",
+              "type": "text",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta_sis",
+              "type": "text",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting",
+              "type": "number",
+              "value": "{{$_POST.sorting}}"
+            }
+          ],
+          "table": "setting_vid_sporta",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.id}}",
+                "data": {
+                  "column": "id"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "id",
+          "query": "UPDATE setting_vid_sporta\nSET vid_sporta = :P1 /* {{$_POST.vid_sporta}} */, vid_sporta_sis = :P2 /* {{$_POST.vid_sporta}} */, sorting = :P3 /* {{$_POST.sorting}} */\nWHERE id = :P4 /* {{$_POST.id}} */",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.sorting}}"
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_POST.id}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

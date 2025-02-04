@@ -1,11 +1,70 @@
-<!-- Wappler include head-page="layouts/sistem" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="profile" appConnect="local" -->
-<div class="container wappler-block pt-5 pb-5">
+<div class="wappler-block pt-5 pb-5 container">
     <div class="row">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <h4>Profile<br><small class="text-muted">With faded secondary text</small></h4>
-            <p>A nice paragraph</p>
-            <button class="btn btn-primary">Button</button>
+        <div class="col-sm-12 col-lg-12 d-flex flex-row justify-content-center mb-3 align-items-end align-items-xxl-center align-items-lg-center">
+            <h5 class="text-center">Profile users:&nbsp;</h5>
+            <h4 class="text-center text-success">{{sc_ident.data.query_ident.UUID}}&nbsp; &nbsp; &nbsp;</h4>
+
+            <button id="btn1" class="btn text-center btn-sm btn-secondary d-none d-lg-inline-block">Switch to real trading</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 d-flex align-self-center justify-content-center">
+            <div class="d-block text-center">
+                <img src="/assets/images/profile.png" width="500" height="500" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-sm-12 ms-lg-0 col-lg-6 offset-lg-1">
+            <div class="d-block text-start">
+                <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="/api/profile/update_users" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="sc_ident.data.query_ident" dmx-on:success="notifies1.warning('Updating');sc_ident.load()" dmx-on:error="notifies1.danger('No update');sc_ident.load()">
+                    <div class="form-group mb-3">
+                        <label for="inp_username" class="col-form-label-sm">Username</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_username" name="username" dmx-bind:value="sc_ident.data.query_ident.username" aria-describedby="inp_username_help" placeholder="Enter Username" required="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_password" class="col-form-label-sm">Password: ({{inp_password.value}})&nbsp;</label>
+                        <input type="password" class="form-control form-control-sm" id="inp_password" name="password" dmx-bind:value="sc_ident.data.query_ident.password" aria-describedby="inp_password_help" placeholder="Enter Password" required="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_email" class="col-form-label-sm">Email</label>
+                        <input type="email" class="form-control form-control-sm" id="inp_email" name="email" dmx-bind:value="sc_ident.data.query_ident.email" aria-describedby="inp_email_help" placeholder="Enter Email" required="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_tip_svazi" class="col-form-label-sm">How can I contact you?</label>
+                        <select id="inp_tip_svazi" class="form-select form-select-sm" name="tip_svazi" dmx-bind:value="sc_ident.data.query_ident.tip_svazi" required="">
+                            <option selected="" value=""></option>
+                            <option value="Телеграм">Telegram</option>
+                            <option value="Ватсап">WhatsApp</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_telefon" class="col-form-label-sm">Telefon</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_telefon" name="telefon" dmx-bind:value="sc_ident.data.query_ident.telefon" aria-describedby="inp_telefon_help" placeholder="Enter Telefon" required="">
+                    </div>
+                    <div class="form-group mb-3 text-start">
+                        <label for="inp_marketmaker" class="col-form-label-sm">Marketmaker</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_marketmaker" name="marketmaker" dmx-bind:value="sc_ident.data.query_ident.marketmaker" aria-describedby="inp_marketmaker_help" placeholder="Enter Marketmaker" dmx-bind:disabled="">
+                    </div>
+                    <div class="form-group mb-3 d-none">
+                        <label for="inp_userID">User</label>
+                        <input type="number" class="form-control" id="inp_userID" name="userID" dmx-bind:value="sc_ident.data.query_ident.userID" aria-describedby="inp_userID_help" placeholder="Enter User">
+                    </div>
+                    <div class="form-group mb-3 text-end">
+                        <button type="submit" class="btn btn-sm btn-warning" dmx-bind:value="sc_ident.data.query_ident.Save">Save</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+</div><!-- Wappler include head-page="layouts/sistem" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="profile" appConnect="local" components="{dmxValidator:{},dmxNotifications:{}}" -->
+<div class="row">
+    <div class="col-10 col-xxl-11">
+        <div class="d-block text-center">
+
         </div>
     </div>
 </div>
+
+<dmx-notifications id="notifies1"></dmx-notifications>
 <meta name="ac:route" content="/profile">

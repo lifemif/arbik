@@ -9,6 +9,13 @@
   "direct": true,
   "schema": {
     "tables": {
+      "fin_rez": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
       "user": {
         "db": {
           "engine": "InnoDB",
@@ -97,21 +104,61 @@
           }
         }
       },
-      "setting_bukmaker": {
+      "bukmaker_valuta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "bukmaker_svazka": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "valuta_bukmaker": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "section": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "svazka_valuta": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
           "collation": "utf8_general_ci"
         }
       },
-      "setting_line": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
-        }
-      },
-      "setting_vid_sporta": {
+      "sobitie": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
@@ -125,6 +172,53 @@
           "collation": "utf8_general_ci"
         }
       },
+      "setting_vid_sporta": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "vid_sporta": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "vid_sporta_sis": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "sorting": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
+        }
+      },
       "setting_strategi": {
         "db": {
           "engine": "InnoDB",
@@ -132,21 +226,62 @@
           "collation": "utf8_general_ci"
         }
       },
-      "svazka_valuta": {
+      "setting_line": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
           "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "vid_sporta": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "line": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "line_sis": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "sorting": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
         }
       },
-      "valuta": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
-        }
-      },
-      "bukmaker_valuta": {
+      "setting_bukmaker": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
@@ -160,14 +295,7 @@
           "collation": "utf8_general_ci"
         }
       },
-      "fin_rez": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
-        }
-      },
-      "sobitie": {
+      "valuta": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",

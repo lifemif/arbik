@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "id"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting"
+            },
+            {
+              "table": "setting_line",
+              "column": "line",
+              "aggregate": "COUNT",
+              "alias": "Counting"
+            }
+          ],
+          "table": {
+            "name": "setting_vid_sporta"
+          },
+          "primary": "id",
+          "joins": [
+            {
+              "table": "setting_line",
+              "column": "*",
+              "type": "LEFT",
+              "clauses": {
+                "condition": "AND",
+                "rules": [
+                  {
+                    "table": "setting_line",
+                    "column": "vid_sporta",
+                    "operator": "equal",
+                    "value": {
+                      "table": "setting_vid_sporta",
+                      "column": "vid_sporta"
+                    },
+                    "operation": "="
+                  }
+                ]
+              },
+              "primary": "id"
+            }
+          ],
+          "query": "SELECT setting_vid_sporta.id, setting_vid_sporta.vid_sporta, setting_vid_sporta.sorting, COUNT(setting_line.line) AS Counting\nFROM setting_vid_sporta\nLEFT JOIN setting_line ON (setting_line.vid_sporta = setting_vid_sporta.vid_sporta)\nWHERE setting_vid_sporta.user_uuid = :P1 /* {{identity}} */\nGROUP BY setting_vid_sporta.id, setting_vid_sporta.vid_sporta, setting_vid_sporta.sorting\nORDER BY setting_vid_sporta.sorting ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "distinct": false,
+          "orders": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting",
+              "direction": "ASC"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "setting_vid_sporta.user_uuid",
+                "field": "setting_vid_sporta.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "setting_vid_sporta",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "groupBy": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "id"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "number",
+          "name": "sorting"
+        },
+        {
+          "type": "text",
+          "name": "Counting"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

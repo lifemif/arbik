@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_vid_sporta",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "id"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "user_uuid"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "vid_sporta_sis"
+            },
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting"
+            }
+          ],
+          "table": {
+            "name": "setting_vid_sporta"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "setting_vid_sporta.user_uuid",
+                "field": "setting_vid_sporta.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "setting_vid_sporta",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "setting_vid_sporta",
+              "column": "sorting",
+              "direction": "ASC",
+              "recid": 1
+            }
+          ],
+          "query": "SELECT id, user_uuid, vid_sporta, vid_sporta_sis, sorting\nFROM setting_vid_sporta\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY sorting ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta_sis"
+        },
+        {
+          "type": "number",
+          "name": "sorting"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

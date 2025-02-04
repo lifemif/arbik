@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filter"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_line",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "setting_line",
+              "column": "id"
+            },
+            {
+              "table": "setting_line",
+              "column": "user_uuid"
+            },
+            {
+              "table": "setting_line",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "setting_line",
+              "column": "line"
+            },
+            {
+              "table": "setting_line",
+              "column": "line_sis"
+            },
+            {
+              "table": "setting_line",
+              "column": "sorting"
+            }
+          ],
+          "table": {
+            "name": "setting_line"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "setting_line.user_uuid",
+                "field": "setting_line.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "setting_line",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "id": "setting_line.vid_sporta",
+                "field": "setting_line.vid_sporta",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter}}",
+                "data": {
+                  "table": "setting_line",
+                  "column": "vid_sporta",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "vid_sporta"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "setting_line",
+              "column": "sorting",
+              "direction": "ASC",
+              "recid": 1
+            }
+          ],
+          "query": "SELECT id, user_uuid, vid_sporta, line, line_sis, sorting\nFROM setting_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND vid_sporta LIKE :P2 /* {{$_GET.filter}} */\nORDER BY sorting ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filter}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "line"
+        },
+        {
+          "type": "text",
+          "name": "line_sis"
+        },
+        {
+          "type": "number",
+          "name": "sorting"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

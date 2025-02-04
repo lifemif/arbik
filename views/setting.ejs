@@ -1,11 +1,195 @@
-<!-- Wappler include head-page="layouts/sistem" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="setting" appConnect="local" -->
-<div class="container wappler-block pt-5 pb-5">
+<dmx-serverconnect id="sc_vid_sporta" url="/api/setting/vid_sporta/get_vid_sporta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_line" url="/api/setting/line/get_line" dmx-param:filter="select_filter.value"></dmx-serverconnect><!-- Wappler include head-page="layouts/sistem" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="setting" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxValidator:{},dmxDataTraversal:{}}" -->
+<dmx-serverconnect id="sc_line_vid_sporta" url="/api/setting/vid_sporta/zapros_line_deleted"></dmx-serverconnect>
+
+
+<div class="container">
     <div class="row">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <h4>Setting<br><small class="text-muted">With faded secondary text</small></h4>
-            <p>A nice paragraph</p>
-            <button class="btn btn-primary">Button</button>
+        <div class="col">
+            <div class="d-block">
+                <h5 class="text-center">Setting</h5>
+            </div>
         </div>
     </div>
 </div>
+
+<section id="row1">
+    <div class="container" id="row1">
+        <div class="row">
+            <div class="col-12 col-lg-6" id="vid_sporta">
+                <div class="d-block">
+                    <h6 class="text-center">Type of sport</h6>
+                    <button id="btn_new_vid_sporta" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal_vid_sporta">New type of sport</button>
+                    <div class="table-responsive mt-2">
+                        <table class="table table-striped table-bordered table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Type of sport</th>
+                                    <th class="text-center">Sorting</th>
+                                    <th class="text-center">Line count</th>
+                                    <th class="text-center">Update</th>
+                                    <th class="text-center">Deleted</th>
+                                </tr>
+                            </thead>
+                            <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_line_vid_sporta.data.query" id="tableRepeat2">
+                                <tr>
+                                    <td dmx-text="vid_sporta"></td>
+                                    <td dmx-text="sorting" class="text-center"></td>
+                                    <td dmx-text="Counting" class="text-center"></td>
+                                    <td class="text-center"><button id="btn_update_vid_sporta" class="btn btn-warning btn-sm" dmx-on:click="data_detail_vid_sporta.select(id);var_update.setValue(1)">Update&nbsp;</button></td>
+                                    <td class="text-center">
+                                        <form is="dmx-serverconnect-form" id="form_deled_vid_sporta" method="post" action="/api/setting/vid_sporta/deleted_vid_sporta" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="sc_line_vid_sporta.load({});notifies1.info('Failed to remove sports from the table')" dmx-on:success="sc_line_vid_sporta.load({});sc_vid_sporta.load();notifies1.danger('Event deleted successfully')" dmx-show="">
+                                            <div class="form-group mb-3 row">
+                                                <label for="inp_idi" class="col-sm-2 col-form-label">Idi</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp_idi" name="idi" aria-describedby="inp_idi_help" placeholder="Enter Idi" dmx-bind:value="id">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <button id="btn_deleted" class="btn btn-danger btn-sm" dmx-show="Counting==0" dmx-on:click="form_deled_vid_sporta.submit()">Deleted</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+                    <div class="d-flex flex-row justify-content-center align-items-center" is="dmx-data-detail" id="data_detail_vid_sporta" dmx-bind:data="sc_vid_sporta.data.query_vid_sporta" key="id" dmx-show="var_update.value==1">
+                        <form is="dmx-serverconnect-form" id="form_update_vid_sporta" method="post" action="/api/setting/vid_sporta/update_vid_sporta" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_vid_sporta.data" dmx-on:error="notifies1.danger('There was an error changing the sports table!!!');form_update_vid_sporta.reset();var_update.setValue(0);sc_line_vid_sporta.load()" dmx-on:success="data_detail_vid_sporta.form_update_vid_sporta.reset();var_update.setValue(0);notifies1.success('Changes in the sports table were successful');sc_line_vid_sporta.load()">
+                            <div class="form-group mb-3" dmx-show="">
+                                <label for="inp_vid_sporta" class="col-form-label-sm">Type of sport</label>
+                                <input type="text" class="form-control form-control-sm" id="inp_vid_sporta" name="vid_sporta" dmx-bind:value="data_detail_vid_sporta.data.vid_sporta" aria-describedby="inp_vid_sporta_help" placeholder="Enter Vid sporta" required="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inp_sorting" class="col-form-label-sm">Sorting</label>
+                                <input type="number" class="form-control form-control-sm" id="inp_sorting" name="sorting" dmx-bind:value="data_detail_vid_sporta.data.sorting" aria-describedby="inp_sorting_help" placeholder="Enter Sorting" required="">
+                            </div>
+                            <div class="form-group mb-3 d-none">
+                                <label for="inp_id">Id</label>
+                                <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_vid_sporta.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                            </div>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn w-100 btn-warning btn-sm" dmx-bind:value="data_detail_vid_sporta.data.Save">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="modal" id="modal_vid_sporta" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h6 class="modal-title text-light">New type of sport</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form is="dmx-serverconnect-form" id="sc_new_vid_sporta" method="post" action="/api/setting/vid_sporta/new_vid_sporta" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="sc_new_vid_sporta.reset();modal_vid_sporta.hide();notifies1.danger('Error');sc_line_vid_sporta.load()" dmx-on:success="sc_new_vid_sporta.reset();modal_vid_sporta.hide();sc_line_vid_sporta.load();sc_vid_sporta.load();notifies1.success('The sport has been successfully saved')">
+                                    <div class="form-group mb-3">
+                                        <label for="inp_vid_sporta" class="col-form-label-sm">Type of sport</label>
+                                        <input type="text" class="form-control form-control-sm" id="inp_vid_sporta" name="vid_sporta" aria-describedby="inp_vid_sporta_help" placeholder="Enter Type of sport" required="">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inp_sorting" class="col-form-label-sm">Sorting</label>
+                                        <input type="number" class="form-control form-control-sm" id="inp_sorting" name="sorting" aria-describedby="inp_sorting_help" placeholder="Enter Sorting" required="">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary btn-sm" dmx-on:click="sc_new_vid_sporta.submit()" dmx-bind:disabled="sc_new_vid_sporta.state.executing">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6" id="line">
+                <div class="d-block">
+                    <h6 class="text-center">Sporting line</h6><button id="btn_new_line" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modal_line">New sporting line</button>
+                    <select id="select_filter" class="form-select mb-2 form-select-sm" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis">
+                        <option value="">Filter</option>
+                    </select>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-bordered table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Type of sport</th>
+                                    <th class="text-center">Line</th>
+                                    <th class="text-center">Sorting</th>
+                                    <th class="text-center">Deleted</th>
+                                </tr>
+                            </thead>
+                            <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_line.data.query_line" id="tableRepeat3">
+                                <tr>
+                                    <td dmx-text="vid_sporta"></td>
+                                    <td dmx-text="line" class="text-center"></td>
+                                    <td dmx-text="sorting" class="text-center"></td>
+                                    <td class="text-center">
+                                        <form is="dmx-serverconnect-form" id="form_deleted_line" method="post" action="/api/setting/line/delete_line" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="notifies1.info('Error line not deleted')" dmx-on:success="sc_line_vid_sporta.load({});sc_line.load({filter: select_filter.value});notifies1.danger('The line was deleted successfully and ties with the sports were severed')">
+                                            <div class="form-group mb-3 row" dmx-show="">
+                                                <label for="inp_idy" class="col-sm-2 col-form-label">Idy</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp_idy" name="idy" aria-describedby="inp_idy_help" placeholder="Enter Idy" dmx-bind:value="id">
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3 row">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-danger btn-sm text-center">Deleted</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <div class="modal" id="modal_line" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h6 class="modal-title text-light">New Line</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form is="dmx-serverconnect-form" id="form_new_line" method="post" action="/api/setting/line/new_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_line.reset();modal_line.hide();notifies1.danger('Error in creating sports line.');sc_line.load({filter: inp_vid_sporta.value});sc_line_vid_sporta.load()" dmx-on:success="form_new_line.reset();modal_line.hide();notifies1.success('The sports line is successfully created and connected with sports');sc_line.load({filter: select_filter.value});sc_line_vid_sporta.load({})">
+                                    <div class="form-group mb-3">
+                                        <label for="inp_vid_sporta" class="col-form-label-sm">Type of sport</label>
+                                        <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis" required="">
+                                            <option selected="" value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inp_line" class="col-form-label-sm">Line</label>
+                                        <input type="text" class="form-control form-control-sm" id="inp_line" name="line" aria-describedby="inp_line_help" placeholder="Enter Line" required="">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inp_sorting" class="col-form-label-sm">Sorting</label>
+                                        <input type="number" class="form-control form-control-sm" id="inp_sorting" name="sorting" aria-describedby="inp_sorting_help" placeholder="Enter Sorting" required="">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" dmx-on:click="form_new_line.submit()" dmx-bind:disabled="form_new_line.state.executing">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<dmx-value id="var_update" dmx-bind:value="0"></dmx-value>
+<dmx-notifications id="notifies1"></dmx-notifications>
+
 <meta name="ac:route" content="/setting">

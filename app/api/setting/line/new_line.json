@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "vid_sporta"
+      },
+      {
+        "type": "text",
+        "name": "line"
+      },
+      {
+        "type": "number",
+        "name": "sorting"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert_line",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "setting_line",
+              "column": "user_uuid",
+              "type": "text",
+              "value": "{{identity}}"
+            },
+            {
+              "table": "setting_line",
+              "column": "vid_sporta",
+              "type": "text",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "table": "setting_line",
+              "column": "line",
+              "type": "text",
+              "value": "{{$_POST.line}}"
+            },
+            {
+              "table": "setting_line",
+              "column": "line_sis",
+              "type": "text",
+              "value": "{{$_POST.line}}"
+            },
+            {
+              "table": "setting_line",
+              "column": "sorting",
+              "type": "number",
+              "value": "{{$_POST.sorting}}"
+            }
+          ],
+          "table": "setting_line",
+          "returning": "id",
+          "query": "INSERT INTO setting_line\n(user_uuid, vid_sporta, line, line_sis, sorting) VALUES (:P1 /* {{identity}} */, :P2 /* {{$_POST.vid_sporta}} */, :P3 /* {{$_POST.line}} */, :P4 /* {{$_POST.line}} */, :P5 /* {{$_POST.sorting}} */)",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{identity}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.line}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.line}}"
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.sorting}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}
