@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "setting_valuta",
+              "column": "id"
+            },
+            {
+              "table": "setting_valuta",
+              "column": "user_uuid"
+            },
+            {
+              "table": "setting_valuta",
+              "column": "name_valuta"
+            },
+            {
+              "table": "setting_valuta",
+              "column": "name_valuta_sis"
+            },
+            {
+              "table": "setting_valuta",
+              "column": "sector"
+            }
+          ],
+          "table": {
+            "name": "setting_valuta"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "SELECT id, user_uuid, name_valuta, name_valuta_sis, sector\nFROM setting_valuta\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY sector ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "orders": [
+            {
+              "table": "setting_valuta",
+              "column": "sector",
+              "direction": "ASC"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "setting_valuta.user_uuid",
+                "field": "setting_valuta.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "setting_valuta",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "name_valuta"
+        },
+        {
+          "type": "text",
+          "name": "name_valuta_sis"
+        },
+        {
+          "type": "number",
+          "name": "sector"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

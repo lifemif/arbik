@@ -1,19 +1,26 @@
 <!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appConnect="local" components="{dmxBrowser:{},dmxCharts:{},dmxNotifications:{},dmxValidator:{}}" -->
 <dmx-serverconnect id="sc_identificat" url="/api/user/identification" noload></dmx-serverconnect>
 <div class="container mb-0">
-    <form method="post" is="dmx-serverconnect-form" id="serverconnectform1" action="/api/user/login" dmx-on:success="sc_identificat.load();browser1.goto('/dashbord')" dmx-on:unauthorized="notifies1.danger('Логин и пароль не верены');serverconnectform1.reset()">
-        <div class="row row-cols-6 align-items-center">
-            <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                <h4>Login</h4>
-                <input id="login" name="login" type="text" class="form-control mb-3" placeholder="Login" required="" data-msg-required="Обязательное поле логин!">
-                <input id="password" name="password" type="password" class="form-control mb-2" placeholder="Password" required="" data-msg-required="Обязательное поле пароль!">
-            </div>
-            <div class="d-flex justify-content-between flex-column col-12">
-                <button id="btn1" class="btn btn-primary btn-sm" type="submit">Login&nbsp;<i class="fas fa-sign-in-alt"></i></button><button id="btn2" class="btn btn-sm" dmx-on:click="browser1.goto('/registration')">Registration</button>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="d-block">
+                <form method="post" is="dmx-serverconnect-form" id="serverconnectform1" action="/api/user/login" dmx-on:success="sc_identificat.load();browser1.goto('/dashbord')" dmx-on:unauthorized="notifies1.danger('Логин и пароль не верены');serverconnectform1.reset()">
+                    <div class="row row-cols-6 align-items-center">
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                            <h4>Login</h4>
+                            <input id="login" name="login" type="text" class="form-control mb-3" placeholder="Login" required="" data-msg-required="Обязательное поле логин!">
+                            <input id="password" name="password" type="password" class="form-control mb-2" placeholder="Password" required="" data-msg-required="Обязательное поле пароль!">
+                        </div>
+                        <div class="d-flex justify-content-between flex-column col-12">
+                            <button id="btn1" class="btn btn-primary btn-sm" type="submit">Login&nbsp;<i class="fas fa-sign-in-alt"></i></button><button id="btn2" class="btn btn-sm" dmx-on:click="browser1.goto('/registration')">Registration</button>
 
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+
 </div>
 <dmx-notifications id="notifies1"></dmx-notifications>
 <div is="dmx-browser" id="browser1">
