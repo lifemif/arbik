@@ -1,0 +1,687 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "Vid_dvigenia"
+      },
+      {
+        "type": "text",
+        "name": "bukmaker"
+      },
+      {
+        "type": "text",
+        "name": "currency"
+      },
+      {
+        "type": "number",
+        "name": "summ_curerency"
+      },
+      {
+        "type": "number",
+        "name": "curse"
+      },
+      {
+        "type": "text",
+        "name": "description"
+      },
+      {
+        "type": "number",
+        "name": "summ_curerency*$_POST"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "",
+      "module": "core",
+      "action": "condition",
+      "options": {
+        "if": "{{$_POST.Vid_dvigenia=='Withdrawing money'}}",
+        "then": {
+          "steps": [
+            {
+              "name": "uuid_wallet2",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{UUID.substr(-10, 12)}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "summa",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{$_POST.summ_curerency*$_POST.curse}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "uuid_fin_rez2",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{UUID.substr(-10, 12)}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "perevorot",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{summa-summa-summa}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "insert_wallet_copy",
+              "module": "dbupdater",
+              "action": "insert",
+              "options": {
+                "connection": "db_demo",
+                "sql": {
+                  "type": "insert",
+                  "values": [
+                    {
+                      "table": "money",
+                      "column": "user_uuid",
+                      "type": "text",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "money_uuid",
+                      "type": "text",
+                      "value": "{{uuid_wallet2}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "data_time",
+                      "type": "datetime",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "Vid_dvigenia",
+                      "type": "text",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "bukmaker",
+                      "type": "text",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "currency",
+                      "type": "text",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "summ_curerency",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "curse",
+                      "type": "number",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "summa",
+                      "type": "number",
+                      "value": "{{perevorot}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "description",
+                      "type": "text",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ],
+                  "table": "money",
+                  "returning": "id",
+                  "query": "INSERT INTO money\n(user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_wallet2}} */, :P3 /* {{NOW}} */, :P4 /* {{$_POST.Vid_dvigenia}} */, :P5 /* {{$_POST.bukmaker}} */, :P6 /* {{$_POST.currency}} */, :P7 /* {{$_POST.summ_curerency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{perevorot}} */, :P10 /* {{$_POST.description}} */)",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{uuid_wallet2}}"
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{perevorot}}"
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "identity",
+                  "type": "text"
+                },
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            },
+            {
+              "name": "insert_finrez_copy",
+              "module": "dbupdater",
+              "action": "insert",
+              "options": {
+                "connection": "db_demo",
+                "sql": {
+                  "type": "insert",
+                  "values": [
+                    {
+                      "table": "fin_rez",
+                      "column": "user_uuid",
+                      "type": "text",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "fin_rez_uuid",
+                      "type": "text",
+                      "value": "{{uuid_fin_rez}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "data_time_rascheta",
+                      "type": "datetime",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "money_line_uuid",
+                      "type": "text",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "strategi",
+                      "type": "text",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "bukmaker",
+                      "type": "text",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "currency",
+                      "type": "text",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "curse",
+                      "type": "number",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "stavka_currency",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "summa",
+                      "type": "number",
+                      "value": "{{perevorot}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "discription",
+                      "type": "text",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ],
+                  "table": "fin_rez",
+                  "returning": "id",
+                  "query": "INSERT INTO fin_rez\n(user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, strategi, bukmaker, currency, curse, stavka_currency, summa, discription) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_fin_rez}} */, :P3 /* {{NOW}} */, :P4 /* {{uuid_wallet}} */, :P5 /* {{$_POST.Vid_dvigenia}} */, :P6 /* {{$_POST.bukmaker}} */, :P7 /* {{$_POST.currency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{$_POST.summ_curerency}} */, :P10 /* {{perevorot}} */, :P11 /* {{$_POST.description}} */)",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{uuid_fin_rez}}"
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{perevorot}}"
+                    },
+                    {
+                      "name": ":P11",
+                      "type": "expression",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "identity",
+                  "type": "text"
+                },
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            }
+          ]
+        },
+        "else": {
+          "steps": [
+            {
+              "name": "uuid_wallet",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{UUID.substr(-10, 12)}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "uuid_fin_rez",
+              "module": "core",
+              "action": "setvalue",
+              "options": {
+                "value": "{{UUID.substr(-10, 12)}}"
+              },
+              "meta": [],
+              "outputType": "text"
+            },
+            {
+              "name": "insert_wallet",
+              "module": "dbupdater",
+              "action": "insert",
+              "options": {
+                "connection": "db_demo",
+                "sql": {
+                  "type": "insert",
+                  "values": [
+                    {
+                      "table": "money",
+                      "column": "user_uuid",
+                      "type": "text",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "money_uuid",
+                      "type": "text",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "data_time",
+                      "type": "datetime",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "Vid_dvigenia",
+                      "type": "text",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "bukmaker",
+                      "type": "text",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "currency",
+                      "type": "text",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "summ_curerency",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "curse",
+                      "type": "number",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "summa",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency*$_POST.curse}}"
+                    },
+                    {
+                      "table": "money",
+                      "column": "description",
+                      "type": "text",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ],
+                  "table": "money",
+                  "returning": "id",
+                  "query": "INSERT INTO money\n(user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_wallet}} */, :P3 /* {{NOW}} */, :P4 /* {{$_POST.Vid_dvigenia}} */, :P5 /* {{$_POST.bukmaker}} */, :P6 /* {{$_POST.currency}} */, :P7 /* {{$_POST.summ_curerency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{$_POST.summ_curerency*$_POST.curse}} */, :P10 /* {{$_POST.description}} */)",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency*$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "identity",
+                  "type": "text"
+                },
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            },
+            {
+              "name": "insert_finrez",
+              "module": "dbupdater",
+              "action": "insert",
+              "options": {
+                "connection": "db_demo",
+                "sql": {
+                  "type": "insert",
+                  "values": [
+                    {
+                      "table": "fin_rez",
+                      "column": "user_uuid",
+                      "type": "text",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "fin_rez_uuid",
+                      "type": "text",
+                      "value": "{{uuid_fin_rez}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "data_time_rascheta",
+                      "type": "datetime",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "money_line_uuid",
+                      "type": "text",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "strategi",
+                      "type": "text",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "bukmaker",
+                      "type": "text",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "currency",
+                      "type": "text",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "curse",
+                      "type": "number",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "stavka_currency",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "summa",
+                      "type": "number",
+                      "value": "{{$_POST.summ_curerency*$_POST.curse}}"
+                    },
+                    {
+                      "table": "fin_rez",
+                      "column": "discription",
+                      "type": "text",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ],
+                  "table": "fin_rez",
+                  "returning": "id",
+                  "query": "INSERT INTO fin_rez\n(user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, strategi, bukmaker, currency, curse, stavka_currency, summa, discription) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_fin_rez}} */, :P3 /* {{NOW}} */, :P4 /* {{uuid_wallet}} */, :P5 /* {{$_POST.Vid_dvigenia}} */, :P6 /* {{$_POST.bukmaker}} */, :P7 /* {{$_POST.currency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{$_POST.summ_curerency}} */, :P10 /* {{$_POST.summ_curerency*$_POST.curse}} */, :P11 /* {{$_POST.description}} */)",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{identity}}"
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{uuid_fin_rez}}"
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{NOW}}"
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{uuid_wallet}}"
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.Vid_dvigenia}}"
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.bukmaker}}"
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.currency}}"
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency}}"
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{$_POST.summ_curerency*$_POST.curse}}"
+                    },
+                    {
+                      "name": ":P11",
+                      "type": "expression",
+                      "value": "{{$_POST.description}}"
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "identity",
+                  "type": "text"
+                },
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "outputType": "boolean"
+    }
+  }
+}

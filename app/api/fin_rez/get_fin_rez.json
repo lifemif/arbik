@@ -63,6 +63,22 @@
             },
             {
               "table": "fin_rez",
+              "column": "bukmaker"
+            },
+            {
+              "table": "fin_rez",
+              "column": "currency"
+            },
+            {
+              "table": "fin_rez",
+              "column": "curse"
+            },
+            {
+              "table": "fin_rez",
+              "column": "stavka_currency"
+            },
+            {
+              "table": "fin_rez",
               "column": "stavka"
             },
             {
@@ -110,10 +126,10 @@
             {
               "table": "fin_rez",
               "column": "id",
-              "direction": "ASC"
+              "direction": "DESC"
             }
           ],
-          "query": "SELECT id, user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, shikl_uuid, strategi, spread_trade_uuid, skrap_uuid, aziat_uuid, stavka, summa, discription\nFROM fin_rez\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id ASC",
+          "query": "SELECT id, user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, shikl_uuid, strategi, spread_trade_uuid, skrap_uuid, aziat_uuid, bukmaker, currency, curse, stavka_currency, stavka, summa, discription\nFROM fin_rez\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -165,6 +181,22 @@
         {
           "type": "text",
           "name": "aziat_uuid"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "curse"
+        },
+        {
+          "type": "number",
+          "name": "stavka_currency"
         },
         {
           "type": "number",

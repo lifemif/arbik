@@ -190,7 +190,7 @@
             "conditional": null,
             "valid": true
           },
-          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */ AND money_uuid LIKE :P2 /* {{$_GET.uuid}} */ AND bukmaker LIKE :P3 /* {{$_GET.bukmaker}} */ AND data_time >= :P4 /* {{$_GET.starting_data}} */ AND Vid_dvigenia LIKE :P5 /* {{$_GET.status}} */",
+          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */ AND money_uuid LIKE :P2 /* {{$_GET.uuid}} */ AND bukmaker LIKE :P3 /* {{$_GET.bukmaker}} */ AND data_time >= :P4 /* {{$_GET.starting_data}} */ AND Vid_dvigenia LIKE :P5 /* {{$_GET.status}} */\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -221,6 +221,13 @@
               "type": "expression",
               "name": ":P5",
               "value": "{{$_GET.status}}"
+            }
+          ],
+          "orders": [
+            {
+              "table": "money",
+              "column": "id",
+              "direction": "DESC"
             }
           ]
         }
