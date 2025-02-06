@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "money",
+              "column": "currency"
+            },
+            {
+              "table": "money",
+              "column": "summ_curerency",
+              "alias": "summa_currency",
+              "aggregate": "SUM"
+            },
+            {
+              "table": "money",
+              "column": "curse",
+              "alias": "averege",
+              "aggregate": "AVG"
+            },
+            {
+              "table": "money",
+              "column": "summa",
+              "alias": "ed",
+              "aggregate": "SUM"
+            }
+          ],
+          "table": {
+            "name": "money"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "money",
+              "column": "currency"
+            }
+          ],
+          "query": "SELECT currency, SUM(summ_curerency) AS summa_currency, AVG(curse) AS averege, SUM(summa) AS ed\nFROM money\nGROUP BY currency",
+          "params": []
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "summa_currency"
+        },
+        {
+          "type": "number",
+          "name": "averege"
+        },
+        {
+          "type": "number",
+          "name": "ed"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

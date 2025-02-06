@@ -237,7 +237,7 @@
                       "table": "fin_rez",
                       "column": "fin_rez_uuid",
                       "type": "text",
-                      "value": "{{uuid_fin_rez}}"
+                      "value": "{{uuid_fin_rez2}}"
                     },
                     {
                       "table": "fin_rez",
@@ -249,7 +249,7 @@
                       "table": "fin_rez",
                       "column": "money_line_uuid",
                       "type": "text",
-                      "value": "{{uuid_wallet}}"
+                      "value": "{{uuid_wallet2}}"
                     },
                     {
                       "table": "fin_rez",
@@ -296,7 +296,7 @@
                   ],
                   "table": "fin_rez",
                   "returning": "id",
-                  "query": "INSERT INTO fin_rez\n(user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, strategi, bukmaker, currency, curse, stavka_currency, summa, discription) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_fin_rez}} */, :P3 /* {{NOW}} */, :P4 /* {{uuid_wallet}} */, :P5 /* {{$_POST.Vid_dvigenia}} */, :P6 /* {{$_POST.bukmaker}} */, :P7 /* {{$_POST.currency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{$_POST.summ_curerency}} */, :P10 /* {{perevorot}} */, :P11 /* {{$_POST.description}} */)",
+                  "query": "INSERT INTO fin_rez\n(user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, strategi, bukmaker, currency, curse, stavka_currency, summa, discription) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_fin_rez2}} */, :P3 /* {{NOW}} */, :P4 /* {{uuid_wallet2}} */, :P5 /* {{$_POST.Vid_dvigenia}} */, :P6 /* {{$_POST.bukmaker}} */, :P7 /* {{$_POST.currency}} */, :P8 /* {{$_POST.curse}} */, :P9 /* {{$_POST.summ_curerency}} */, :P10 /* {{perevorot}} */, :P11 /* {{$_POST.description}} */)",
                   "params": [
                     {
                       "name": ":P1",
@@ -306,7 +306,7 @@
                     {
                       "name": ":P2",
                       "type": "expression",
-                      "value": "{{uuid_fin_rez}}"
+                      "value": "{{uuid_fin_rez2}}"
                     },
                     {
                       "name": ":P3",
@@ -316,7 +316,7 @@
                     {
                       "name": ":P4",
                       "type": "expression",
-                      "value": "{{uuid_wallet}}"
+                      "value": "{{uuid_wallet2}}"
                     },
                     {
                       "name": ":P5",

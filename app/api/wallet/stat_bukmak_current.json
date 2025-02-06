@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "money",
+              "column": "bukmaker"
+            },
+            {
+              "table": "money",
+              "column": "currency"
+            },
+            {
+              "table": "money",
+              "column": "summ_curerency",
+              "alias": "summa",
+              "aggregate": "SUM"
+            }
+          ],
+          "table": {
+            "name": "money"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "money",
+              "column": "bukmaker"
+            },
+            {
+              "table": "money",
+              "column": "currency"
+            }
+          ],
+          "query": "SELECT bukmaker, currency, SUM(summ_curerency) AS summa\nFROM money\nGROUP BY bukmaker, currency",
+          "params": []
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "summa"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

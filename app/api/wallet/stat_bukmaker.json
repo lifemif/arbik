@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "money",
+              "column": "bukmaker"
+            },
+            {
+              "table": "money",
+              "column": "summa",
+              "alias": "summik",
+              "aggregate": "SUM"
+            }
+          ],
+          "table": {
+            "name": "money"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "money",
+              "column": "bukmaker"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "money.user_uuid",
+                "field": "money.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "money",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "SELECT bukmaker, SUM(summa) AS summik\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY bukmaker",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "number",
+          "name": "summik"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

@@ -1,40 +1,128 @@
 <dmx-serverconnect id="sc_wallet" url="/api/wallet/get_wallet" dmx-param:uuid="filter_uuid.value" dmx-param:bukmaker="filter_bukmaker.value" dmx-param:starting_data="filter_data.value" dmx-param:status="filter_vid_dvigenia.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_bukmaker" url="/api/setting/bukmaker/get_bukmaker"></dmx-serverconnect>
+<dmx-serverconnect id="sc_currency" url="/api/setting/valuta/get_valuta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_stat_bukmaker" url="/api/wallet/stat_bukmaker"></dmx-serverconnect>
+<dmx-serverconnect id="sc_stat_currency" url="/api/wallet/stat_currency"></dmx-serverconnect>
+<dmx-serverconnect id="sc_buk_cur" url="/api/wallet/stat_bukmak_current"></dmx-serverconnect>
 <div class="container">
     <div class="row">
         <div class="col">
-            <button id="btn_new_wallet" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_wallet">New</button>
+            <h4 class="text-center">Wallet</h4>
+
         </div>
     </div>
-</div><!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxNotifications:{}}" -->
+</div><!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxValidator:{}}" -->
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-block">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Bukmaker</th>
+                            <th>Summa</th>
+                        </tr>
+                    </thead>
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_stat_bukmaker.data.query" id="tb_stat_bukmaker">
+                        <tr>
+                            <td dmx-text="bukmaker"></td>
+                            <td dmx-text="summik"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-block">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Summa currency</th>
+                            <th>Averege</th>
+                            <th>Ed</th>
+                        </tr>
+                    </thead>
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_stat_currency.data.query" id="tb_stat_currence">
+                        <tr>
+                            <td dmx-text="currency"></td>
+                            <td dmx-text="summa_currency"></td>
+                            <td dmx-text="averege"></td>
+                            <td dmx-text="ed"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-block">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Bukmaker</th>
+                            <th>Currency</th>
+                            <th>Summa</th>
+                        </tr>
+                    </thead>
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_buk_cur.data.query" id="tableRepeat1">
+                        <tr>
+                            <td dmx-text="bukmaker"></td>
+                            <td dmx-text="currency"></td>
+                            <td dmx-text="summa"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="container" id="filter">
     <div class="row">
+        <div class="col"><button id="btn_new_wallet" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal_new_wallet">New</button></div>
+    </div>
+    <div class="row">
         <div class="col-xxl col-sm-6 col-lg-3">
-            <h6 class="text-xxl-center">Starting data</h6>
-            <input id="filter_data" name="filter_data" type="datetime-local" class="form-control form-control-sm">
+            <div class="d-block">
+                <h6 class="text-xxl-center">Starting data</h6><input id="filter_data" name="filter_data" type="datetime-local" class="form-control form-control-sm">
+            </div>
+
+
         </div>
         <div class="col-xxl col-sm-6 col-lg-3">
-            <h6 class="text-xxl-center">Bookmaker</h6>
-            <select id="filter_bukmaker" class="form-select form-select-sm" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
-                <option selected="" value=""></option>
-            </select>
+            <div class="d-block">
+                <h6 class="text-xxl-center">Bookmaker</h6><select id="filter_bukmaker" class="form-select form-select-sm" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
+                    <option selected="" value=""></option>
+                </select>
+            </div>
+
+
         </div>
         <div class="col-xxl col-sm-6 col-lg-3">
-            <h6 class="text-xxl-center">UUID</h6>
-            <input id="filter_uuid" name="filter_uuid" type="text" class="form-control form-control-sm">
+            <div class="d-block">
+                <h6 class="text-xxl-center">UUID</h6><input id="filter_uuid" name="filter_uuid" type="text" class="form-control form-control-sm">
+            </div>
+
+
         </div>
 
 
         <div class="col-xxl col-sm-6 col-lg-3">
-            <h6 class="text-xxl-center">Money movement</h6>
-            <select id="filter_vid_dvigenia" class="form-select form-select-sm">
-                <option selected="" value=""></option>
-                <option value="Withdrawing money">Withdrawing money</option>
-                <option value="Пополнение">Пополнение</option>
-                <option value="Остаток">Остаток</option>
-            </select>
+            <div class="d-block">
+                <h6 class="text-xxl-center">Money movement</h6><select id="filter_vid_dvigenia" class="form-select form-select-sm">
+                    <option selected="" value=""></option>
+                    <option value="Withdrawing money">Withdrawing money</option>
+                    <option value="Пополнение">Пополнение</option>
+                    <option value="Остаток">Остаток</option>
+                </select>
+            </div>
+
+
         </div>
     </div>
 </div>
@@ -46,51 +134,45 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form is="dmx-serverconnect-form" id="form_new_wallet" method="post" action="/api/wallet/new_wallet" dmx-generator="bootstrap5" dmx-form-type="vertical">
+                <form is="dmx-serverconnect-form" id="form_new_wallet" method="post" action="/api/wallet/new_wallet" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_wallet.reset();modal_new_wallet.hide();sc_wallet.load();notifies1.danger('Error')" dmx-on:success="form_new_wallet.reset();modal_new_wallet.hide();sc_wallet.load();notifies1.success('SAving')">
                     <div class="form-group mb-3">
-                        <label for="inp_Vid_dvigenia">Vid dvigenia</label>
-                        <select id="inp_Vid_dvigenia" class="form-select" name="Vid_dvigenia">
+                        <label for="inp_Vid_dvigenia" class="col-form-label-sm">Withdrawing money</label>
+                        <select id="inp_Vid_dvigenia" class="form-select form-select-sm" name="Vid_dvigenia" required="">
                             <option value=""></option>
                             <option value="Withdrawing money">Withdrawing money</option>
-                            <option value="3">Option Three</option>
+                            <option value="Пополнение">Пополнение</option>
+                            <option value="Остаток">Остаток</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="inp_bukmaker">Bukmaker</label>
-                        <select id="inp_bukmaker" class="form-select" name="bukmaker">
-                            <option value="1">Option One</option>
-                            <option value="2">Option Two</option>
-                            <option value="3">Option Three</option>
+                        <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker</label>
+                        <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis" required="">
+                            <option value=""></option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="inp_currency">Currency</label>
-                        <select id="inp_currency" class="form-select" name="currency">
-                            <option value="1">Option One</option>
-                            <option value="2">Option Two</option>
-                            <option value="3">Option Three</option>
+                        <label for="inp_currency" class="col-form-label-sm">Currency</label>
+                        <select id="inp_currency" class="form-select form-select-sm" name="currency" dmx-bind:options="sc_currency.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis" required="">
+                            <option selected="" value=""></option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="inp_summ_curerency">Summ curerency</label>
-                        <input type="text" class="form-control" id="inp_summ_curerency" name="summ_curerency" aria-describedby="inp_summ_curerency_help" placeholder="Enter Summ curerency">
+                        <label for="inp_summ_curerency" class="col-form-label-sm">Summ curerency</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_summ_curerency" name="summ_curerency" aria-describedby="inp_summ_curerency_help" required="">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="inp_curse">Curse</label>
-                        <input type="text" class="form-control" id="inp_curse" name="curse" aria-describedby="inp_curse_help" placeholder="Enter Curse">
+                        <label for="inp_curse" class="col-form-label-sm">Curse</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_curse" name="curse" aria-describedby="inp_curse_help" required="">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="inp_description">Description</label>
-                        <input type="text" class="form-control" id="inp_description" name="description" aria-describedby="inp_description_help" placeholder="Enter Description">
-                    </div>
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <label for="inp_description" class="col-form-label-sm">Description</label>
+                        <textarea id="inp_description" name="description" class="form-control"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-sm" dmx-on:click="form_new_wallet.submit()">Save changes</button>
+                <button type="button" class="btn btn-primary btn-sm" dmx-on:click="form_new_wallet.submit()" dmx-bind:disabled="form_new_wallet.state.executing">Save changes</button>
             </div>
         </div>
     </div>
