@@ -1,9 +1,42 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{}}" -->
+<dmx-serverconnect id="sc_wallet" url="/api/wallet/get_wallet"></dmx-serverconnect>
 <meta name="ac:route" content="/wallet/wallet">
 <div class="container wappler-block pt-5 pb-5">
     <div class="row">
         <div class="col-12 text-start col">
             <h4>Wallet<br></h4>
+        </div>
+    </div>
+</div>
+<div class="container wappler-block pt-5 pb-5">
+    <div class="row">
+        <div class="col-12 text-start col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User uuid</th>
+                        <th>Money uuid</th>
+                        <th>Data time</th>
+                        <th>Vid dvigenia</th>
+                        <th>Bukmaker</th>
+                        <th>Summa</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_wallet.data.query" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="user_uuid"></td>
+                        <td dmx-text="money_uuid"></td>
+                        <td dmx-text="data_time"></td>
+                        <td dmx-text="Vid_dvigenia"></td>
+                        <td dmx-text="bukmaker"></td>
+                        <td dmx-text="summa"></td>
+                        <td dmx-text="description"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

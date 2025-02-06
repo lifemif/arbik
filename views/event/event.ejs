@@ -1,9 +1,62 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="event" appConnect="local" -->
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="event" appConnect="local" components="{dmxBootstrap5TableGenerator:{}}" -->
 <meta name="ac:route" content="/event/event">
+
 <div class="container wappler-block pt-5 pb-5">
+
     <div class="row">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+        <div class="text-center col-12 col-md-10 col-lg-8 col-xl-12">
             <h4>event<br></h4>
+
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-block"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<dmx-serverconnect id="sc_event" url="/api/event/get_event"></dmx-serverconnect>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User uuid</th>
+                        <th>Sobitia uuid</th>
+                        <th>Data time start</th>
+                        <th>Data time end</th>
+                        <th>Vid sporta</th>
+                        <th>Name sobitie</th>
+                        <th>Url 1</th>
+                        <th>Url 2</th>
+                        <th>Status</th>
+                        <th>Discription</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_event.data.query" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="user_uuid"></td>
+                        <td dmx-text="sobitia_uuid"></td>
+                        <td dmx-text="data_time_start"></td>
+                        <td dmx-text="data_time_end"></td>
+                        <td dmx-text="vid_sporta"></td>
+                        <td dmx-text="name_sobitie"></td>
+                        <td dmx-text="url_1"></td>
+                        <td dmx-text="url_2"></td>
+                        <td dmx-text="status"></td>
+                        <td dmx-text="discription"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+<meta name="ac:route" content="/event/event">

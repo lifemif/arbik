@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "money",
+              "column": "id"
+            },
+            {
+              "table": "money",
+              "column": "user_uuid"
+            },
+            {
+              "table": "money",
+              "column": "money_uuid"
+            },
+            {
+              "table": "money",
+              "column": "data_time"
+            },
+            {
+              "table": "money",
+              "column": "Vid_dvigenia"
+            },
+            {
+              "table": "money",
+              "column": "bukmaker"
+            },
+            {
+              "table": "money",
+              "column": "summa"
+            },
+            {
+              "table": "money",
+              "column": "description"
+            }
+          ],
+          "table": {
+            "name": "money"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "money.user_uuid",
+                "field": "money.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "money",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "money",
+              "column": "id",
+              "direction": "DESC"
+            }
+          ],
+          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "money_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time"
+        },
+        {
+          "type": "text",
+          "name": "Vid_dvigenia"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "number",
+          "name": "summa"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

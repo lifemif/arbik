@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sobitie",
+              "column": "id"
+            },
+            {
+              "table": "sobitie",
+              "column": "user_uuid"
+            },
+            {
+              "table": "sobitie",
+              "column": "sobitia_uuid"
+            },
+            {
+              "table": "sobitie",
+              "column": "data_time_start"
+            },
+            {
+              "table": "sobitie",
+              "column": "data_time_end"
+            },
+            {
+              "table": "sobitie",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "sobitie",
+              "column": "name_sobitie"
+            },
+            {
+              "table": "sobitie",
+              "column": "url_1"
+            },
+            {
+              "table": "sobitie",
+              "column": "url_2"
+            },
+            {
+              "table": "sobitie",
+              "column": "status"
+            },
+            {
+              "table": "sobitie",
+              "column": "discription"
+            }
+          ],
+          "table": {
+            "name": "sobitie"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sobitie.user_uuid",
+                "field": "sobitie.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "sobitie",
+              "column": "id",
+              "direction": "DESC"
+            }
+          ],
+          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, url_1, url_2, status, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "sobitia_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_sobitie"
+        },
+        {
+          "type": "text",
+          "name": "url_1"
+        },
+        {
+          "type": "text",
+          "name": "url_2"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "discription"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}
