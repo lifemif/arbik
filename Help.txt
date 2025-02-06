@@ -1,0 +1,12 @@
+System
+Broker
+Betting Exchange
+
+
+Withdrawing money(Снятие)
+Replenishment(Пополнение)
+Remains(Остаток)
+Bonus(Бонус)
+Freebet(Фрибет)
+Re-bet(Ребет)
+Other(Иное)

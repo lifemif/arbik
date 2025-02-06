@@ -98,6 +98,9 @@
             <div class="d-block">
                 <h6 class="text-xxl-center">Bookmaker</h6><select id="filter_bukmaker" class="form-select form-select-sm" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
                     <option selected="" value=""></option>
+                    <option value="System">System</option>
+                    <option value="Broker">Broker</option>
+                    <option value="Betting Exchange">Betting Exchange</option>
                 </select>
             </div>
 
@@ -116,9 +119,13 @@
             <div class="d-block">
                 <h6 class="text-xxl-center">Money movement</h6><select id="filter_vid_dvigenia" class="form-select form-select-sm">
                     <option selected="" value=""></option>
-                    <option value="Withdrawing money">Withdrawing money</option>
-                    <option value="Пополнение">Пополнение</option>
-                    <option value="Остаток">Остаток</option>
+                    <option value="Withdrawing money(Снятие)">Withdrawing money(Снятие)</option>
+                    <option value="Replenishment(Пополнение)">Replenishment(Пополнение)</option>
+                    <option value="Remains(Остаток)">Remains(Остаток)</option>
+                    <option value="Bonus(Бонус)">Bonus(Бонус)</option>
+                    <option value="Freebet(Фрибет)">Freebet(Фрибет)</option>
+                    <option value="Re-bet(Ребет)">Re-bet(Ребет)</option>
+                    <option value="Other(Иное)">Other(Иное)</option>
                 </select>
             </div>
 
@@ -138,16 +145,23 @@
                     <div class="form-group mb-3">
                         <label for="inp_Vid_dvigenia" class="col-form-label-sm">Withdrawing money</label>
                         <select id="inp_Vid_dvigenia" class="form-select form-select-sm" name="Vid_dvigenia" required="">
-                            <option value=""></option>
-                            <option value="Withdrawing money">Withdrawing money</option>
-                            <option value="Пополнение">Пополнение</option>
-                            <option value="Остаток">Остаток</option>
+                            <option selected="" value=""></option>
+                            <option value="Withdrawing money(Снятие)">Withdrawing money(Снятие)</option>
+                            <option value="Replenishment(Пополнение)">Replenishment(Пополнение)</option>
+                            <option value="Remains(Остаток)">Remains(Остаток)</option>
+                            <option value="Bonus(Бонус)">Bonus(Бонус)</option>
+                            <option value="Freebet(Фрибет)">Freebet(Фрибет)</option>
+                            <option value="Re-bet(Ребет)">Re-bet(Ребет)</option>
+                            <option value="Other(Иное)">Other(Иное)</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker</label>
                         <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis" required="">
-                            <option value=""></option>
+                            <option selected="" value=""></option>
+                            <option value="System">System</option>
+                            <option value="Broker">Broker</option>
+                            <option value="Betting Exchange">Betting Exchange</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
@@ -179,42 +193,19 @@
 </div>
 <div class="container">
 
-    <div class="row">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>User uuid</th>
-                        <th>Money uuid</th>
-                        <th>Data time</th>
-                        <th>Vid dvigenia</th>
-                        <th>Bukmaker</th>
-                        <th>Currency</th>
-                        <th>Summ curerency</th>
-                        <th>Curse</th>
-                        <th>Summa</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_wallet.data.query" id="tb_wallet">
-                    <tr>
-                        <td dmx-text="id"></td>
-                        <td dmx-text="user_uuid"></td>
-                        <td dmx-text="money_uuid"></td>
-                        <td dmx-text="data_time"></td>
-                        <td dmx-text="Vid_dvigenia"></td>
-                        <td dmx-text="bukmaker"></td>
-                        <td dmx-text="currency"></td>
-                        <td dmx-text="summ_curerency"></td>
-                        <td dmx-text="curse"></td>
-                        <td dmx-text="summa"></td>
-                        <td dmx-text="description"></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="row" is="dmx-repeat" id="repeat1" dmx-bind:repeat="sc_wallet.data.query">
+        <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
+            <div class="d-block mt-xxl-2 mb-xxl-2 pt-xxl-2 pb-xxl-2 ps-xxl-2 pe-xxl-2 shadow placeholder-glow">
+                <h5 class="text-xxl-center fst-italic mark text-sm-center text-center">{{Vid_dvigenia}}</h5>
+                <h6>Money UUID: {{money_uuid}}</h6>
+                <h6>Data &amp; time: {{data_time}}</h6>
+                <h6>Bookmaker: {{bukmaker}}&nbsp;</h6>
+                <h6>Currency: {{currency}}</h6>
+                <h6>Summa currency: {{summ_curerency}}</h6>
+                <h6>Curse: {{curse}}</h6>
+                <h6>Summa: {{summa}}</h6>
+                <h6>Description: {{description}}</h6>
+            </div>
         </div>
     </div>
 </div>
