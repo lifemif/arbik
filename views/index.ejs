@@ -2,8 +2,8 @@
 <dmx-serverconnect id="sc_identificat" url="/api/user/identification" noload></dmx-serverconnect>
 <div class="container mb-0">
     <div class="row">
-        <div class="col d-flex justify-content-center">
-            <div class="d-block">
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="d-block login">
                 <form method="post" is="dmx-serverconnect-form" id="serverconnectform1" action="/api/user/login" dmx-on:success="sc_identificat.load();browser1.goto('/dashbord')" dmx-on:unauthorized="notifies1.danger('Логин и пароль не верены');serverconnectform1.reset()">
                     <div class="row row-cols-6 align-items-center">
                         <div class="col-12 d-flex flex-column justify-content-center align-items-center">

@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "fin_rez",
+              "column": "id"
+            },
+            {
+              "table": "fin_rez",
+              "column": "user_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "fin_rez_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "data_time_rascheta"
+            },
+            {
+              "table": "fin_rez",
+              "column": "money_line_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "shikl_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "strategi"
+            },
+            {
+              "table": "fin_rez",
+              "column": "spread_trade_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "skrap_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "aziat_uuid"
+            },
+            {
+              "table": "fin_rez",
+              "column": "stavka"
+            },
+            {
+              "table": "fin_rez",
+              "column": "summa"
+            },
+            {
+              "table": "fin_rez",
+              "column": "discription"
+            }
+          ],
+          "table": {
+            "name": "fin_rez"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "fin_rez.user_uuid",
+                "field": "fin_rez.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "fin_rez",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "fin_rez",
+              "column": "id",
+              "direction": "ASC"
+            }
+          ],
+          "query": "SELECT id, user_uuid, fin_rez_uuid, data_time_rascheta, money_line_uuid, shikl_uuid, strategi, spread_trade_uuid, skrap_uuid, aziat_uuid, stavka, summa, discription\nFROM fin_rez\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "fin_rez_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_rascheta"
+        },
+        {
+          "type": "text",
+          "name": "money_line_uuid"
+        },
+        {
+          "type": "text",
+          "name": "shikl_uuid"
+        },
+        {
+          "type": "text",
+          "name": "strategi"
+        },
+        {
+          "type": "text",
+          "name": "spread_trade_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "number",
+          "name": "summa"
+        },
+        {
+          "type": "text",
+          "name": "discription"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

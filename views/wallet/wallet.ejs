@@ -1,16 +1,17 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{}}" -->
-<dmx-serverconnect id="sc_wallet" url="/api/wallet/get_wallet"></dmx-serverconnect>
-<meta name="ac:route" content="/wallet/wallet">
-<div class="container wappler-block pt-5 pb-5">
+<dmx-serverconnect id="sc_wallet" url="/api/wallet/get_wallet" dmx-param:uuid="filter_uuid.value" dmx-param:bukmaker="filter_bukmaker.value" dmx-param:starting_data="filter_data.value" dmx-param:status="filter_vid_dvigenia.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_bukmaker" url="/api/setting/bukmaker/get_bukmaker"></dmx-serverconnect><!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{}}" -->
+
+<div class="container">
     <div class="row">
-        <div class="col-12 text-start col">
-            <h4>Wallet<br></h4>
+        <div class="col">
+            <button id="btn_new_wallet" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_wallet">New</button>
         </div>
     </div>
 </div>
-<div class="container wappler-block pt-5 pb-5">
+<div class="container">
+
     <div class="row">
-        <div class="col-12 text-start col">
+        <div class="col">
             <table class="table">
                 <thead>
                     <tr>
@@ -20,6 +21,9 @@
                         <th>Data time</th>
                         <th>Vid dvigenia</th>
                         <th>Bukmaker</th>
+                        <th>Currency</th>
+                        <th>Summ curerency</th>
+                        <th>Curse</th>
                         <th>Summa</th>
                         <th>Description</th>
                     </tr>
@@ -32,6 +36,9 @@
                         <td dmx-text="data_time"></td>
                         <td dmx-text="Vid_dvigenia"></td>
                         <td dmx-text="bukmaker"></td>
+                        <td dmx-text="currency"></td>
+                        <td dmx-text="summ_curerency"></td>
+                        <td dmx-text="curse"></td>
                         <td dmx-text="summa"></td>
                         <td dmx-text="description"></td>
                     </tr>
@@ -40,3 +47,52 @@
         </div>
     </div>
 </div>
+<div class="container" id="filter">
+    <div class="row">
+        <div class="col col-xxl">
+            <h6 class="text-xxl-center">Starting data</h6>
+            <input id="filter_data" name="filter_data" type="datetime-local" class="form-control form-control-sm">
+        </div>
+        <div class="col col-xxl">
+            <h6 class="text-xxl-center">Bookmaker</h6>
+            <select id="filter_bukmaker" class="form-select form-select-sm" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
+                <option selected="" value=""></option>
+            </select>
+        </div>
+        <div class="col col-xxl">
+            <h6 class="text-xxl-center">UUID</h6>
+            <input id="filter_uuid" name="filter_uuid" type="text" class="form-control form-control-sm">
+        </div>
+
+
+        <div class="col col-xxl">
+            <h6 class="text-xxl-center">Money movement</h6>
+            <select id="filter_vid_dvigenia" class="form-select form-select-sm">
+                <option selected="" value=""></option>
+                <option value="Снятие">Снятие</option>
+                <option value="Пополнение">Пополнение</option>
+                <option value="Остаток">Остаток</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal_new_wallet" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<meta name="ac:route" content="/wallet/wallet">

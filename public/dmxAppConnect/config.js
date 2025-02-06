@@ -25,5 +25,55 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "wallet": {
+    "repeat_wallet": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "money_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time"
+        },
+        {
+          "type": "text",
+          "name": "Vid_dvigenia"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "summ_curerency"
+        },
+        {
+          "type": "number",
+          "name": "summa"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    },
+    "var1": {
+      "outputType": "text"
+    }
   }
 });

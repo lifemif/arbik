@@ -8,6 +8,18 @@
       {
         "type": "text",
         "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "uuid"
+      },
+      {
+        "type": "text",
+        "name": "bukmaker"
+      },
+      {
+        "type": "text",
+        "name": "status"
       }
     ]
   },
@@ -47,6 +59,18 @@
             },
             {
               "table": "money",
+              "column": "currency"
+            },
+            {
+              "table": "money",
+              "column": "summ_curerency"
+            },
+            {
+              "table": "money",
+              "column": "curse"
+            },
+            {
+              "table": "money",
               "column": "summa"
             },
             {
@@ -81,25 +105,122 @@
                   }
                 },
                 "operation": "="
+              },
+              {
+                "id": "money.money_uuid",
+                "field": "money.money_uuid",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.uuid}}",
+                "data": {
+                  "table": "money",
+                  "column": "money_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "money_uuid"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "money.bukmaker",
+                "field": "money.bukmaker",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.bukmaker}}",
+                "data": {
+                  "table": "money",
+                  "column": "bukmaker",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "bukmaker"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "money.data_time",
+                "field": "money.data_time",
+                "type": "datetime",
+                "operator": "greater_or_equal",
+                "value": "{{$_GET.starting_data}}",
+                "data": {
+                  "table": "money",
+                  "column": "data_time",
+                  "type": "datetime",
+                  "columnObj": {
+                    "type": "datetime",
+                    "default": "knex.fn.now()",
+                    "primary": false,
+                    "nullable": true,
+                    "name": "data_time"
+                  }
+                },
+                "operation": ">="
+              },
+              {
+                "id": "money.Vid_dvigenia",
+                "field": "money.Vid_dvigenia",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.status}}",
+                "data": {
+                  "table": "money",
+                  "column": "Vid_dvigenia",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "Vid_dvigenia"
+                  }
+                },
+                "operation": "LIKE"
               }
             ],
             "conditional": null,
             "valid": true
           },
-          "orders": [
-            {
-              "table": "money",
-              "column": "id",
-              "direction": "DESC"
-            }
-          ],
-          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */ AND money_uuid LIKE :P2 /* {{$_GET.uuid}} */ AND bukmaker LIKE :P3 /* {{$_GET.bukmaker}} */ AND data_time >= :P4 /* {{$_GET.starting_data}} */ AND Vid_dvigenia LIKE :P5 /* {{$_GET.status}} */",
           "params": [
             {
               "operator": "equal",
               "type": "expression",
               "name": ":P1",
               "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.uuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P3",
+              "value": "{{$_GET.bukmaker}}"
+            },
+            {
+              "operator": "greater_or_equal",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_GET.starting_data}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P5",
+              "value": "{{$_GET.status}}"
             }
           ]
         }
@@ -129,6 +250,18 @@
         {
           "type": "text",
           "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "summ_curerency"
+        },
+        {
+          "type": "number",
+          "name": "curse"
         },
         {
           "type": "number",

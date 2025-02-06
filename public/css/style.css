@@ -1,4 +1,11 @@
 .style1 {
     background-image: url("../assets/images/rab_stol.jpeg")
 }
+.login {
+    max-height: 852px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    max-width: 2054px;
+    margin-top: 54px}
 

@@ -97,53 +97,6 @@
           }
         }
       },
-      "setting_vid_sporta": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
-        },
-        "columns": {
-          "id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "nullable": false
-            }
-          },
-          "user_uuid": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "vid_sporta": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "vid_sporta_sis": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "sorting": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": true
-            }
-          }
-        }
-      },
       "setting_line": {
         "db": {
           "engine": "InnoDB",
@@ -199,11 +152,51 @@
           }
         }
       },
-      "setting_vid_stavki": {
+      "setting_vid_sporta": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
           "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "vid_sporta": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "vid_sporta_sis": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "sorting": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
         }
       },
       "setting_strategi": {
@@ -253,7 +246,14 @@
           }
         }
       },
-      "money": {
+      "setting_vid_stavki": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        }
+      },
+      "fin_rez": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
@@ -275,7 +275,7 @@
               "nullable": true
             }
           },
-          "money_uuid": {
+          "fin_rez_uuid": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -283,15 +283,14 @@
               "nullable": true
             }
           },
-          "data_time": {
+          "data_time_rascheta": {
             "db": {
               "type": "datetime",
-              "default": "knex.fn.now()",
               "primary": false,
               "nullable": true
             }
           },
-          "Vid_dvigenia": {
+          "money_line_uuid": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -299,10 +298,49 @@
               "nullable": true
             }
           },
-          "bukmaker": {
+          "shikl_uuid": {
             "db": {
               "type": "string",
               "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "strategi": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "spread_trade_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "skrap_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "aziat_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "stavka": {
+            "db": {
+              "type": "decimal",
               "primary": false,
               "nullable": true
             }
@@ -314,21 +352,14 @@
               "nullable": true
             }
           },
-          "description": {
+          "discription": {
             "db": {
-              "type": "text",
-              "maxLength": 65535,
+              "type": "string",
+              "maxLength": 255,
               "primary": false,
               "nullable": true
             }
           }
-        }
-      },
-      "fin_rez": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
         }
       },
       "sobitie": {
@@ -528,6 +559,99 @@
           "sector": {
             "db": {
               "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "money": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "money_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "data_time": {
+            "db": {
+              "type": "datetime",
+              "default": "knex.fn.now()",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "Vid_dvigenia": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "bukmaker": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "currency": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "summ_curerency": {
+            "db": {
+              "type": "decimal",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "curse": {
+            "db": {
+              "type": "decimal",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "summa": {
+            "db": {
+              "type": "decimal",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "description": {
+            "db": {
+              "type": "text",
+              "maxLength": 65535,
               "primary": false,
               "nullable": true
             }

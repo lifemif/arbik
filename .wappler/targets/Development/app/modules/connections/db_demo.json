@@ -9,7 +9,10 @@
       "user": "lifemif_demo_arb",
       "password": "Lm3275723",
       "database": "lifemif_demo_arb"
-    }
+    },
+    "meta": {}
   },
-  "fileName": "db_demo.json"
+  "fileName": "db_demo.json",
+  "actionFilePath": "file:///C:/Users/User/Desktop/arbik/app/modules/connections/db_demo.json",
+  "serverType": "node"
 }
