@@ -1,0 +1,105 @@
+<dmx-serverconnect id="sc_curse_valut" url="/api/currency/valuta/get_curse_valut" dmx-param:filter_uuid="filter_valuta_BBID.value" dmx-param:filter_data="filter_data_time.value" dmx-param:filter_valuta="filter_valuta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_valuta" url="/api/setting/valuta/get_valuta"></dmx-serverconnect>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4 class="text-center">Exchange rates</h4>
+            <button id="btn_new_valuta" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal_curse_valut">New exchange rates</button>
+            <div class="row">
+                <div class="col">
+                    <div class="d-block">
+                        <h6 class="text-center">Currency UUID</h6>
+
+                        <input id="filter_valuta_BBID" name="filter_valuta_BBID" type="text" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-block">
+                        <h6 class="text-center">Starting data</h6>
+
+                        <input id="filter_data_time" name="filter_data_time" type="datetime-local" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-block">
+                        <h6 class="text-center">Currency</h6>
+                        <select id="filter_valuta" class="form-select form-select-sm" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis">
+                            <option selected="" value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <div class="d-block">
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Valuta uuid</th>
+                                <th>Data time</th>
+                                <th>Name valuta</th>
+                                <th>Curse</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_curse_valut.data.query_curse_valut" id="tb_curse_valut">
+                            <tr>
+                                <td dmx-text="id"></td>
+                                <td dmx-text="valuta_uuid"></td>
+                                <td dmx-text="data_time.formatDate('dd-MM-yyyy HH:mm')"></td>
+                                <td dmx-text="name_valuta"></td>
+                                <td dmx-text="curse"></td>
+                                <td dmx-text="description"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal_curse_valut" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-light">New exchange rates</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form is="dmx-serverconnect-form" id="form_curse_valut" method="post" action="/api/currency/valuta/new_curse_valut" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_curse_valut.reset();modal_curse_valut.hide();sc_curse_valut.load();notifies1.danger('Error')" dmx-on:success="form_curse_valut.reset();modal_curse_valut.hide();sc_curse_valut.load();notifies1.success('Saving!!!')">
+                    <div class="form-group mb-3">
+                        <label for="inp_name_valuta" class="col-form-label-sm">What is the currency?</label>
+                        <select id="inp_name_valuta" class="form-select form-select-sm" name="name_valuta" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis" required="">
+                            <option selected="" value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_curse" class="col-form-label-sm">Exchange rates (Курсы валют)</label>
+                        <input class="form-control form-control-sm" id="inp_curse" name="curse" aria-describedby="inp_curse_help" type="number" step="any" required="" data-rule-number="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_description" class="col-form-label-sm">Description</label>
+                        <textarea id="inp_description" name="description" class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" dmx-on:click="form_curse_valut.submit()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div><!-- Wappler include head-page="layouts/la_current" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="exchange_rates" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxFormatter:{},dmxNotifications:{},dmxValidator:{}}" -->
+
+
+
+<dmx-notifications id="notifies1"></dmx-notifications>
+
+<meta name="ac:route" content="/currency/exchange_rates">

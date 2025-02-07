@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "name_valuta"
+      },
+      {
+        "type": "number",
+        "name": "curse"
+      },
+      {
+        "type": "text",
+        "name": "description"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "UUID_curse_valut",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{UUID.substr(-10, 12)}}"
+        },
+        "meta": [],
+        "outputType": "text"
+      },
+      {
+        "name": "insert_curse_valut",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db_demo",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "curse_valut",
+                "column": "user_uuid",
+                "type": "text",
+                "value": "{{identity}}"
+              },
+              {
+                "table": "curse_valut",
+                "column": "valuta_uuid",
+                "type": "text",
+                "value": "{{UUID_curse_valut}}"
+              },
+              {
+                "table": "curse_valut",
+                "column": "data_time",
+                "type": "datetime",
+                "value": "{{NOW}}"
+              },
+              {
+                "table": "curse_valut",
+                "column": "name_valuta",
+                "type": "text",
+                "value": "{{$_POST.name_valuta}}"
+              },
+              {
+                "table": "curse_valut",
+                "column": "curse",
+                "type": "number",
+                "value": "{{$_POST.curse}}"
+              },
+              {
+                "table": "curse_valut",
+                "column": "description",
+                "type": "text",
+                "value": "{{$_POST.description}}"
+              }
+            ],
+            "table": "curse_valut",
+            "returning": "id",
+            "query": "INSERT INTO curse_valut\n(user_uuid, valuta_uuid, data_time, name_valuta, curse, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{UUID_curse_valut}} */, :P3 /* {{NOW}} */, :P4 /* {{$_POST.name_valuta}} */, :P5 /* {{$_POST.curse}} */, :P6 /* {{$_POST.description}} */)",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{identity}}"
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{UUID_curse_valut}}"
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{NOW}}"
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.name_valuta}}"
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.curse}}"
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.description}}"
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  }
+}

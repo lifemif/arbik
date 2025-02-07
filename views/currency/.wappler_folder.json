@@ -2,5 +2,13 @@
   "currencu.ejs": {
     "layoutPage": "la_current",
     "description": ""
+  },
+  "spread_trade.ejs": {
+    "layoutPage": "la_current",
+    "description": ""
+  },
+  "exchange_rates.ejs": {
+    "layoutPage": "la_current",
+    "description": ""
   }
 }

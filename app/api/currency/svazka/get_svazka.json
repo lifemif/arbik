@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "currency_svazka",
+              "column": "id"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "user_uuid"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "name_strake"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "name_spark"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "name_svazka_valuta"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "planing_strike"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "facting_strike"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "planing_spark"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "facting_spark"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "summa_svazki"
+            },
+            {
+              "table": "currency_svazka",
+              "column": "description"
+            }
+          ],
+          "table": {
+            "name": "currency_svazka"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "currency_svazka.user_uuid",
+                "field": "currency_svazka.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "currency_svazka",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "SELECT id, user_uuid, name_strake, name_spark, name_svazka_valuta, planing_strike, facting_strike, planing_spark, facting_spark, summa_svazki, description\nFROM currency_svazka\nWHERE user_uuid = :P1 /* {{identity}} */",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "name_strake"
+        },
+        {
+          "type": "text",
+          "name": "name_spark"
+        },
+        {
+          "type": "text",
+          "name": "name_svazka_valuta"
+        },
+        {
+          "type": "number",
+          "name": "planing_strike"
+        },
+        {
+          "type": "number",
+          "name": "facting_strike"
+        },
+        {
+          "type": "number",
+          "name": "planing_spark"
+        },
+        {
+          "type": "number",
+          "name": "facting_spark"
+        },
+        {
+          "type": "number",
+          "name": "summa_svazki"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

@@ -10,3 +10,6 @@ Bonus(Бонус)
 Freebet(Фрибет)
 Re-bet(Ребет)
 Other(Иное)
+
+
+Убераем ограничения по десятичные цифры -  type="number" step="any">

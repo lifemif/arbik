@@ -1,26 +1,67 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="currencu" appConnect="local" -->
-<meta name="ac:route" content="/currency/currencu">
-<div class="container wappler-block pt-5 pb-5">
-    <div class="row mb-5">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <h4>Currencuu</h4>
-            <p>A nice paragraph</p>
-            <button class="btn btn-primary">Button</button>
-        </div>
-    </div>
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="currencu" appConnect="local" components="{dmxBootstrap5Navigation:{},dmxBootstrap5TableGenerator:{}}" -->
+<dmx-serverconnect id="sc_svazka" url="/api/currency/svazka/get_svazka"></dmx-serverconnect>
+<div class="container">
     <div class="row">
-        <div class="text-center col-sm-6 col-md-3">
-            <img class="wappler-type-picture rounded-circle" width="150" height="150">
-            <p>A nice paragraph</p>
-        </div>
-        <div class="text-center col-sm-6 col-md-3"><img class="wappler-type-picture rounded-circle" width="150" height="150">
-            <p>A nice paragraph</p>
-        </div>
-        <div class="text-center col-sm-6 col-md-3"><img class="wappler-type-picture rounded-circle" width="150" height="150">
-            <p>A nice paragraph</p>
-        </div>
-        <div class="text-center col-sm-6 col-md-3"><img class="wappler-type-picture rounded-circle" width="150" height="150">
-            <p>A nice paragraph</p>
+        <div class="col">
+            <h3 class="text-center">Currency</h3>
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-block">
+                <h6 class="mark text-center">Exchange rates (Курсы валют)</h6>
+                <a href="/currency/exchange_rates" class="btn w-100 btn-outline-link">Go to exchange rates....</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-block">
+
+                <h6 class="text-center mark">Spread trade (Курсовая валютная торговля)</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User uuid</th>
+                                <th>Name strake</th>
+                                <th>Name spark</th>
+                                <th>Name svazka valuta</th>
+                                <th>Planing strike</th>
+                                <th>Facting strike</th>
+                                <th>Planing spark</th>
+                                <th>Facting spark</th>
+                                <th>Summa svazki</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_svazka.data.query" id="tableRepeat1">
+                            <tr>
+                                <td dmx-text="id"></td>
+                                <td dmx-text="user_uuid"></td>
+                                <td dmx-text="name_strake"></td>
+                                <td dmx-text="name_spark"></td>
+                                <td dmx-text="name_svazka_valuta"></td>
+                                <td dmx-text="planing_strike"></td>
+                                <td dmx-text="facting_strike"></td>
+                                <td dmx-text="planing_spark"></td>
+                                <td dmx-text="facting_spark"></td>
+                                <td dmx-text="summa_svazki"></td>
+                                <td dmx-text="description"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/currency/spread_trade" class="btn w-100 btn-outline-link">Go to spread trading....</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<meta name="ac:route" content="/currency/currencu">

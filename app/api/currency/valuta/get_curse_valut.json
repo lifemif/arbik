@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filter_uuid"
+      },
+      {
+        "type": "text",
+        "name": "filter_data"
+      },
+      {
+        "type": "text",
+        "name": "filter_valuta"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query_curse_valut",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "curse_valut",
+              "column": "id"
+            },
+            {
+              "table": "curse_valut",
+              "column": "user_uuid"
+            },
+            {
+              "table": "curse_valut",
+              "column": "valuta_uuid"
+            },
+            {
+              "table": "curse_valut",
+              "column": "data_time"
+            },
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            },
+            {
+              "table": "curse_valut",
+              "column": "curse"
+            },
+            {
+              "table": "curse_valut",
+              "column": "description"
+            }
+          ],
+          "table": {
+            "name": "curse_valut"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "curse_valut.user_uuid",
+                "field": "curse_valut.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "id": "curse_valut.data_time",
+                "field": "curse_valut.data_time",
+                "type": "datetime",
+                "operator": "greater_or_equal",
+                "value": "{{$_GET.filter_data}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "data_time",
+                  "type": "datetime",
+                  "columnObj": {
+                    "type": "datetime",
+                    "default": "knex.fn.now()",
+                    "primary": false,
+                    "nullable": true,
+                    "name": "data_time"
+                  }
+                },
+                "operation": ">="
+              },
+              {
+                "id": "curse_valut.valuta_uuid",
+                "field": "curse_valut.valuta_uuid",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_uuid}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "valuta_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "valuta_uuid"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "curse_valut.name_valuta",
+                "field": "curse_valut.name_valuta",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_valuta}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "name_valuta",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "name_valuta"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "curse_valut",
+              "column": "id",
+              "direction": "DESC",
+              "recid": 1
+            }
+          ],
+          "query": "SELECT id, user_uuid, valuta_uuid, data_time, name_valuta, curse, description\nFROM curse_valut\nWHERE user_uuid = :P1 /* {{identity}} */ AND data_time >= :P2 /* {{$_GET.filter_data}} */ AND valuta_uuid LIKE :P3 /* {{$_GET.filter_uuid}} */ AND name_valuta LIKE :P4 /* {{$_GET.filter_valuta}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "greater_or_equal",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filter_data}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P3",
+              "value": "{{$_GET.filter_uuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_GET.filter_valuta}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "valuta_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time"
+        },
+        {
+          "type": "text",
+          "name": "name_valuta"
+        },
+        {
+          "type": "number",
+          "name": "curse"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

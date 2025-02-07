@@ -97,53 +97,6 @@
           }
         }
       },
-      "setting_vid_sporta": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "lifemif_demo_arb",
-          "collation": "utf8_general_ci"
-        },
-        "columns": {
-          "id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "nullable": false
-            }
-          },
-          "user_uuid": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "vid_sporta": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "vid_sporta_sis": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "nullable": true
-            }
-          },
-          "sorting": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": true
-            }
-          }
-        }
-      },
       "setting_line": {
         "db": {
           "engine": "InnoDB",
@@ -199,7 +152,7 @@
           }
         }
       },
-      "setting_strategi": {
+      "setting_vid_sporta": {
         "db": {
           "engine": "InnoDB",
           "schema": "lifemif_demo_arb",
@@ -221,7 +174,7 @@
               "nullable": true
             }
           },
-          "strategi": {
+          "vid_sporta": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -229,7 +182,7 @@
               "nullable": true
             }
           },
-          "strategi_sis": {
+          "vid_sporta_sis": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -277,6 +230,53 @@
             }
           },
           "vid_stavki_sis": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "sorting": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "setting_strategi": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "strategi": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "strategi_sis": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -806,6 +806,69 @@
             "db": {
               "type": "string",
               "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "curse_valut": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "lifemif_demo_arb",
+          "collation": "utf8_general_ci"
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "user_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "valuta_uuid": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "data_time": {
+            "db": {
+              "type": "datetime",
+              "default": "knex.fn.now()",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "name_valuta": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "curse": {
+            "db": {
+              "type": "decimal",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "description": {
+            "db": {
+              "type": "text",
+              "maxLength": 65535,
               "primary": false,
               "nullable": true
             }

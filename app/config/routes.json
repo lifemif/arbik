@@ -90,6 +90,16 @@
       "path": "/strategy/aziat/aziating",
       "page": "strategy/aziat/aziating",
       "layout": "la_strategi"
+    },
+    {
+      "path": "/currency/spread_trade",
+      "page": "currency/spread_trade",
+      "layout": "la_current"
+    },
+    {
+      "path": "/currency/exchange_rates",
+      "page": "currency/exchange_rates",
+      "layout": "la_current"
     }
   ],
   "layouts": {
