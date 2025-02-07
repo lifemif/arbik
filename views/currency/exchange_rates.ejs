@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col">
                     <div class="d-block">
-                        <h6 class="text-center">Currency UUID</h6>
+                        <h6 class="text-center">UUID</h6>
 
                         <input id="filter_valuta_BBID" name="filter_valuta_BBID" type="text" class="form-control form-control-sm">
                     </div>
@@ -34,33 +34,33 @@
 </div>
 <div class="container">
 
-    <div class="row">
-        <div class="col">
-            <div class="d-block">
-                <div class="table-responsive">
-                    <table class="table table-hover table-sm">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Valuta uuid</th>
-                                <th>Data time</th>
-                                <th>Name valuta</th>
-                                <th>Curse</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_curse_valut.data.query_curse_valut" id="tb_curse_valut">
-                            <tr>
-                                <td dmx-text="id"></td>
-                                <td dmx-text="valuta_uuid"></td>
-                                <td dmx-text="data_time.formatDate('dd-MM-yyyy HH:mm')"></td>
-                                <td dmx-text="name_valuta"></td>
-                                <td dmx-text="curse"></td>
-                                <td dmx-text="description"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="row" is="dmx-repeat" id="repeat_valuta" dmx-bind:repeat="sc_curse_valut.data.query_curse_valut">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="d-block mt-2 mb-2 pt-2 pb-2 ps-2 pe-2 placeholder-glow shadow">
+                <h5 class="text-success fw-light mark text-center">Position No {{id}}</h5>
+                <h6>Currency UUID: {{valuta_uuid}}</h6>
+                <h6>Data&amp;Time: {{data_time.formatDate('dd-MM-yyyy HH:mm')}}</h6>
+                <h6>Currency: {{name_valuta}}</h6>
+                <h6>Curse: {{curse}}</h6>
+                <h6>Description: {{description}}</h6>
+                <div class="d-flex text-center justify-content-center">
+                    <form is="dmx-serverconnect-form" id="form_deleted_valuta" method="post" action="/api/currency/valuta/deleted_valuta" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="sc_curse_valut.load();notifies1.danger('Error')" dmx-on:success="sc_curse_valut.load();notifies1.success('Ok deleted!')">
+                        <div class="form-group mb-3 row" dmx-show="">
+                            <label for="inp_iris" class="col-sm-2 col-form-label">Iris</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inp_iris" name="iris" aria-describedby="inp_iris_help" placeholder="Enter Iris" dmx-bind:value="id">
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <div class="col-sm-10 align-self-center text-start">
+                                <button type="submit" class="btn btn-danger text-start">Deleted</button>
+                            </div>
+                        </div>
+
+
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>

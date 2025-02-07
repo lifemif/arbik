@@ -33,7 +33,7 @@
                         <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_avg_valuta.data.query" id="tableRepeat2">
                             <tr>
                                 <td dmx-text="name_valuta"></td>
-                                <td dmx-text="AVG"></td>
+                                <td dmx-text="AVG.formatNumber(2, '.', ',')"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -73,6 +73,7 @@
             <div class="d-block">
 
                 <h6 class="text-center mark">Spread trade (Курсовая валютная торговля)</h6>
+                <a href="/currency/spread_trade" class="btn w-100 btn-outline-primary">Go to spread trading....</a>
                 <div class="table-responsive">
                     <table class="table table-hover table-sm">
                         <thead>
@@ -107,7 +108,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="/currency/spread_trade" class="btn w-100 btn-outline-link">Go to spread trading....</a>
+
             </div>
         </div>
     </div>

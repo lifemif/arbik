@@ -177,5 +177,40 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "exchange_rates": {
+    "repeat_valuta": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "valuta_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time"
+        },
+        {
+          "type": "text",
+          "name": "name_valuta"
+        },
+        {
+          "type": "number",
+          "name": "curse"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });
