@@ -42,11 +42,6 @@
       "layout": "la_event"
     },
     {
-      "path": "/wallet/wallet",
-      "page": "wallet/wallet",
-      "layout": "la_wallet"
-    },
-    {
       "path": "/spotr_line/sport_line",
       "page": "spotr_line/sport_line",
       "layout": "la_sport_line"
@@ -100,6 +95,11 @@
       "path": "/currency/exchange_rates",
       "page": "currency/exchange_rates",
       "layout": "la_current"
+    },
+    {
+      "path": "/wallet/wallet",
+      "page": "wallet/wallet",
+      "layout": "la_wallet"
     }
   ],
   "layouts": {

@@ -1,5 +1,8 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="currencu" appConnect="local" components="{dmxBootstrap5Navigation:{},dmxBootstrap5TableGenerator:{}}" -->
-<dmx-serverconnect id="sc_svazka" url="/api/currency/svazka/get_svazka"></dmx-serverconnect>
+<dmx-serverconnect id="sc_svazka" url="/api/currency/svazka/get_svazka"></dmx-serverconnect><!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="currencu" appConnect="local" components="{dmxBootstrap5Navigation:{},dmxBootstrap5TableGenerator:{},dmxFormatter:{}}" -->
+
+<dmx-serverconnect id="sc_data_valuta" url="/api/currency/valuta/stat_data_valuta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_last_voluta" url="/api/currency/valuta/stst_last_valuta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_avg_valuta" url="/api/currency/valuta/stat_avg_valuta"></dmx-serverconnect>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -12,10 +15,57 @@
         <div class="col">
             <div class="d-block">
                 <h6 class="mark text-center">Exchange rates (Курсы валют)</h6>
-                <a href="/currency/exchange_rates" class="btn w-100 btn-outline-link">Go to exchange rates....</a>
+                <a href="/currency/exchange_rates" class="btn w-100 btn-outline-primary">Go to exchange rates....</a>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="d-block">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Currency</th>
+                                <th>Avg</th>
+                            </tr>
+                        </thead>
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_avg_valuta.data.query" id="tableRepeat2">
+                            <tr>
+                                <td dmx-text="name_valuta"></td>
+                                <td dmx-text="AVG"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-block">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Currency</th>
+                                <th>Min</th>
+                                <th>Max</th>
+                            </tr>
+                        </thead>
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_data_valuta.data.query" id="tableRepeat3">
+                            <tr>
+                                <td dmx-text="name_valuta"></td>
+                                <td dmx-text="Min"></td>
+                                <td dmx-text="Max"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <div class="container">
     <div class="row">

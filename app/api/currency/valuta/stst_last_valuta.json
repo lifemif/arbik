@@ -22,40 +22,31 @@
           "type": "SELECT",
           "columns": [
             {
-              "table": "money",
-              "column": "currency"
+              "table": "curse_valut",
+              "column": "id",
+              "aggregate": "MAX",
+              "alias": "last"
             },
             {
-              "table": "money",
-              "column": "summ_curerency",
-              "alias": "summa_currency",
-              "aggregate": "SUM"
+              "table": "curse_valut",
+              "column": "user_uuid"
             },
             {
-              "table": "money",
+              "table": "curse_valut",
+              "column": "name_valuta"
+            },
+            {
+              "table": "curse_valut",
               "column": "curse",
-              "alias": "averege",
-              "aggregate": "AVG"
-            },
-            {
-              "table": "money",
-              "column": "summa",
-              "alias": "ed",
-              "aggregate": "SUM"
+              "aggregate": ""
             }
           ],
           "table": {
-            "name": "money"
+            "name": "curse_valut"
           },
           "primary": "id",
           "joins": [],
-          "groupBy": [
-            {
-              "table": "money",
-              "column": "currency"
-            }
-          ],
-          "query": "SELECT currency, SUM(summ_curerency) AS summa_currency, AVG(curse) AS averege, SUM(summa) AS ed\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY currency",
+          "query": "SELECT MAX(id) AS last, user_uuid, name_valuta, curse\nFROM curse_valut\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY user_uuid, name_valuta, curse\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -68,13 +59,13 @@
             "condition": "AND",
             "rules": [
               {
-                "id": "money.user_uuid",
-                "field": "money.user_uuid",
+                "id": "curse_valut.user_uuid",
+                "field": "curse_valut.user_uuid",
                 "type": "string",
                 "operator": "equal",
                 "value": "{{identity}}",
                 "data": {
-                  "table": "money",
+                  "table": "curse_valut",
                   "column": "user_uuid",
                   "type": "text",
                   "columnObj": {
@@ -90,26 +81,48 @@
             ],
             "conditional": null,
             "valid": true
-          }
+          },
+          "orders": [
+            {
+              "table": "curse_valut",
+              "column": "id",
+              "direction": "DESC",
+              "recid": 1
+            }
+          ],
+          "groupBy": [
+            {
+              "table": "curse_valut",
+              "column": "user_uuid"
+            },
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            },
+            {
+              "table": "curse_valut",
+              "column": "curse"
+            }
+          ]
         }
       },
       "output": true,
       "meta": [
         {
+          "type": "number",
+          "name": "last"
+        },
+        {
           "type": "text",
-          "name": "currency"
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "name_valuta"
         },
         {
           "type": "number",
-          "name": "summa_currency"
-        },
-        {
-          "type": "number",
-          "name": "averege"
-        },
-        {
-          "type": "number",
-          "name": "ed"
+          "name": "curse"
         }
       ],
       "outputType": "array"

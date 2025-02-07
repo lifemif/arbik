@@ -27,8 +27,12 @@
             },
             {
               "table": "money",
+              "column": "currency"
+            },
+            {
+              "table": "money",
               "column": "summa",
-              "alias": "summik",
+              "alias": "suma",
               "aggregate": "SUM"
             }
           ],
@@ -41,6 +45,10 @@
             {
               "table": "money",
               "column": "bukmaker"
+            },
+            {
+              "table": "money",
+              "column": "currency"
             }
           ],
           "wheres": {
@@ -70,7 +78,7 @@
             "conditional": null,
             "valid": true
           },
-          "query": "SELECT bukmaker, SUM(summa) AS summik\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY bukmaker",
+          "query": "SELECT bukmaker, currency, SUM(summa) AS suma\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY bukmaker, currency",
           "params": [
             {
               "operator": "equal",
@@ -88,8 +96,12 @@
           "name": "bukmaker"
         },
         {
+          "type": "text",
+          "name": "currency"
+        },
+        {
           "type": "number",
-          "name": "summik"
+          "name": "suma"
         }
       ],
       "outputType": "array"

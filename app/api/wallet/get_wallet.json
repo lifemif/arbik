@@ -11,15 +11,19 @@
       },
       {
         "type": "text",
-        "name": "uuid"
+        "name": "filter_data"
       },
       {
         "type": "text",
-        "name": "bukmaker"
+        "name": "filter_vid_dvigenia"
       },
       {
         "type": "text",
-        "name": "status"
+        "name": "filter_dookmaker"
+      },
+      {
+        "type": "text",
+        "name": "filter_valuta"
       }
     ]
   },
@@ -107,51 +111,11 @@
                 "operation": "="
               },
               {
-                "id": "money.money_uuid",
-                "field": "money.money_uuid",
-                "type": "string",
-                "operator": "contains",
-                "value": "{{$_GET.uuid}}",
-                "data": {
-                  "table": "money",
-                  "column": "money_uuid",
-                  "type": "text",
-                  "columnObj": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "primary": false,
-                    "nullable": true,
-                    "name": "money_uuid"
-                  }
-                },
-                "operation": "LIKE"
-              },
-              {
-                "id": "money.bukmaker",
-                "field": "money.bukmaker",
-                "type": "string",
-                "operator": "contains",
-                "value": "{{$_GET.bukmaker}}",
-                "data": {
-                  "table": "money",
-                  "column": "bukmaker",
-                  "type": "text",
-                  "columnObj": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "primary": false,
-                    "nullable": true,
-                    "name": "bukmaker"
-                  }
-                },
-                "operation": "LIKE"
-              },
-              {
                 "id": "money.data_time",
                 "field": "money.data_time",
                 "type": "datetime",
                 "operator": "greater_or_equal",
-                "value": "{{$_GET.starting_data}}",
+                "value": "{{$_GET.filter_data}}",
                 "data": {
                   "table": "money",
                   "column": "data_time",
@@ -171,7 +135,7 @@
                 "field": "money.Vid_dvigenia",
                 "type": "string",
                 "operator": "contains",
-                "value": "{{$_GET.status}}",
+                "value": "{{$_GET.filter_vid_dvigenia}}",
                 "data": {
                   "table": "money",
                   "column": "Vid_dvigenia",
@@ -185,12 +149,52 @@
                   }
                 },
                 "operation": "LIKE"
+              },
+              {
+                "id": "money.bukmaker",
+                "field": "money.bukmaker",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_dookmaker}}",
+                "data": {
+                  "table": "money",
+                  "column": "bukmaker",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "bukmaker"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "money.currency",
+                "field": "money.currency",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_valuta}}",
+                "data": {
+                  "table": "money",
+                  "column": "currency",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "currency"
+                  }
+                },
+                "operation": "LIKE"
               }
             ],
             "conditional": null,
             "valid": true
           },
-          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */ AND money_uuid LIKE :P2 /* {{$_GET.uuid}} */ AND bukmaker LIKE :P3 /* {{$_GET.bukmaker}} */ AND data_time >= :P4 /* {{$_GET.starting_data}} */ AND Vid_dvigenia LIKE :P5 /* {{$_GET.status}} */\nORDER BY id DESC",
+          "query": "SELECT id, user_uuid, money_uuid, data_time, Vid_dvigenia, bukmaker, currency, summ_curerency, curse, summa, description\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */ AND data_time >= :P2 /* {{$_GET.filter_data}} */ AND Vid_dvigenia LIKE :P3 /* {{$_GET.filter_vid_dvigenia}} */ AND bukmaker LIKE :P4 /* {{$_GET.filter_dookmaker}} */ AND currency LIKE :P5 /* {{$_GET.filter_valuta}} */\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -199,28 +203,28 @@
               "value": "{{identity}}"
             },
             {
-              "operator": "contains",
+              "operator": "greater_or_equal",
               "type": "expression",
               "name": ":P2",
-              "value": "{{$_GET.uuid}}"
+              "value": "{{$_GET.filter_data}}"
             },
             {
               "operator": "contains",
               "type": "expression",
               "name": ":P3",
-              "value": "{{$_GET.bukmaker}}"
+              "value": "{{$_GET.filter_vid_dvigenia}}"
             },
             {
-              "operator": "greater_or_equal",
+              "operator": "contains",
               "type": "expression",
               "name": ":P4",
-              "value": "{{$_GET.starting_data}}"
+              "value": "{{$_GET.filter_dookmaker}}"
             },
             {
               "operator": "contains",
               "type": "expression",
               "name": ":P5",
-              "value": "{{$_GET.status}}"
+              "value": "{{$_GET.filter_valuta}}"
             }
           ],
           "orders": [

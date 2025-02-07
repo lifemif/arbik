@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            },
+            {
+              "table": "curse_valut",
+              "column": "curse",
+              "aggregate": "MIN",
+              "alias": "Min"
+            },
+            {
+              "table": "curse_valut",
+              "column": "curse",
+              "alias": "Max",
+              "aggregate": "MAX"
+            }
+          ],
+          "table": {
+            "name": "curse_valut"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "SELECT name_valuta, MIN(curse) AS Min, MAX(curse) AS Max\nFROM curse_valut\nGROUP BY name_valuta",
+          "params": [],
+          "groupBy": [
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "name_valuta"
+        },
+        {
+          "type": "number",
+          "name": "Min"
+        },
+        {
+          "type": "number",
+          "name": "Max"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}
