@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sobitie",
+              "column": "status"
+            },
+            {
+              "table": "sobitie",
+              "column": "status",
+              "alias": "count",
+              "aggregate": "COUNT"
+            }
+          ],
+          "table": {
+            "name": "sobitie"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "sobitie",
+              "column": "status"
+            }
+          ],
+          "query": "SELECT status, COUNT(status) AS count\nFROM sobitie\nGROUP BY status",
+          "params": []
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "count"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

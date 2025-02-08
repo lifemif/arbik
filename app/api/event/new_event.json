@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "datetime",
+        "name": "data_time_start"
+      },
+      {
+        "type": "datetime",
+        "name": "data_time_end"
+      },
+      {
+        "type": "text",
+        "name": "vid_sporta"
+      },
+      {
+        "type": "text",
+        "name": "name_sobitie"
+      },
+      {
+        "type": "text",
+        "name": "url_1"
+      },
+      {
+        "type": "text",
+        "name": "url_2"
+      },
+      {
+        "type": "text",
+        "name": "status"
+      },
+      {
+        "type": "text",
+        "name": "discription"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "uuid_event",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{UUID.substr(-10, 12)}}"
+        },
+        "meta": [],
+        "outputType": "text"
+      },
+      {
+        "name": "insert_event",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db_demo",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "sobitie",
+                "column": "user_uuid",
+                "type": "text",
+                "value": "{{identity}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "sobitia_uuid",
+                "type": "text",
+                "value": "{{uuid_event}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "data_time_start",
+                "type": "datetime",
+                "value": "{{$_POST.data_time_start}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "data_time_end",
+                "type": "datetime",
+                "value": "{{$_POST.data_time_end}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "vid_sporta",
+                "type": "text",
+                "value": "{{$_POST.vid_sporta}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "name_sobitie",
+                "type": "text",
+                "value": "{{$_POST.name_sobitie}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "url_1",
+                "type": "text",
+                "value": "{{$_POST.url_1}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "url_2",
+                "type": "text",
+                "value": "{{$_POST.url_2}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "status",
+                "type": "text",
+                "value": "{{$_POST.status}}"
+              },
+              {
+                "table": "sobitie",
+                "column": "discription",
+                "type": "text",
+                "value": "{{$_POST.discription}}"
+              }
+            ],
+            "table": "sobitie",
+            "returning": "id",
+            "query": "INSERT INTO sobitie\n(user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, url_1, url_2, status, discription) VALUES (:P1 /* {{identity}} */, :P2 /* {{uuid_event}} */, :P3 /* {{$_POST.data_time_start}} */, :P4 /* {{$_POST.data_time_end}} */, :P5 /* {{$_POST.vid_sporta}} */, :P6 /* {{$_POST.name_sobitie}} */, :P7 /* {{$_POST.url_1}} */, :P8 /* {{$_POST.url_2}} */, :P9 /* {{$_POST.status}} */, :P10 /* {{$_POST.discription}} */)",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{identity}}"
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{uuid_event}}"
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.data_time_start}}"
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.data_time_end}}"
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.vid_sporta}}"
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.name_sobitie}}"
+              },
+              {
+                "name": ":P7",
+                "type": "expression",
+                "value": "{{$_POST.url_1}}"
+              },
+              {
+                "name": ":P8",
+                "type": "expression",
+                "value": "{{$_POST.url_2}}"
+              },
+              {
+                "name": ":P9",
+                "type": "expression",
+                "value": "{{$_POST.status}}"
+              },
+              {
+                "name": ":P10",
+                "type": "expression",
+                "value": "{{$_POST.discription}}"
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sobitie",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "sobitie",
+              "column": "vid_sporta",
+              "alias": "count",
+              "aggregate": "COUNT"
+            }
+          ],
+          "table": {
+            "name": "sobitie"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "sobitie",
+              "column": "vid_sporta"
+            }
+          ],
+          "query": "SELECT vid_sporta, COUNT(vid_sporta) AS count\nFROM sobitie\nGROUP BY vid_sporta",
+          "params": []
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "count"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

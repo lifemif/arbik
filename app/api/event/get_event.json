@@ -8,6 +8,26 @@
       {
         "type": "text",
         "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filter_data"
+      },
+      {
+        "type": "text",
+        "name": "filter_uuid"
+      },
+      {
+        "type": "text",
+        "name": "filter_vid_sporta"
+      },
+      {
+        "type": "text",
+        "name": "filter_name_event"
+      },
+      {
+        "type": "text",
+        "name": "filter_status"
       }
     ]
   },
@@ -93,25 +113,147 @@
                   }
                 },
                 "operation": "="
+              },
+              {
+                "id": "sobitie.data_time_start",
+                "field": "sobitie.data_time_start",
+                "type": "datetime",
+                "operator": "greater_or_equal",
+                "value": "{{$_GET.filter_data}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "data_time_start",
+                  "type": "datetime",
+                  "columnObj": {
+                    "type": "datetime",
+                    "primary": false,
+                    "nullable": true,
+                    "name": "data_time_start"
+                  }
+                },
+                "operation": ">="
+              },
+              {
+                "id": "sobitie.sobitia_uuid",
+                "field": "sobitie.sobitia_uuid",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_uuid}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "sobitia_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "sobitia_uuid"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sobitie.vid_sporta",
+                "field": "sobitie.vid_sporta",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_vid_sporta}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "vid_sporta",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "vid_sporta"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sobitie.name_sobitie",
+                "field": "sobitie.name_sobitie",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_name_event}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "name_sobitie",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "name_sobitie"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sobitie.status",
+                "field": "sobitie.status",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_status}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "status",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "status"
+                  }
+                },
+                "operation": "LIKE"
               }
             ],
             "conditional": null,
             "valid": true
           },
-          "orders": [
-            {
-              "table": "sobitie",
-              "column": "id",
-              "direction": "DESC"
-            }
-          ],
-          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, url_1, url_2, status, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, url_1, url_2, status, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */ AND data_time_start >= :P2 /* {{$_GET.filter_data}} */ AND sobitia_uuid LIKE :P3 /* {{$_GET.filter_uuid}} */ AND vid_sporta LIKE :P4 /* {{$_GET.filter_vid_sporta}} */ AND name_sobitie LIKE :P5 /* {{$_GET.filter_name_event}} */ AND status LIKE :P6 /* {{$_GET.filter_status}} */",
           "params": [
             {
               "operator": "equal",
               "type": "expression",
               "name": ":P1",
               "value": "{{identity}}"
+            },
+            {
+              "operator": "greater_or_equal",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filter_data}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P3",
+              "value": "{{$_GET.filter_uuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_GET.filter_vid_sporta}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P5",
+              "value": "{{$_GET.filter_name_event}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P6",
+              "value": "{{$_GET.filter_status}}"
             }
           ]
         }

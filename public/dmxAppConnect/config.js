@@ -212,5 +212,105 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "eventing": {
+    "repeat1": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "sobitia_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_sobitie"
+        },
+        {
+          "type": "text",
+          "name": "url_1"
+        },
+        {
+          "type": "text",
+          "name": "url_2"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "discription"
+        }
+      ],
+      "outputType": "array"
+    },
+    "data_detail_event": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "sobitia_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_sobitie"
+        },
+        {
+          "type": "text",
+          "name": "url_1"
+        },
+        {
+          "type": "text",
+          "name": "url_2"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "discription"
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });
