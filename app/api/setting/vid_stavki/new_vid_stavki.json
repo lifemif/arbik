@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "vid_stavki"
+      },
+      {
+        "type": "number",
+        "name": "sorting"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert_vid_stavki",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "setting_vid_stavki",
+              "column": "user_uuid",
+              "type": "text",
+              "value": "{{identity}}"
+            },
+            {
+              "table": "setting_vid_stavki",
+              "column": "vid_stavki",
+              "type": "text",
+              "value": "{{$_POST.vid_stavki}}"
+            },
+            {
+              "table": "setting_vid_stavki",
+              "column": "vid_stavki_sis",
+              "type": "text",
+              "value": "{{$_POST.vid_stavki}}"
+            },
+            {
+              "table": "setting_vid_stavki",
+              "column": "sorting",
+              "type": "number",
+              "value": "{{$_POST.sorting}}"
+            }
+          ],
+          "table": "setting_vid_stavki",
+          "returning": "id",
+          "query": "INSERT INTO setting_vid_stavki\n(user_uuid, vid_stavki, vid_stavki_sis, sorting) VALUES (:P1 /* {{identity}} */, :P2 /* {{$_POST.vid_stavki}} */, :P3 /* {{$_POST.vid_stavki}} */, :P4 /* {{$_POST.sorting}} */)",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{identity}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.vid_stavki}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.vid_stavki}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.sorting}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

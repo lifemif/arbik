@@ -3,7 +3,7 @@
 <dmx-serverconnect id="sc_valuta" url="/api/setting/valuta/get_valuta"></dmx-serverconnect>
 <dmx-serverconnect id="sc_curses" url="/api/wallet/get_valuta_sis" dmx-param:filter_curse="modal_wallet.form_new_wallet.inp_currency.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_stat_bukmaker" url="/api/wallet/stat_bukmaker"></dmx-serverconnect>
-<dmx-serverconnect id="sc_valuta" url="/api/wallet/stat_valuta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_stat_valuta" url="/api/wallet/stat_valuta"></dmx-serverconnect>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -50,7 +50,7 @@
                                 <th>Sum</th>
                             </tr>
                         </thead>
-                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_valuta.data.query" id="tableRepeat2">
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_stat_valuta.data.query" id="tableRepeat1">
                             <tr>
                                 <td dmx-text="bukmaker"></td>
                                 <td dmx-text="currency"></td>
@@ -129,10 +129,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form is="dmx-serverconnect-form" id="form_new_wallet" method="post" action="/api/wallet/new_wallet" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_wallet.reset();modal_wallet.hide();sc_wallet.load();notifies1.danger('Error')" dmx-on:success="form_new_wallet.reset();modal_wallet.hide();sc_wallet.load();notifies1.success('Saving!!!')">
+                <form is="dmx-serverconnect-form" id="form_new_wallet" method="post" action="/api/wallet/new_wallet" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_wallet.reset();modal_wallet.hide();sc_wallet.load();notifies1.danger('Error')" dmx-on:success="form_new_wallet.reset();modal_wallet.hide();sc_wallet.load();sc_stat_bukmaker.load();sc_stat_valuta.load();notifies1.success('Saving!!!')">
                     <div class="form-group mb-3">
                         <label for="inp_Vid_dvigenia" class="col-form-label-sm">Vid dvigenia</label>
-                        <select id="inp_Vid_dvigenia" class="form-select form-select-sm" name="Vid_dvigenia">
+                        <select id="inp_Vid_dvigenia" class="form-select form-select-sm" name="Vid_dvigenia" required="">
                             <option selected="" value=""></option>
                             <option value="Withdrawing money(Снятие)">Withdrawing money(Снятие)</option>
                             <option value="Replenishment(Пополнение)">Replenishment(Пополнение)</option>
@@ -145,7 +145,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker</label>
-                        <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
+                        <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis" required="">
                             <option selected="" value=""></option>
                             <option value="System">System</option>
                             <option value="Broker">Broker</option>
@@ -154,17 +154,17 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_currency" class="col-form-label-sm">Currency</label>
-                        <select id="inp_currency" class="form-select form-select-sm" name="currency" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis">
+                        <select id="inp_currency" class="form-select form-select-sm" name="currency" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis" required="">
                             <option selected="" value=""></option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_summ_curerency" class="col-form-label-sm">Summ curerency</label>
-                        <input type="number" step="any" class="form-control form-control-sm" id="inp_summ_curerency" name="summ_curerency" aria-describedby="inp_summ_curerency_help" placeholder="Enter Summ curerency">
+                        <input type="number" step="any" class="form-control form-control-sm" id="inp_summ_curerency" name="summ_curerency" aria-describedby="inp_summ_curerency_help" placeholder="Enter Summ curerency" required="">
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_curse" class="col-form-label-sm">Curse</label>
-                        <input type="number" step="any" class="form-control form-control-sm" id="inp_curse" name="curse" aria-describedby="inp_curse_help" placeholder="Enter Curse" dmx-bind:value="sc_curses.data.query[0].averege">
+                        <input type="number" step="any" class="form-control form-control-sm" id="inp_curse" name="curse" aria-describedby="inp_curse_help" placeholder="Enter Curse" dmx-bind:value="sc_curses.data.query[0].averege" required="">
                     </div>
                     <div class="form-group mb-3">
                         <label for="inp_description" class="col-form-label-sm">Description</label>
@@ -178,7 +178,7 @@
             </div>
         </div>
     </div>
-</div><!-- Wappler include head-page="layouts/la_wallet" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{}}" -->
+</div><!-- Wappler include head-page="layouts/la_wallet" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="wallet" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxNotifications:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{},dmxValidator:{}}" -->
 
 
 

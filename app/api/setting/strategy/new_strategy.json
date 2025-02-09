@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "strategi"
+      },
+      {
+        "type": "number",
+        "name": "sorting"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "setting_strategi",
+              "column": "user_uuid",
+              "type": "text",
+              "value": "{{identity}}"
+            },
+            {
+              "table": "setting_strategi",
+              "column": "strategi",
+              "type": "text",
+              "value": "{{$_POST.strategi}}"
+            },
+            {
+              "table": "setting_strategi",
+              "column": "strategi_sis",
+              "type": "text",
+              "value": "{{$_POST.strategi}}"
+            },
+            {
+              "table": "setting_strategi",
+              "column": "sorting",
+              "type": "number",
+              "value": "{{$_POST.sorting}}"
+            }
+          ],
+          "table": "setting_strategi",
+          "returning": "id",
+          "query": "INSERT INTO setting_strategi\n(user_uuid, strategi, strategi_sis, sorting) VALUES (:P1 /* {{identity}} */, :P2 /* {{$_POST.strategi}} */, :P3 /* {{$_POST.strategi}} */, :P4 /* {{$_POST.sorting}} */)",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{identity}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.strategi}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.strategi}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.sorting}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

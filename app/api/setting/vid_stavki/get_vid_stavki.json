@@ -22,22 +22,28 @@
           "type": "SELECT",
           "columns": [
             {
-              "table": "money",
-              "column": "bukmaker"
+              "table": "setting_vid_stavki",
+              "column": "id"
             },
             {
-              "table": "money",
-              "column": "currency"
+              "table": "setting_vid_stavki",
+              "column": "user_uuid"
             },
             {
-              "table": "money",
-              "column": "summ_curerency",
-              "alias": "suma",
-              "aggregate": "SUM"
+              "table": "setting_vid_stavki",
+              "column": "vid_stavki"
+            },
+            {
+              "table": "setting_vid_stavki",
+              "column": "vid_stavki_sis"
+            },
+            {
+              "table": "setting_vid_stavki",
+              "column": "sorting"
             }
           ],
           "table": {
-            "name": "money"
+            "name": "setting_vid_stavki"
           },
           "primary": "id",
           "joins": [],
@@ -45,13 +51,13 @@
             "condition": "AND",
             "rules": [
               {
-                "id": "money.user_uuid",
-                "field": "money.user_uuid",
+                "id": "setting_vid_stavki.user_uuid",
+                "field": "setting_vid_stavki.user_uuid",
                 "type": "string",
                 "operator": "equal",
                 "value": "{{identity}}",
                 "data": {
-                  "table": "money",
+                  "table": "setting_vid_stavki",
                   "column": "user_uuid",
                   "type": "text",
                   "columnObj": {
@@ -68,7 +74,14 @@
             "conditional": null,
             "valid": true
           },
-          "query": "SELECT bukmaker, currency, SUM(summ_curerency) AS suma\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY bukmaker, currency",
+          "orders": [
+            {
+              "table": "setting_vid_stavki",
+              "column": "sorting",
+              "direction": "ASC"
+            }
+          ],
+          "query": "SELECT id, user_uuid, vid_stavki, vid_stavki_sis, sorting\nFROM setting_vid_stavki\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY sorting ASC",
           "params": [
             {
               "operator": "equal",
@@ -76,32 +89,30 @@
               "name": ":P1",
               "value": "{{identity}}"
             }
-          ],
-          "groupBy": [
-            {
-              "table": "money",
-              "column": "bukmaker"
-            },
-            {
-              "table": "money",
-              "column": "currency"
-            }
           ]
         }
       },
       "output": true,
       "meta": [
         {
-          "type": "text",
-          "name": "bukmaker"
+          "type": "number",
+          "name": "id"
         },
         {
           "type": "text",
-          "name": "currency"
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "vid_stavki"
+        },
+        {
+          "type": "text",
+          "name": "vid_stavki_sis"
         },
         {
           "type": "number",
-          "name": "suma"
+          "name": "sorting"
         }
       ],
       "outputType": "array"
