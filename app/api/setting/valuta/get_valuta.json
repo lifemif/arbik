@@ -60,7 +60,8 @@
             {
               "table": "setting_valuta",
               "column": "sector",
-              "direction": "ASC"
+              "direction": "ASC",
+              "recid": 1
             }
           ],
           "wheres": {

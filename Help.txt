@@ -13,3 +13,5 @@ Other(Иное)
 
 
 Убераем ограничения по десятичные цифры -  type="number" step="any">
+
+detloy == https://dev.to/hayleycodes/deploying-a-node-js-site-to-vultr-j8d

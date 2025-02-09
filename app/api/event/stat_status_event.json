@@ -43,8 +43,42 @@
               "column": "status"
             }
           ],
-          "query": "SELECT status, COUNT(status) AS count\nFROM sobitie\nGROUP BY status",
-          "params": []
+          "query": "SELECT status, COUNT(status) AS count\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY status",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sobitie.user_uuid",
+                "field": "sobitie.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
         }
       },
       "output": true,

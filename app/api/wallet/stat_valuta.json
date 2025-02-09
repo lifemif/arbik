@@ -64,8 +64,42 @@
               "column": "currency"
             }
           ],
-          "query": "SELECT bukmaker, currency, SUM(summ_curerency) AS sam, AVG(curse) AS ALGI, SUM(summa) AS SUM\nFROM money\nGROUP BY bukmaker, currency",
-          "params": []
+          "query": "SELECT bukmaker, currency, SUM(summ_curerency) AS sam, AVG(curse) AS ALGI, SUM(summa) AS SUM\nFROM money\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY bukmaker, currency",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "money.user_uuid",
+                "field": "money.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "money",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
         }
       },
       "output": true,

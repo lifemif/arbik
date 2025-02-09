@@ -43,8 +43,42 @@
               "column": "name_valuta"
             }
           ],
-          "query": "SELECT name_valuta, AVG(curse) AS AVG\nFROM curse_valut\nGROUP BY name_valuta",
-          "params": []
+          "query": "SELECT name_valuta, AVG(curse) AS AVG\nFROM curse_valut\nWHERE user_uuid = :P1 /* {{identity}} */\nGROUP BY name_valuta",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "curse_valut.user_uuid",
+                "field": "curse_valut.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
         }
       },
       "output": true,
