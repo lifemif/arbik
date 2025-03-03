@@ -312,5 +312,364 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "sport_line": {
+    "repeat_sport_line": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_playrs"
+        },
+        {
+          "type": "text",
+          "name": "tip_stavki"
+        },
+        {
+          "type": "number",
+          "name": "zatrata"
+        },
+        {
+          "type": "number",
+          "name": "teoretic_kef"
+        },
+        {
+          "type": "number",
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "text",
+          "name": "vid_stsvki"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "raschet"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    },
+    "repeat1": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_playrs"
+        },
+        {
+          "type": "text",
+          "name": "tip_stavki"
+        },
+        {
+          "type": "number",
+          "name": "zatrata"
+        },
+        {
+          "type": "number",
+          "name": "teoretic_kef"
+        },
+        {
+          "type": "number",
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "text",
+          "name": "vid_stsvki"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "raschet"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    },
+    "query": [
+      {
+        "type": "text",
+        "name": "update_sport_line"
+      }
+    ],
+    "data_detail_update_sport_line": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_end"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_playrs"
+        },
+        {
+          "type": "text",
+          "name": "tip_stavki"
+        },
+        {
+          "type": "number",
+          "name": "zatrata"
+        },
+        {
+          "type": "number",
+          "name": "teoretic_kef"
+        },
+        {
+          "type": "number",
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "text",
+          "name": "vid_stsvki"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "raschet"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
+  },
+  "update_sport_line": {
+    "query": [
+      {
+        "type": "text",
+        "name": "update_sport_line"
+      }
+    ]
   }
 });

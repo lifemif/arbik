@@ -48,6 +48,7 @@
                                 <th>Sam</th>
                                 <th>Algi</th>
                                 <th>Sum</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_stat_valuta.data.query" id="tableRepeat1">
@@ -55,8 +56,9 @@
                                 <td dmx-text="bukmaker"></td>
                                 <td dmx-text="currency"></td>
                                 <td dmx-text="sam"></td>
-                                <td dmx-text="ALGI"></td>
+                                <td dmx-text="ALGI.formatNumber(2, '.', ',')"></td>
                                 <td dmx-text="SUM"></td>
+                                <td dmx-text="(SUM / sam).formatNumber(2, '.', ',')"></td>
                             </tr>
                         </tbody>
                     </table>

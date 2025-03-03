@@ -1,11 +1,238 @@
-<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" -->
-<meta name="ac:route" content="/spotr_line/sport_line">
-<div class="container wappler-block pt-5 pb-5">
+<dmx-serverconnect id="sc_sport_line" url="/api/sport_line/get_sport_line" dmx-param:filter_to="filter_to.value" dmx-param:uuid_event="UUID_Event.value" dmx-param:filter_vid_sporta="filter_vid_sporta.value" dmx-param:filter_player_name="filter_Player_name.value" dmx-param:filter_status="filter_status.value" dmx-param:filter_calculeted="filter_Calculeted.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_sporta" url="/api/setting/vid_sporta/get_vid_sporta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_strategu" url="/api/sport_line/filter_get_strategi"></dmx-serverconnect>
+<dmx-serverconnect id="sc_line" url="/api/sport_line/filter_get_tip_stavki" dmx-param:filter_vid_sporta="offcanvas_update_sport_line.data_detail_update_sport_line.form_update_sport_line.inp_vid_sporta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_stavki" url="/api/sport_line/filter_get_vid_stavki2"></dmx-serverconnect>
+<div class="container" id="filter_button">
+    <h4 class="text-center">Sporting-line</h4>
     <div class="row">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <h4>sport line<br><small class="text-muted">With faded secondary text</small></h4>
-            <p>A nice paragraph</p>
-            <button class="btn btn-primary">Button</button>
+        <div class="col">
+            <a href="/spotr_line/new_sport_line" class="btn btn-primary w-100">New event sporting-line</a>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="d-flex justify-content-end"><button id="btn_filter" class="btn text-end" dmx-on:click="toggle1.toggle()"><i class="fas fa-filter" dmx-on:click="toggle1.toggle()"></i></button></div>
+</div>
+<div class="container text-end" id="filter" dmx-show="toggle1.checked">
+
+    <div class="row">
+        <div class="align-self-center d-flex flex-column col-12 col-sm-6 col-lg-2">
+            <h6 class="text-center">Starting data</h6>
+            <input id="filter_to" name="filter_to" type="datetime-local" class="form-control form-control-sm">
+        </div>
+        <div class="align-self-center col-12 col-sm-6 col-lg-2">
+            <h6 class="text-center">UUID Event&nbsp;</h6>
+            <input id="UUID_Event" name="UUID_Event" type="search" class="form-control form-control-sm">
+        </div>
+        <div class="align-self-center col-12 col-sm-6 col-lg-2">
+            <h6 class="text-center">Type of sport</h6>
+            <select id="filter_vid_sporta" class="form-select form-select-sm" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis">
+                <option selected="" value=""></option>
+            </select>
+        </div>
+        <div class="align-self-center col-12 col-sm-6 col-lg-2">
+            <h6 class="text-center">Player name</h6>
+            <input id="filter_Player_name" name="filter_Player_name" type="search" class="form-control form-control-sm">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-2 align-self-center">
+            <h6 class="text-center">Status</h6>
+            <select id="filter_status" class="form-select form-select-sm">
+                <option selected="" value=""></option>
+                <option value="Planing">Planing</option>
+                <option value="Open">Open</option>
+                <option value="Close">Close</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-2 align-self-center">
+            <h6 class="text-center">Financial calculator</h6>
+            <select id="filter_Calculeted" class="form-select form-select-sm">
+                <option selected="" value=""></option>
+                <option value="No calculeted">No calculeted</option>
+                <option value="Calculeted">Calculeted</option>
+            </select>
+        </div>
+    </div>
+
+
+</div>
+<div class="container" id="Expense">
+    <div class="row" is="dmx-repeat" id="repeat_sport_line" dmx-bind:repeat="sc_sport_line.data.query">
+        <div class="col-12">
+            <div class="row">
+                <div class="col bg-info">
+                    <div class="d-block text-center bg-transparent">
+                        <h5 class="text-light">Sport-line ({{id}})</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row row-cols-12">
+                <div class="text-start col-12 col-xxl-6 col-lg-6">
+                    <div class="d-flex text-center justify-content-center mark">
+                        <h6 class="mark text-center">Event</h6>
+                    </div>
+
+
+                    <button id="btn_update_event" class="btn w-100 btn-sm btn-outline-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_update_sport_line" dmx-on:click="offcanvas_update_sport_line.data_detail_update_sport_line.select(id)">Update event sport-line</button>
+                    <h6 id="SportlineUUID">Sport line UUID: {{_['uuid_sport-line']}}</h6>
+
+                    <h6 id="DataTimestart">Data&amp;Time start: {{_['data-time_start'].formatDate('dd-MM-yyyy HH:mm')}}</h6>
+                    <h6 id="DataTimeend">Data&amp;Time end: {{_['data-time_end'].formatDate('dd-MM-yyyy HH:mm')}}</h6>
+                    <h6 id="UUID_Event">UUID Event: {{UUID_event}}</h6>
+                    <h6 id="Typeofsport">Type of sport (Вид спорта): {{vid_sporta}}</h6>
+
+
+                    <h6 class="fw-bold" id="Playername">Player name: {{name_playrs}}</h6>
+                    <h6 id="Bettype">Bet type (тип ставки): {{tip_stavki}}</h6>
+                    <h6 id="Strategy">Strategy: {{stratery}}</h6>
+                    <h6 id="Typeofbet">Type of bet (Вид ставки):{{vid_stsvki}}</h6>
+                    <h6 id="Status">Status: {{status}}</h6>
+                    <h6>Description: {{description}}</h6>
+                    <form is="dmx-serverconnect-form" id="form_deleted_sport_line" method="post" action="/api/sport_line/deleted_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="sc_sport_line.load({});notifies1.danger('Error')" dmx-on:success="sc_sport_line.load({});notifies1.success('Ok! Deleted')">
+                        <div class="form-group mb-3" dmx-show="">
+                            <label for="inp_irif">Irif</label>
+                            <input type="text" class="form-control" id="inp_irif" name="irif" aria-describedby="inp_irif_help" placeholder="Enter Irif" dmx-bind:value="id">
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn w-100 btn-danger btn-sm" id="dt_deleted" dmx-bind:disabled="state.executing">Deleted</button>
+                        </div>
+                    </form>
+
+
+
+
+                </div>
+                <div class="col-12 col-lg-6 col-xxl-6">
+                    <div class="row">
+                        <div class="col">
+
+                            <div class="d-flex align-items-center text-center justify-content-center mark">
+
+                                <h6 class="text-center">Bukmaker sport-line</h6>
+
+                            </div>
+
+                            <h6 id="Bookmaker">Bookmaker: {{bukmaker}}</h6>
+                            <h6 id="Currency">Currency: {{valuta}}</h6>
+                            <h6 id="ExchangeRate">Exchange rate (курс валют): {{kurs_valuti}}</h6>
+                            <div class="d-flex flex-row">
+                                <h6 id="Exchangerate">Expense (Затрата):&nbsp;</h6>
+                                <h6 id="Exchangerate1" class="fst-italic text-danger">{{zatrata}};</h6>
+                                <h6 id="TeoretKef">&nbsp;Stavka:&nbsp;</h6>
+
+                                <h6 id="TeoretKef1" class="text-danger fst-italic">{{stavka}} ;&nbsp;</h6>
+
+                                <h6 id="PractikKef">Stavka currency:&nbsp;</h6>
+                                <h6 id="TeoretKef3" class="text-danger fst-italic">{{stavka_valuta}} ;</h6>
+                            </div>
+                            <h6 class="text-center mark">Finance sport-line</h6>
+                            <div class="d-flex align-items-center">
+                                <h6 id="Teoretickef">Teoretic. kef:</h6>
+                                <h5 id="Teoretickef1" class="text-primary">&nbsp;{{teoretic_kef}};&nbsp;</h5>
+                                <h6 id="PraktikKEF">Practik. kef:</h6>
+                                <h5 id="PraktikKEF1" class="text-primary">&nbsp;{{practik_kef}};</h5>
+                                <h6 id="ItogKEF">&nbsp;Itog kef:</h6>
+                                <h5 id="ItogKEF1" class="text-primary">&nbsp;{{itog_kef}};&nbsp;</h5>
+                            </div>
+                            <div class="d-flex align-items-xxl-center align-items-center align-items-sm-center align-items-md-center">
+                                <h6 id="FinancialCalculation">Financial calculation:&nbsp;</h6>
+                                <h5 id="Rashet" class="fw-bold text-success">{{raschet}}</h5>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center text-center justify-content-center mark">
+
+                                <h6 class="text-center">Strategy sport-line</h6>
+                            </div>
+                            <div class="d-flex flex-column text-start">
+                                <h6 id="CycleExpress">Cycle/Express: {{tsikl_uuid}}</h6>
+                                <h6 id="CycleExpress_sector">Cycle/Express sector: {{tsikl_sector}}</h6>
+                                <h6 id="Spread_uuid">Spread uuid: {{spread_uuid}}</h6>
+                                <h6 id="Skrap_uuid">Skrap uuid: {{skrap_uuid}}</h6>
+                                <h6 id="Skrap_uuid1">Aziat uuid: {{aziat_uuid}}</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxNotifications:{},dmxStateManagement:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{}}" -->
+<dmx-toggle id="toggle1"></dmx-toggle>
+
+
+
+
+
+<div class="offcanvas offcanvas-start" id="offcanvas_update_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header bg-warning">
+        <h5 class="offcanvas-title text-light">Update event sport</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="d-flex text-center flex-row align-items-center justify-content-center" is="dmx-data-detail" id="data_detail_update_sport_line" dmx-bind:data="sc_sport_line.data.query" key="id">
+            <form is="dmx-serverconnect-form" id="form_update_sport_line" method="post" action="/api/sport_line/update_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_update_sport_line.data" dmx-on:error="offcanvas_update_sport_line.hide();sc_sport_line.load({filter_to: filter_to.value, uuid_event: UUID_Event.value, filter_vid_sporta: filter_vid_sporta.value, filter_player_name: filter_Player_name.value, filter_status: filter_status.value, filter_calculeted: filter_Calculeted.value});notifies1.danger('Error')" dmx-on:success="offcanvas_update_sport_line.hide();sc_sport_line.load({filter_to: filter_to.value, uuid_event: UUID_Event.value, filter_vid_sporta: filter_vid_sporta.value, filter_player_name: filter_Player_name.value, filter_status: filter_status.value, filter_calculeted: filter_Calculeted.value});notifies1.warning('Ok!!! Update')">
+                <div class="form-group mb-3">
+                    <label for="inp_UUID_event" class="col-form-label-sm">Uuid event</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_UUID_event" name="UUID_event" dmx-bind:value="data_detail_update_sport_line.data.UUID_event" aria-describedby="inp_UUID_event_help" placeholder="Enter Uuid event">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_vid_sporta" class="col-form-label-sm">Vid sporta</label>
+                    <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:value="data_detail_update_sport_line.data.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis">
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_name_playrs" class="col-form-label-sm">Name playrs</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" dmx-bind:value="data_detail_update_sport_line.data.name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_tip_stavki" class="col-form-label-sm">Tip stavki</label>
+                    <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:value="data_detail_update_sport_line.data.tip_stavki" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis">
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_stratery" class="col-form-label-sm">Stratery</label>
+                    <select id="inp_stratery" class="form-select form-select-sm" name="stratery" dmx-bind:value="data_detail_update_sport_line.data.stratery" dmx-bind:options="sc_strategu.data.query" optiontext="strategi" optionvalue="strategi_sis">
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_vid_stsvki" class="col-form-label-sm">Vid stsvki</label>
+                    <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" dmx-bind:value="data_detail_update_sport_line.data.vid_stsvki" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_status" class="col-form-label-sm">Status</label>
+                    <select id="inp_status" class="form-select form-select-sm" name="status" dmx-bind:value="data_detail_update_sport_line.data.status">
+                        <option value=""></option>
+                        <option value="Planing">Planing</option>
+                        <option value="Open">Open</option>
+                        <option value="Close">Close</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="inp_description" class="col-form-label-sm">Description</label>
+                    <textarea id="inp_description" name="description" dmx-bind:value="data_detail_update_sport_line.data.description" class="form-control"></textarea>
+                </div>
+                <div class="form-group mb-3" dmx-show="">
+                    <label for="inp_id">Id</label>
+                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_update_sport_line.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                </div>
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-warning w-100" dmx-bind:value="data_detail_update_sport_line.data.Save">Update event sport-line</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+<meta name="ac:route" content="/spotr_line/sport_line">
+
+<dmx-notifications id="notifies1"></dmx-notifications>

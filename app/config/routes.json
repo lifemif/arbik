@@ -37,11 +37,6 @@
       "layout": "sistem"
     },
     {
-      "path": "/spotr_line/sport_line",
-      "page": "spotr_line/sport_line",
-      "layout": "la_sport_line"
-    },
-    {
       "path": "/currency/currencu",
       "page": "currency/currencu",
       "layout": "la_current"
@@ -100,6 +95,17 @@
       "path": "/event/event",
       "page": "event/event",
       "layout": "la_event"
+    },
+    {
+      "path": "/spotr_line/sport_line",
+      "page": "spotr_line/sport_line",
+      "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/new_sport_line",
+      "page": "spotr_line/new_sport_line",
+      "layout": "la_sport_line",
+      "exec": ""
     }
   ],
   "layouts": {
