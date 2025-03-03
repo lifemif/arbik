@@ -1,10 +1,112 @@
-<!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{}}" -->
-<meta name="ac:route" content="/spotr_line/new_sport_line">
-<div class="container wappler-block pt-5 pb-5">
+<dmx-serverconnect id="sc_event" url="/api/sport_line/new_sport_line/get_event" dmx-param:new_event="new_event.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_sport_line" url="/api/sport_line/new_sport_line/get_sport_line"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_sporta" url="/api/sport_line/new_sport_line/get_vid_sporta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_line" url="/api/sport_line/new_sport_line/get_line" dmx-param:vid_sporta="form_new_event_sport_line.select_vid_sporta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_strategy" url="/api/sport_line/new_sport_line/get_strategy"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_stavki" url="/api/sport_line/new_sport_line/get_vid_stavki"></dmx-serverconnect>
+<div class="container" id="head">
     <div class="row">
-        <div class="text-center col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <p>A nice paragraph {{var_update_sport_line.value}}</p>
-            <button class="btn btn-primary">Button</button>
+        <div class="col">
+            <h4 class="text-center">New event sporting-line</h4>
+            <input id="new_event" name="new_event" type="search" class="form-control" placeholder="New EVENT">
+        </div>
+    </div>
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxBootstrap5TableGenerator:{}}" -->
+
+
+
+
+<div class="container" id="load">
+    <div class="row">
+        <div class="col">
+            <form id="form_new_event_sport_line" method="post">
+                <div class="row">
+                    <div class="col">
+                        <h6>Data time start</h6>
+
+                        <input id="data_time_start" name="data_time_start" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].data_time_start">
+
+                        <h6>Data time end</h6>
+                        <input id="data_time_end" name="data_time_end" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].data_time_end">
+                        <h6>UUID event</h6>
+
+                        <input id="uuid_event" name="uuid_event" type="text" class="form-control" dmx-bind:value="new_event.value">
+                        <h6>Vid sporta</h6>
+
+                        <select id="select_vid_sporta" class="form-select" optiontext="vid_sporta" optionvalue="vid_sporta_sis" dmx-bind:options="sc_vid_sporta.data.query" dmx-bind:value="sc_event.data.query[0].vid_sporta">
+                            <option selected="" value=""></option>
+                        </select>
+                        <h6>Name playrs</h6><input id="name_players" name="name_players" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].name_sobitie">
+                        <h6>line</h6>
+                        <select id="select_line" class="form-select" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis">
+                        </select>
+                        <h6>Strategy</h6>
+
+                        <select id="select_strategy" class="form-select" dmx-bind:options="sc_strategy.data.query" optiontext="strategi" optionvalue="strategi_sis">
+                            <option selected="" value=""></option>
+                        </select>
+
+                    </div>
+                    <div class="col">
+
+
+
+
+                        <h6>Vid_stavki</h6>
+                        <select id="select_Vid_stavki" class="form-select" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
+                            <option selected="" value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Uuid sport line</th>
+                        <th>Data time start</th>
+                        <th>Data time end</th>
+                        <th>Uuid event</th>
+                        <th>Vid sporta</th>
+                        <th>Name playrs</th>
+                        <th>Tip stavki</th>
+                        <th>Stratery</th>
+                        <th>Vid stsvki</th>
+                        <th>Tsikl uuid</th>
+                        <th>Tsikl sector</th>
+                        <th>Spread uuid</th>
+                        <th>Skrap uuid</th>
+                        <th>Aziat uuid</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_sport_line.data.query" id="tableRepeat1">
+                    <tr>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="['uuid_sport-line']"></td>
+                        <td dmx-text="['data-time_start']"></td>
+                        <td dmx-text="['data-time_end']"></td>
+                        <td dmx-text="UUID_event"></td>
+                        <td dmx-text="vid_sporta"></td>
+                        <td dmx-text="name_playrs"></td>
+                        <td dmx-text="tip_stavki"></td>
+                        <td dmx-text="stratery"></td>
+                        <td dmx-text="vid_stsvki"></td>
+                        <td dmx-text="tsikl_uuid"></td>
+                        <td dmx-text="tsikl_sector"></td>
+                        <td dmx-text="spread_uuid"></td>
+                        <td dmx-text="skrap_uuid"></td>
+                        <td dmx-text="aziat_uuid"></td>
+                        <td dmx-text="description"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+<meta name="ac:route" content="/spotr_line/new_sport_line">

@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "new_event"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sobitie",
+              "column": "id"
+            },
+            {
+              "table": "sobitie",
+              "column": "user_uuid"
+            },
+            {
+              "table": "sobitie",
+              "column": "sobitia_uuid"
+            },
+            {
+              "table": "sobitie",
+              "column": "data_time_start"
+            },
+            {
+              "table": "sobitie",
+              "column": "data_time_end"
+            },
+            {
+              "table": "sobitie",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "sobitie",
+              "column": "name_sobitie"
+            },
+            {
+              "table": "sobitie",
+              "column": "status"
+            },
+            {
+              "table": "sobitie",
+              "column": "discription"
+            }
+          ],
+          "table": {
+            "name": "sobitie"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, status, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */ AND sobitia_uuid LIKE :P2 /* {{$_GET.new_event}} */",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.new_event}}"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sobitie.user_uuid",
+                "field": "sobitie.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "id": "sobitie.sobitia_uuid",
+                "field": "sobitie.sobitia_uuid",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.new_event}}",
+                "data": {
+                  "table": "sobitie",
+                  "column": "sobitia_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "sobitia_uuid"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "sobitia_uuid"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data_time_end"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_sobitie"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "discription"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}
