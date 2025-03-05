@@ -1,73 +1,187 @@
 {
   "meta": {
+    "options": {
+      "linkedFile": "/views/spotr_line/new_sport_line.ejs",
+      "linkedForm": "form_new_event_sport_line"
+    },
     "$_POST": [
       {
         "type": "datetime",
+        "fieldName": "data_time_start",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "data_time_start"
       },
       {
         "type": "datetime",
+        "fieldName": "data_time_end",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "data_time_end"
       },
       {
         "type": "text",
+        "fieldName": "UUID_event",
         "name": "UUID_event"
       },
       {
         "type": "text",
+        "fieldName": "vid_sporta",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "vid_sporta"
       },
       {
         "type": "text",
+        "fieldName": "name_playrs",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "name_playrs"
       },
       {
         "type": "text",
+        "fieldName": "tip_stavki",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "tip_stavki"
       },
       {
         "type": "number",
+        "fieldName": "practik_kef",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            },
+            "core:number": {
+              "param": ""
+            }
+          }
+        },
         "name": "practik_kef"
       },
       {
         "type": "number",
+        "fieldName": "stavka",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            },
+            "core:number": {
+              "param": ""
+            }
+          }
+        },
         "name": "stavka"
       },
       {
         "type": "text",
+        "fieldName": "bukmaker",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "bukmaker"
       },
       {
         "type": "text",
+        "fieldName": "stratery",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "stratery"
       },
       {
         "type": "text",
+        "fieldName": "vid_stsvki",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
         "name": "vid_stsvki"
       },
       {
         "type": "text",
+        "fieldName": "tsikl_uuid",
         "name": "tsikl_uuid"
       },
       {
         "type": "number",
+        "fieldName": "tsikl_sector",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
         "name": "tsikl_sector"
       },
       {
         "type": "text",
+        "fieldName": "spread_uuid",
         "name": "spread_uuid"
       },
       {
         "type": "text",
+        "fieldName": "skrap_uuid",
         "name": "skrap_uuid"
       },
       {
         "type": "text",
+        "fieldName": "aziat_uuid",
         "name": "aziat_uuid"
       },
       {
         "type": "text",
+        "fieldName": "description",
         "name": "description"
+      },
+      {
+        "type": "text",
+        "fieldName": "inp_status",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
+        "name": "inp_status"
       }
     ]
   },
@@ -204,7 +318,7 @@
                 "table": "sport_line",
                 "column": "status",
                 "type": "text",
-                "value": "Open"
+                "value": "{{$_POST.inp_status}}"
               },
               {
                 "table": "sport_line",
@@ -221,7 +335,7 @@
             ],
             "table": "sport_line",
             "returning": "id",
-            "query": "INSERT INTO sport_line\n(user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, practik_kef, stavka, bukmaker, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{UUiD_event_sport_line}} */, :P3 /* {{$_POST.data_time_start}} */, :P4 /* {{$_POST.data_time_end}} */, :P5 /* {{$_POST.UUID_event}} */, :P6 /* {{$_POST.vid_sporta}} */, :P7 /* {{$_POST.name_playrs}} */, :P8 /* {{$_POST.tip_stavki}} */, :P9 /* {{$_POST.practik_kef}} */, :P10 /* {{$_POST.stavka}} */, :P11 /* {{$_POST.bukmaker}} */, :P12 /* {{$_POST.stratery}} */, :P13 /* {{$_POST.vid_stsvki}} */, :P14 /* {{$_POST.tsikl_uuid}} */, :P15 /* {{$_POST.tsikl_sector}} */, :P16 /* {{$_POST.spread_uuid}} */, :P17 /* {{$_POST.skrap_uuid}} */, :P18 /* {{$_POST.aziat_uuid}} */, 'Open', 'No calculeted', :P19 /* {{$_POST.description}} */)",
+            "query": "INSERT INTO sport_line\n(user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, practik_kef, stavka, bukmaker, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{UUiD_event_sport_line}} */, :P3 /* {{$_POST.data_time_start}} */, :P4 /* {{$_POST.data_time_end}} */, :P5 /* {{$_POST.UUID_event}} */, :P6 /* {{$_POST.vid_sporta}} */, :P7 /* {{$_POST.name_playrs}} */, :P8 /* {{$_POST.tip_stavki}} */, :P9 /* {{$_POST.practik_kef}} */, :P10 /* {{$_POST.stavka}} */, :P11 /* {{$_POST.bukmaker}} */, :P12 /* {{$_POST.stratery}} */, :P13 /* {{$_POST.vid_stsvki}} */, :P14 /* {{$_POST.tsikl_uuid}} */, :P15 /* {{$_POST.tsikl_sector}} */, :P16 /* {{$_POST.spread_uuid}} */, :P17 /* {{$_POST.skrap_uuid}} */, :P18 /* {{$_POST.aziat_uuid}} */, :P19 /* {{$_POST.inp_status}} */, 'No calculeted', :P20 /* {{$_POST.description}} */)",
             "params": [
               {
                 "name": ":P1",
@@ -315,6 +429,11 @@
               },
               {
                 "name": ":P19",
+                "type": "expression",
+                "value": "{{$_POST.inp_status}}"
+              },
+              {
+                "name": ":P20",
                 "type": "expression",
                 "value": "{{$_POST.description}}"
               }

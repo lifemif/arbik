@@ -1,15 +1,19 @@
 <dmx-serverconnect id="sc_sport_line" url="/api/sport_line/get_sport_line" dmx-param:filter_to="filter_to.value" dmx-param:uuid_event="UUID_Event.value" dmx-param:filter_vid_sporta="filter_vid_sporta.value" dmx-param:filter_player_name="filter_Player_name.value" dmx-param:filter_status="filter_status.value" dmx-param:filter_calculeted="filter_Calculeted.value" dmx-param:filter_sport_line="UUID_sport_line.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_vid_sporta" url="/api/setting/vid_sporta/get_vid_sporta"></dmx-serverconnect>
 <dmx-serverconnect id="sc_strategu" url="/api/sport_line/filter_get_strategi"></dmx-serverconnect>
-<dmx-serverconnect id="sc_line" url="/api/sport_line/filter_get_tip_stavki" dmx-param:filter_vid_sporta="offcanvas_update_sport_line.data_detail_update_sport_line.form_update_sport_line.inp_vid_sporta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_line" url="/api/sport_line/filter_get_tip_stavki" dmx-param:filter_vid_sporta="offcanvas_update_sport_line.data_detail1.form_update_sport_line.inp_vid_sporta.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_vid_stavki" url="/api/sport_line/filter_get_vid_stavki2"></dmx-serverconnect>
 <div class="container" id="filter_button">
     <h4 class="text-center">Sporting-line</h4>
     <div class="row">
         <div class="col">
-            <a href="/spotr_line/new_sport_line" class="btn btn-primary w-100 btn-sm">New event sporting-line</a>
+            <div class="d-block"><a href="/spotr_line/new_sport_line" class="btn btn-primary w-100 btn-sm">New event sporting-line</a></div>
+
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <div class="d-block"><a href="/spotr_line/bukmaker_sport_line" class="btn btn-outline-success w-100 btn-sm">Bookmaker sport-line</a></div>
+
+        </div>
     </div>
     <div class="d-flex justify-content-end"><button id="btn_filter" class="btn text-end mt-2 mb-2" dmx-on:click="toggle1.toggle()"><i class="fas fa-filter" dmx-on:click="toggle1.toggle()"></i></button></div>
 </div>
@@ -78,7 +82,7 @@
                     </div>
 
 
-                    <button id="btn_update_event" class="btn w-100 btn-sm btn-outline-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_update_sport_line" dmx-on:click="offcanvas_update_sport_line.data_detail_update_sport_line.select(id)">Update event sport-line</button>
+                    <button id="btn_update_event" class="btn w-100 btn-sm btn-outline-info" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_update_sport_line" dmx-on:click="offcanvas_update_sport_line.data_detail1.select(id);offcanvas_update_sport_line.show()">Detail...</button>
                     <h6 id="SportlineUUID">Sport line UUID: {{_['uuid_sport-line']}}</h6>
 
                     <h6 id="DataTimestart">Data&amp;Time start: {{_['data-time_start'].formatDate('dd-MM-yyyy HH:mm')}}</h6>
@@ -93,15 +97,7 @@
                     <h6 id="Typeofbet">Type of bet (Вид ставки):{{vid_stsvki}}</h6>
                     <h6 id="Status">Status: {{status}}</h6>
                     <h6>Description: {{description}}</h6>
-                    <form is="dmx-serverconnect-form" id="form_deleted_sport_line" method="post" action="/api/sport_line/deleted_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="sc_sport_line.load({});notifies1.danger('Error')" dmx-on:success="sc_sport_line.load({});notifies1.success('Ok! Deleted')">
-                        <div class="form-group mb-3" dmx-show="">
-                            <label for="inp_irif">Irif</label>
-                            <input type="text" class="form-control" id="inp_irif" name="irif" aria-describedby="inp_irif_help" placeholder="Enter Irif" dmx-bind:value="id">
-                        </div>
-                        <div class="form-group mb-3">
-                            <button type="submit" class="btn w-100 btn-danger btn-sm" id="dt_deleted" dmx-bind:disabled="state.executing">Deleted</button>
-                        </div>
-                    </form>
+
 
 
 
@@ -183,57 +179,69 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div class="d-flex text-center flex-row align-items-center justify-content-center" is="dmx-data-detail" id="data_detail_update_sport_line" dmx-bind:data="sc_sport_line.data.query" key="id">
-            <form is="dmx-serverconnect-form" id="form_update_sport_line" method="post" action="/api/sport_line/update_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_update_sport_line.data" dmx-on:error="offcanvas_update_sport_line.hide();sc_sport_line.load({filter_to: filter_to.value, uuid_event: UUID_Event.value, filter_vid_sporta: filter_vid_sporta.value, filter_player_name: filter_Player_name.value, filter_status: filter_status.value, filter_calculeted: filter_Calculeted.value});notifies1.danger('Error')" dmx-on:success="offcanvas_update_sport_line.hide();sc_sport_line.load({filter_to: filter_to.value, uuid_event: UUID_Event.value, filter_vid_sporta: filter_vid_sporta.value, filter_player_name: filter_Player_name.value, filter_status: filter_status.value, filter_calculeted: filter_Calculeted.value});notifies1.warning('Ok!!! Update')">
-                <div class="form-group mb-3">
-                    <label for="inp_UUID_event" class="col-form-label-sm">Uuid event</label>
-                    <input type="text" class="form-control form-control-sm" id="inp_UUID_event" name="UUID_event" dmx-bind:value="data_detail_update_sport_line.data.UUID_event" aria-describedby="inp_UUID_event_help" placeholder="Enter Uuid event">
+        <form is="dmx-serverconnect-form" id="form_deleted_event" method="post" action="/api/sport_line/deleted_sport_line" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="offcanvas_update_sport_line.hide();sc_sport_line.load();notifies1.info('Error')" dmx-on:success="offcanvas_update_sport_line.hide();sc_sport_line.load();notifies1.danger('Deleted event')">
+            <div class="form-group mb-3 row" dmx-show="">
+                <label for="inp_irif" class="col-sm-2 col-form-label">Irif</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_irif" name="irif" aria-describedby="inp_irif_help" placeholder="Enter Irif" dmx-bind:value="data_detail1.form_update_sport_line.inp_id.value">
                 </div>
-                <div class="form-group mb-3">
-                    <label for="inp_vid_sporta" class="col-form-label-sm">Vid sporta</label>
-                    <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:value="data_detail_update_sport_line.data.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis">
-                    </select>
+            </div>
+            <button type="submit" class="btn btn-danger w-100 btn-sm">Deleted</button>
+        </form>
+
+        <div class="container">
+            <div class="row">
+                <div class="col" is="dmx-data-detail" id="data_detail1" dmx-bind:data="sc_sport_line.data.query" key="id">
+                    <form is="dmx-serverconnect-form" id="form_update_sport_line" method="post" action="/api/sport_line/update_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail1.data" dmx-on:error="offcanvas_update_sport_line.hide();sc_sport_line.load();notifies1.danger('Error')" dmx-on:success="offcanvas_update_sport_line.hide();sc_sport_line.load();notifies1.warning('Update event!')">
+                        <div class="form-group mb-3">
+                            <label for="inp_name_playrs" class="col-form-label-sm">Name playrs</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" dmx-bind:value="data_detail1.data.name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_vid_sporta" class="col-form-label-sm">Vid sporta</label>
+                            <select id="inp_vid_sporta" class="form-select" name="vid_sporta" dmx-bind:value="data_detail1.data.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query_vid_sporta" optiontext="vid_sporta" optionvalue="vid_sporta_sis">
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="inp_tip_stavki" class="col-form-label-sm">Tip stavki</label>
+                            <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:value="data_detail1.data.tip_stavki" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis">
+                                <option selected="" value=""></option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_stratery" class="col-form-label-sm">Stratery</label>
+                            <select id="inp_stratery" class="form-select form-select-sm" name="stratery" dmx-bind:value="data_detail1.data.stratery" dmx-bind:options="sc_strategu.data.query" optiontext="strategi" optionvalue="strategi_sis">
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_vid_stsvki" class="col-form-label-sm">Vid stsvki</label>
+                            <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" dmx-bind:value="data_detail1.data.vid_stsvki" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_status" class="col-form-label-sm">Status</label>
+                            <select id="inp_status" class="form-select form-select-sm" name="status" dmx-bind:value="data_detail1.data.status">
+                                <option selected="" value=""></option>
+                                <option value="Planing">Planing</option>
+                                <option value="Open">Open</option>
+                                <option value="Close">Close</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_description" class="col-form-label-sm">Description</label>
+                            <textarea id="inp_description" name="description" dmx-bind:value="data_detail1.data.description" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group mb-3" dmx-show="">
+                            <label for="inp_id">Id</label>
+                            <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail1.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-warning w-100 btn-sm" dmx-bind:value="data_detail1.data.Save">Update event sport-line</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="inp_name_playrs" class="col-form-label-sm">Name playrs</label>
-                    <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" dmx-bind:value="data_detail_update_sport_line.data.name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="inp_tip_stavki" class="col-form-label-sm">Tip stavki</label>
-                    <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:value="data_detail_update_sport_line.data.tip_stavki" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis">
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="inp_stratery" class="col-form-label-sm">Stratery</label>
-                    <select id="inp_stratery" class="form-select form-select-sm" name="stratery" dmx-bind:value="data_detail_update_sport_line.data.stratery" dmx-bind:options="sc_strategu.data.query" optiontext="strategi" optionvalue="strategi_sis">
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="inp_vid_stsvki" class="col-form-label-sm">Vid stsvki</label>
-                    <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" dmx-bind:value="data_detail_update_sport_line.data.vid_stsvki" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="inp_status" class="col-form-label-sm">Status</label>
-                    <select id="inp_status" class="form-select form-select-sm" name="status" dmx-bind:value="data_detail_update_sport_line.data.status">
-                        <option value=""></option>
-                        <option value="Planing">Planing</option>
-                        <option value="Open">Open</option>
-                        <option value="Close">Close</option>
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="inp_description" class="col-form-label-sm">Description</label>
-                    <textarea id="inp_description" name="description" dmx-bind:value="data_detail_update_sport_line.data.description" class="form-control"></textarea>
-                </div>
-                <div class="form-group mb-3" dmx-show="">
-                    <label for="inp_id">Id</label>
-                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_update_sport_line.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-warning w-100" dmx-bind:value="data_detail_update_sport_line.data.Save">Update event sport-line</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

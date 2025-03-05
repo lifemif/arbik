@@ -231,13 +231,13 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="inp_url_1" class="col-form-label-sm">Url 1</label>
-                    <button id="btn1" class="btn w-100 btn-sm btn-secondary" dmx-on:click="br_layouts.goto(inp_url_1.value)">URL 1</button>
+                    <button id="btn1" class="btn w-100 btn-sm btn-secondary" dmx-on:click="br_layouts.goto(inp_url_1.value)" target="_blank">URL 1</button>
                     <input type="text" class="form-control form-control-sm" id="inp_url_1" name="url_1" dmx-bind:value="data_detail_event.data.url_1" aria-describedby="inp_url_1_help" placeholder="Enter Url 1">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="inp_url_2" class="col-form-label-sm">Url 2</label>
-                    <button id="btn2" class="btn w-100 btn-secondary btn-sm" dmx-on:click="br_layouts.goto(inp_url_2.value)">URL 2</button><input type="text" class="form-control form-control-sm" id="inp_url_2" name="url_2" dmx-bind:value="data_detail_event.data.url_2" aria-describedby="inp_url_2_help" placeholder="Enter Url 2">
+                    <button id="btn2" class="btn w-100 btn-secondary btn-sm" dmx-on:click="br_layouts.goto(inp_url_2.value)" target="_blank">URL 2</button><input type="text" class="form-control form-control-sm" id="inp_url_2" name="url_2" dmx-bind:value="data_detail_event.data.url_2" aria-describedby="inp_url_2_help" placeholder="Enter Url 2">
                 </div>
                 <div class="form-group mb-3">
                     <label for="inp_status" class="col-form-label-sm">Status</label>

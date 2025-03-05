@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "bukmaker"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "setting_bukmaker",
+              "column": "id"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "user_uuid"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "bukamaker"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "bukmaker_sis"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "currency"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "sortimg"
+            }
+          ],
+          "table": {
+            "name": "setting_bukmaker"
+          },
+          "primary": "id",
+          "joins": [],
+          "orders": [
+            {
+              "table": "setting_bukmaker",
+              "column": "sortimg",
+              "direction": "ASC",
+              "recid": 1
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "setting_bukmaker.user_uuid",
+                "field": "setting_bukmaker.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "setting_bukmaker",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "id": "setting_bukmaker.bukamaker",
+                "field": "setting_bukmaker.bukamaker",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.bukmaker}}",
+                "data": {
+                  "table": "setting_bukmaker",
+                  "column": "bukamaker",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "bukamaker"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "SELECT id, user_uuid, bukamaker, bukmaker_sis, currency, sortimg\nFROM setting_bukmaker\nWHERE user_uuid = :P1 /* {{identity}} */ AND bukamaker LIKE :P2 /* {{$_GET.bukmaker}} */\nORDER BY sortimg ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.bukmaker}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "bukamaker"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker_sis"
+        },
+        {
+          "type": "text",
+          "name": "currency"
+        },
+        {
+          "type": "number",
+          "name": "sortimg"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

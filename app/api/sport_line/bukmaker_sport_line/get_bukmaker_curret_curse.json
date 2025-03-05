@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "name_valuta"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            },
+            {
+              "table": "curse_valut",
+              "column": "curse",
+              "alias": "curse",
+              "aggregate": "AVG"
+            }
+          ],
+          "table": {
+            "name": "curse_valut"
+          },
+          "primary": "id",
+          "joins": [],
+          "groupBy": [
+            {
+              "table": "curse_valut",
+              "column": "name_valuta"
+            }
+          ],
+          "query": "SELECT name_valuta, AVG(curse) AS curse\nFROM curse_valut\nWHERE user_uuid = :P1 /* {{identity}} */ AND name_valuta LIKE :P2 /* {{$_GET.name_valuta}} */\nGROUP BY name_valuta",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.name_valuta}}"
+            }
+          ],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "curse_valut.user_uuid",
+                "field": "curse_valut.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "id": "curse_valut.name_valuta",
+                "field": "curse_valut.name_valuta",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.name_valuta}}",
+                "data": {
+                  "table": "curse_valut",
+                  "column": "name_valuta",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "name_valuta"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "name_valuta"
+        },
+        {
+          "type": "number",
+          "name": "curse"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sport_line",
+              "column": "id"
+            },
+            {
+              "table": "sport_line",
+              "column": "uuid_sport-line"
+            },
+            {
+              "table": "sport_line",
+              "column": "UUID_event"
+            },
+            {
+              "table": "sport_line",
+              "column": "status"
+            },
+            {
+              "table": "sport_line",
+              "column": "bukmaker"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka"
+            },
+            {
+              "table": "sport_line",
+              "column": "valuta"
+            },
+            {
+              "table": "sport_line",
+              "column": "kurs_valuti"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka_valuta"
+            },
+            {
+              "table": "sport_line",
+              "column": "tsikl_uuid"
+            },
+            {
+              "table": "sport_line",
+              "column": "tsikl_sector"
+            },
+            {
+              "table": "sport_line",
+              "column": "spread_uuid"
+            },
+            {
+              "table": "sport_line",
+              "column": "skrap_uuid"
+            },
+            {
+              "table": "sport_line",
+              "column": "aziat_uuid"
+            }
+          ],
+          "table": {
+            "name": "sport_line"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sport_line.user_uuid",
+                "field": "sport_line.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "SELECT id, \"uuid_sport-line\", UUID_event, status, bukmaker, stavka, valuta, kurs_valuti, stavka_valuta, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

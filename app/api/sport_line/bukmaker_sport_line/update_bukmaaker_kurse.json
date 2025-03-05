@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "bukmaker"
+      },
+      {
+        "type": "number",
+        "name": "stavka"
+      },
+      {
+        "type": "text",
+        "name": "valuta"
+      },
+      {
+        "type": "number",
+        "name": "kurs_valuti"
+      },
+      {
+        "type": "number",
+        "name": "stavka_valuta"
+      },
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "sport_line",
+              "column": "bukmaker",
+              "type": "text",
+              "value": "{{$_POST.bukmaker}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka",
+              "type": "number",
+              "value": "{{$_POST.stavka}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "valuta",
+              "type": "text",
+              "value": "{{$_POST.valuta}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "kurs_valuti",
+              "type": "number",
+              "value": "{{$_POST.kurs_valuti}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka_valuta",
+              "type": "number",
+              "value": "{{$_POST.stavka_valuta}}"
+            }
+          ],
+          "table": "sport_line",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.id}}",
+                "data": {
+                  "column": "id"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "id",
+          "query": "UPDATE sport_line\nSET bukmaker = :P1 /* {{$_POST.bukmaker}} */, stavka = :P2 /* {{$_POST.stavka}} */, valuta = :P3 /* {{$_POST.valuta}} */, kurs_valuti = :P4 /* {{$_POST.kurs_valuti}} */, stavka_valuta = :P5 /* {{$_POST.stavka_valuta}} */\nWHERE id = :P6 /* {{$_POST.id}} */",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.bukmaker}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.stavka}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.valuta}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.kurs_valuti}}"
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.stavka_valuta}}"
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P6",
+              "value": "{{$_POST.id}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

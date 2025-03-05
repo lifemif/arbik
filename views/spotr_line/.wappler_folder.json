@@ -6,5 +6,9 @@
   "new_sport_line.ejs": {
     "layoutPage": "la_sport_line",
     "description": ""
+  },
+  "bukmaker_sport_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
   }
 }
