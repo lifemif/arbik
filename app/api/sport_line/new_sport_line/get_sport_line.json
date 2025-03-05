@@ -8,6 +8,22 @@
       {
         "type": "text",
         "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filter_strategyuuid"
+      },
+      {
+        "type": "text",
+        "name": "filter_sport_line"
+      },
+      {
+        "type": "text",
+        "name": "filter_event"
+      },
+      {
+        "type": "text",
+        "name": "filter_players"
       }
     ]
   },
@@ -59,11 +75,7 @@
             },
             {
               "table": "sport_line",
-              "column": "zatrata"
-            },
-            {
-              "table": "sport_line",
-              "column": "teoretic_kef"
+              "column": "bukmaker"
             },
             {
               "table": "sport_line",
@@ -71,35 +83,7 @@
             },
             {
               "table": "sport_line",
-              "column": "itog_kef"
-            },
-            {
-              "table": "sport_line",
               "column": "stavka"
-            },
-            {
-              "table": "sport_line",
-              "column": "stavka_valuta"
-            },
-            {
-              "table": "sport_line",
-              "column": "bukmaker"
-            },
-            {
-              "table": "sport_line",
-              "column": "valuta"
-            },
-            {
-              "table": "sport_line",
-              "column": "kurs_valuti"
-            },
-            {
-              "table": "sport_line",
-              "column": "summa_valuti"
-            },
-            {
-              "table": "sport_line",
-              "column": "itogo"
             },
             {
               "table": "sport_line",
@@ -128,18 +112,6 @@
             {
               "table": "sport_line",
               "column": "aziat_uuid"
-            },
-            {
-              "table": "sport_line",
-              "column": "status"
-            },
-            {
-              "table": "sport_line",
-              "column": "raschet"
-            },
-            {
-              "table": "sport_line",
-              "column": "description"
             }
           ],
           "table": {
@@ -147,8 +119,238 @@
           },
           "primary": "id",
           "joins": [],
-          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, zatrata, teoretic_kef, practik_kef, itog_kef, stavka, stavka_valuta, bukmaker, valuta, kurs_valuti, summa_valuti, itogo, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description\nFROM sport_line",
-          "params": []
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sport_line.user_uuid",
+                "field": "sport_line.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              },
+              {
+                "condition": "OR",
+                "rules": [
+                  {
+                    "id": "sport_line.tsikl_uuid",
+                    "field": "sport_line.tsikl_uuid",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "{{$_GET.filter_strategyuuid}}",
+                    "data": {
+                      "table": "sport_line",
+                      "column": "tsikl_uuid",
+                      "type": "text",
+                      "columnObj": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "primary": false,
+                        "nullable": true,
+                        "name": "tsikl_uuid"
+                      }
+                    },
+                    "operation": "LIKE"
+                  },
+                  {
+                    "id": "sport_line.spread_uuid",
+                    "field": "sport_line.spread_uuid",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "{{$_GET.filter_strategyuuid}}",
+                    "data": {
+                      "table": "sport_line",
+                      "column": "spread_uuid",
+                      "type": "text",
+                      "columnObj": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "primary": false,
+                        "nullable": true,
+                        "name": "spread_uuid"
+                      }
+                    },
+                    "operation": "LIKE"
+                  },
+                  {
+                    "id": "sport_line.skrap_uuid",
+                    "field": "sport_line.skrap_uuid",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "{{$_GET.filter_strategyuuid}}",
+                    "data": {
+                      "table": "sport_line",
+                      "column": "skrap_uuid",
+                      "type": "text",
+                      "columnObj": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "primary": false,
+                        "nullable": true,
+                        "name": "skrap_uuid"
+                      }
+                    },
+                    "operation": "LIKE"
+                  },
+                  {
+                    "id": "sport_line.aziat_uuid",
+                    "field": "sport_line.aziat_uuid",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "{{$_GET.filter_strategyuuid}}",
+                    "data": {
+                      "table": "sport_line",
+                      "column": "aziat_uuid",
+                      "type": "text",
+                      "columnObj": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "primary": false,
+                        "nullable": true,
+                        "name": "aziat_uuid"
+                      }
+                    },
+                    "operation": "LIKE"
+                  }
+                ],
+                "conditional": null
+              },
+              {
+                "id": "sport_line.uuid_sport-line",
+                "field": "sport_line.uuid_sport-line",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_sport_line}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "uuid_sport-line",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "uuid_sport-line"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sport_line.UUID_event",
+                "field": "sport_line.UUID_event",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_event}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "UUID_event",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 256,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "UUID_event"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sport_line.name_playrs",
+                "field": "sport_line.name_playrs",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_players}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "name_playrs",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "name_playrs"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, bukmaker, practik_kef, stavka, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND (tsikl_uuid LIKE :P2 /* {{$_GET.filter_strategyuuid}} */ OR spread_uuid LIKE :P3 /* {{$_GET.filter_strategyuuid}} */ OR skrap_uuid LIKE :P4 /* {{$_GET.filter_strategyuuid}} */ OR aziat_uuid LIKE :P5 /* {{$_GET.filter_strategyuuid}} */) AND \"uuid_sport-line\" LIKE :P6 /* {{$_GET.filter_sport_line}} */ AND UUID_event LIKE :P7 /* {{$_GET.filter_event}} */ AND name_playrs LIKE :P8 /* {{$_GET.filter_players}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filter_strategyuuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P3",
+              "value": "{{$_GET.filter_strategyuuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_GET.filter_strategyuuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P5",
+              "value": "{{$_GET.filter_strategyuuid}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P6",
+              "value": "{{$_GET.filter_sport_line}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P7",
+              "value": "{{$_GET.filter_event}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P8",
+              "value": "{{$_GET.filter_players}}"
+            }
+          ],
+          "orders": [
+            {
+              "table": "sport_line",
+              "column": "id",
+              "direction": "DESC",
+              "recid": 1
+            }
+          ]
         }
       },
       "output": true,
@@ -190,12 +392,8 @@
           "name": "tip_stavki"
         },
         {
-          "type": "number",
-          "name": "zatrata"
-        },
-        {
-          "type": "number",
-          "name": "teoretic_kef"
+          "type": "text",
+          "name": "bukmaker"
         },
         {
           "type": "number",
@@ -203,35 +401,7 @@
         },
         {
           "type": "number",
-          "name": "itog_kef"
-        },
-        {
-          "type": "number",
           "name": "stavka"
-        },
-        {
-          "type": "number",
-          "name": "stavka_valuta"
-        },
-        {
-          "type": "text",
-          "name": "bukmaker"
-        },
-        {
-          "type": "text",
-          "name": "valuta"
-        },
-        {
-          "type": "number",
-          "name": "kurs_valuti"
-        },
-        {
-          "type": "number",
-          "name": "summa_valuti"
-        },
-        {
-          "type": "number",
-          "name": "itogo"
         },
         {
           "type": "text",
@@ -260,18 +430,6 @@
         {
           "type": "text",
           "name": "aziat_uuid"
-        },
-        {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "text",
-          "name": "raschet"
-        },
-        {
-          "type": "text",
-          "name": "description"
         }
       ],
       "outputType": "array"

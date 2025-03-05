@@ -22,28 +22,32 @@
           "type": "SELECT",
           "columns": [
             {
-              "table": "setting_vid_sporta",
+              "table": "setting_bukmaker",
               "column": "id"
             },
             {
-              "table": "setting_vid_sporta",
+              "table": "setting_bukmaker",
               "column": "user_uuid"
             },
             {
-              "table": "setting_vid_sporta",
-              "column": "vid_sporta"
+              "table": "setting_bukmaker",
+              "column": "bukamaker"
             },
             {
-              "table": "setting_vid_sporta",
-              "column": "vid_sporta_sis"
+              "table": "setting_bukmaker",
+              "column": "bukmaker_sis"
             },
             {
-              "table": "setting_vid_sporta",
-              "column": "sorting"
+              "table": "setting_bukmaker",
+              "column": "currency"
+            },
+            {
+              "table": "setting_bukmaker",
+              "column": "sortimg"
             }
           ],
           "table": {
-            "name": "setting_vid_sporta"
+            "name": "setting_bukmaker"
           },
           "primary": "id",
           "joins": [],
@@ -51,13 +55,13 @@
             "condition": "AND",
             "rules": [
               {
-                "id": "setting_vid_sporta.user_uuid",
-                "field": "setting_vid_sporta.user_uuid",
+                "id": "setting_bukmaker.user_uuid",
+                "field": "setting_bukmaker.user_uuid",
                 "type": "string",
                 "operator": "equal",
                 "value": "{{identity}}",
                 "data": {
-                  "table": "setting_vid_sporta",
+                  "table": "setting_bukmaker",
                   "column": "user_uuid",
                   "type": "text",
                   "columnObj": {
@@ -76,12 +80,12 @@
           },
           "orders": [
             {
-              "table": "setting_vid_sporta",
-              "column": "sorting",
+              "table": "setting_bukmaker",
+              "column": "sortimg",
               "direction": "ASC"
             }
           ],
-          "query": "SELECT id, user_uuid, vid_sporta, vid_sporta_sis, sorting\nFROM setting_vid_sporta\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY sorting ASC",
+          "query": "SELECT id, user_uuid, bukamaker, bukmaker_sis, currency, sortimg\nFROM setting_bukmaker\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY sortimg ASC",
           "params": [
             {
               "operator": "equal",
@@ -104,15 +108,19 @@
         },
         {
           "type": "text",
-          "name": "vid_sporta"
+          "name": "bukamaker"
         },
         {
           "type": "text",
-          "name": "vid_sporta_sis"
+          "name": "bukmaker_sis"
+        },
+        {
+          "type": "text",
+          "name": "currency"
         },
         {
           "type": "number",
-          "name": "sorting"
+          "name": "sortimg"
         }
       ],
       "outputType": "array"

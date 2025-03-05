@@ -11,7 +11,7 @@
       },
       {
         "type": "text",
-        "name": "vid_sporta"
+        "name": "filter_line"
       }
     ]
   },
@@ -55,6 +55,21 @@
           },
           "primary": "id",
           "joins": [],
+          "query": "SELECT id, user_uuid, vid_sporta, line, line_sis, sorting\nFROM setting_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND vid_sporta LIKE :P2 /* {{$_GET.filter_line}} */\nORDER BY sorting ASC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filter_line}}"
+            }
+          ],
           "wheres": {
             "condition": "AND",
             "rules": [
@@ -83,7 +98,7 @@
                 "field": "setting_line.vid_sporta",
                 "type": "string",
                 "operator": "contains",
-                "value": "{{$_GET.vid_sporta}}",
+                "value": "{{$_GET.filter_line}}",
                 "data": {
                   "table": "setting_line",
                   "column": "vid_sporta",
@@ -106,23 +121,7 @@
             {
               "table": "setting_line",
               "column": "sorting",
-              "direction": "ASC",
-              "recid": 1
-            }
-          ],
-          "query": "SELECT id, user_uuid, vid_sporta, line, line_sis, sorting\nFROM setting_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND vid_sporta LIKE :P2 /* {{$_GET.vid_sporta}} */\nORDER BY sorting ASC",
-          "params": [
-            {
-              "operator": "equal",
-              "type": "expression",
-              "name": ":P1",
-              "value": "{{identity}}"
-            },
-            {
-              "operator": "contains",
-              "type": "expression",
-              "name": ":P2",
-              "value": "{{$_GET.vid_sporta}}"
+              "direction": "ASC"
             }
           ]
         }

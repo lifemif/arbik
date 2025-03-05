@@ -3,15 +3,7 @@
     "$_GET": [
       {
         "type": "text",
-        "name": "sort"
-      },
-      {
-        "type": "text",
-        "name": "dir"
-      },
-      {
-        "type": "text",
-        "name": "new_event"
+        "name": "uuid_event"
       }
     ]
   },
@@ -19,7 +11,7 @@
     "steps": {
       "name": "query",
       "module": "dbconnector",
-      "action": "select",
+      "action": "single",
       "options": {
         "connection": "db_demo",
         "sql": {
@@ -55,10 +47,6 @@
             },
             {
               "table": "sobitie",
-              "column": "status"
-            },
-            {
-              "table": "sobitie",
               "column": "discription"
             }
           ],
@@ -67,21 +55,6 @@
           },
           "primary": "id",
           "joins": [],
-          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, status, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */ AND sobitia_uuid LIKE :P2 /* {{$_GET.new_event}} */",
-          "params": [
-            {
-              "operator": "equal",
-              "type": "expression",
-              "name": ":P1",
-              "value": "{{identity}}"
-            },
-            {
-              "operator": "contains",
-              "type": "expression",
-              "name": ":P2",
-              "value": "{{$_GET.new_event}}"
-            }
-          ],
           "wheres": {
             "condition": "AND",
             "rules": [
@@ -110,7 +83,7 @@
                 "field": "sobitie.sobitia_uuid",
                 "type": "string",
                 "operator": "contains",
-                "value": "{{$_GET.new_event}}",
+                "value": "{{$_GET.uuid_event}}",
                 "data": {
                   "table": "sobitie",
                   "column": "sobitia_uuid",
@@ -128,7 +101,22 @@
             ],
             "conditional": null,
             "valid": true
-          }
+          },
+          "query": "SELECT id, user_uuid, sobitia_uuid, data_time_start, data_time_end, vid_sporta, name_sobitie, discription\nFROM sobitie\nWHERE user_uuid = :P1 /* {{identity}} */ AND sobitia_uuid LIKE :P2 /* {{$_GET.uuid_event}} */",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.uuid_event}}"
+            }
+          ]
         }
       },
       "output": true,
@@ -163,14 +151,10 @@
         },
         {
           "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "text",
           "name": "discription"
         }
       ],
-      "outputType": "array"
+      "outputType": "object"
     }
   }
 }

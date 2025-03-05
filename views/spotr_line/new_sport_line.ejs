@@ -1,72 +1,174 @@
-<dmx-serverconnect id="sc_event" url="/api/sport_line/new_sport_line/get_event" dmx-param:new_event="new_event.value"></dmx-serverconnect>
-<dmx-serverconnect id="sc_sport_line" url="/api/sport_line/new_sport_line/get_sport_line"></dmx-serverconnect>
+<dmx-serverconnect id="sc_sport_line" url="/api/sport_line/new_sport_line/get_sport_line" dmx-param:filter_strategyuuid="filter_StrategyUUID.value" dmx-param:filter_sport_line="filter_sport_line.value" dmx-param:filter_event="filter_event.value" dmx-param:filter_players="filter_playrs.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_event" url="/api/sport_line/new_sport_line/get_event" dmx-param:uuid_event="form_new_event_sport_line.inp_UUID_event.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_vid_sporta" url="/api/sport_line/new_sport_line/get_vid_sporta"></dmx-serverconnect>
-<dmx-serverconnect id="sc_line" url="/api/sport_line/new_sport_line/get_line" dmx-param:vid_sporta="form_new_event_sport_line.select_vid_sporta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_line" url="/api/sport_line/new_sport_line/get_line" dmx-param:filter_line="form_new_event_sport_line.inp_vid_sporta.value"></dmx-serverconnect>
+<dmx-serverconnect id="sc_buukmaker" url="/api/sport_line/new_sport_line/get_buukmaker"></dmx-serverconnect>
 <dmx-serverconnect id="sc_strategy" url="/api/sport_line/new_sport_line/get_strategy"></dmx-serverconnect>
 <dmx-serverconnect id="sc_vid_stavki" url="/api/sport_line/new_sport_line/get_vid_stavki"></dmx-serverconnect>
+
 <div class="container" id="head">
     <div class="row">
         <div class="col">
-            <h4 class="text-center">New event sporting-line</h4>
-            <input id="new_event" name="new_event" type="search" class="form-control" placeholder="New EVENT">
+
+
+            <h5 class="text-center">New event sporting-line</h5>
         </div>
     </div>
-</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxBootstrap5TableGenerator:{}}" -->
-
-
-
-
-<div class="container" id="load">
     <div class="row">
-        <div class="col">
-            <form id="form_new_event_sport_line" method="post">
+        <div class="col d-flex justify-content-between">
+            <button id="btn_event" class="btn btn-primary btn-sm mt-2 mb-2" dmx-on:click="toggle_event.toggle()">Event</button>
+            <button id="btn_filter" class="btn mt-2 mb-2" dmx-on:click="toggle_filter.toggle()"><i class="fas fa-filter"></i></button>
+        </div>
+    </div>
+
+</div>
+<div class="container" dmx-show="toggle_event.checked" id="form">
+    <div class="row">
+        <div class="col-12">
+            <form is="dmx-serverconnect-form" id="form_new_event_sport_line" method="post" action="/api/sport_line/new_sport_line/new_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_event_sport_line.reset();sc_sport_line.load();notifies1.danger('Error')" dmx-on:success="form_new_event_sport_line.reset();sc_sport_line.load({});notifies1.success('OK!!! Saving');toggle_filter.check()">
+                <div class="form-group mb-3">
+                    <label for="inp_UUID_event" class="col-form-label-sm">Uuid event</label>
+                    <input type="text" class="form-control form-control-sm" id="inp_UUID_event" name="UUID_event" aria-describedby="inp_UUID_event_help" placeholder="Enter Uuid event">
+                </div>
                 <div class="row">
-                    <div class="col">
-                        <h6>Data time start</h6>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group mb-3">
+                            <label for="inp_data_time_start" class="col-form-label-sm">Data time start*</label>
+                            <input class="form-control form-control-sm" id="inp_data_time_start" name="data_time_start" aria-describedby="inp_data_time_start_help" placeholder="Enter Data time start" dmx-bind:value="sc_event.data.query.data_time_start" required="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_data_time_end" class="col-form-label-sm">Data time end*</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_data_time_end" name="data_time_end" aria-describedby="inp_data_time_end_help" placeholder="Enter Data time end" dmx-bind:value="sc_event.data.query.data_time_end" required="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_vid_sporta" class="col-form-label-sm">Vid sporta*</label>
+                            <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:value="sc_event.data.query.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query" optiontext="vid_sporta" optionvalue="vid_sporta_sis" required="">
+                                <option selected="" value=""></option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_name_playrs" class="col-form-label-sm">Name playrs*</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs" dmx-bind:value="sc_event.data.query.name_sobitie" required="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_tip_stavki" class="col-form-label-sm">Tip stavki*</label>
+                            <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis" required="">
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_stratery" class="col-form-label-sm">Stratery*</label>
+                            <select id="inp_stratery" class="form-select form-select-sm" name="stratery" required="" dmx-bind:options="sc_strategy.data.query" optiontext="strategi" optionvalue="strategi_sis">
+                                <option selected="" value=""></option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_vid_stsvki" class="col-form-label-sm">Vid stsvki*</label>
+                            <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" required="" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
+                                <option selected="" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
 
-                        <input id="data_time_start" name="data_time_start" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].data_time_start">
+                        <div class="form-group mb-3">
+                            <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker*</label>
+                            <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" required="" dmx-bind:options="sc_buukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
+                                <option selected="" value=""></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="inp_practik_kef" class="col-form-label-sm">Practik kef*</label>
+                                    <input type="number" step="any" class="form-control form-control-sm" id="inp_practik_kef" name="practik_kef" aria-describedby="inp_practik_kef_help" placeholder="Enter Practik kef" required="" data-rule-number="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="inp_stavka" class="col-form-label-sm">Stavka*</label>
+                                    <input type="number" step="any" class="form-control form-control-sm" id="inp_stavka" name="stavka" aria-describedby="inp_stavka_help" placeholder="Enter Stavka" required="" data-rule-number="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_tsikl_uuid" class="col-form-label-sm">Tsikl uuid</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_tsikl_uuid" name="tsikl_uuid" aria-describedby="inp_tsikl_uuid_help" placeholder="Enter Tsikl uuid">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_tsikl_sector" class="col-form-label-sm">Tsikl sector</label>
+                            <input type="number" class="form-control form-control-sm" id="inp_tsikl_sector" name="tsikl_sector" aria-describedby="inp_tsikl_sector_help" placeholder="Enter Tsikl sector">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_spread_uuid" class="col-form-label-sm">Spread uuid</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_spread_uuid" name="spread_uuid" aria-describedby="inp_spread_uuid_help" placeholder="Enter Spread uuid">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_skrap_uuid" class="col-form-label-sm">Skrap uuid</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_skrap_uuid" name="skrap_uuid" aria-describedby="inp_skrap_uuid_help" placeholder="Enter Skrap uuid">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="inp_aziat_uuid" class="col-form-label-sm">Aziat uuid</label>
+                            <input type="text" class="form-control form-control-sm" id="inp_aziat_uuid" name="aziat_uuid" aria-describedby="inp_aziat_uuid_help" placeholder="Enter Aziat uuid">
+                        </div>
 
-                        <h6>Data time end</h6>
-                        <input id="data_time_end" name="data_time_end" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].data_time_end">
-                        <h6>UUID event</h6>
-
-                        <input id="uuid_event" name="uuid_event" type="text" class="form-control" dmx-bind:value="new_event.value">
-                        <h6>Vid sporta</h6>
-
-                        <select id="select_vid_sporta" class="form-select" optiontext="vid_sporta" optionvalue="vid_sporta_sis" dmx-bind:options="sc_vid_sporta.data.query" dmx-bind:value="sc_event.data.query[0].vid_sporta">
-                            <option selected="" value=""></option>
-                        </select>
-                        <h6>Name playrs</h6><input id="name_players" name="name_players" type="text" class="form-control" dmx-bind:value="sc_event.data.query[0].name_sobitie">
-                        <h6>line</h6>
-                        <select id="select_line" class="form-select" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis">
-                        </select>
-                        <h6>Strategy</h6>
-
-                        <select id="select_strategy" class="form-select" dmx-bind:options="sc_strategy.data.query" optiontext="strategi" optionvalue="strategi_sis">
-                            <option selected="" value=""></option>
-                        </select>
 
                     </div>
-                    <div class="col">
+                </div>
 
 
 
 
-                        <h6>Vid_stavki</h6>
-                        <select id="select_Vid_stavki" class="form-select" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
-                            <option selected="" value=""></option>
-                        </select>
-                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="form-group mb-3">
+                    <label for="inp_description" class="col-form-label-sm">Description</label>
+                    <textarea id="inp_description" name="description" class="form-control" dmx-bind:value="sc_event.data.query.discription"></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-primary w-100 btn-sm" dmx-bind:disabled="sc_sport_line.state.executing">Save</button>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div class="container mb-2" id="filter" dmx-show="toggle_filter.checked">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-3">
+            <h6 class="text-center">Uuid sport line</h6>
+            <input id="filter_sport_line" name="filter_sport_line" type="search" class="form-control form-control-sm">
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <h6 class="text-center">Uuid event</h6>
+            <input id="filter_event" name="filter_event" type="search" class="form-control form-control-sm">
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <h6 class="text-center">Name players</h6>
+            <input id="filter_playrs" name="filter_playrs" type="search" class="form-control form-control-sm">
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <h6 class="text-center">Strategy UUID</h6>
+            <input id="filter_StrategyUUID" name="filter_Strategy UUID" type="search" class="form-control form-control-sm">
+        </div>
+    </div>
+</div>
+<div class="container-fluid" id="table">
     <div class="row">
         <div class="col">
             <table class="table table-bordered table-hover table-sm">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Uuid sport line</th>
                         <th>Data time start</th>
                         <th>Data time end</th>
@@ -74,6 +176,9 @@
                         <th>Vid sporta</th>
                         <th>Name playrs</th>
                         <th>Tip stavki</th>
+                        <th>Bukmaker</th>
+                        <th>Practik kef</th>
+                        <th>Stavka</th>
                         <th>Stratery</th>
                         <th>Vid stsvki</th>
                         <th>Tsikl uuid</th>
@@ -81,19 +186,21 @@
                         <th>Spread uuid</th>
                         <th>Skrap uuid</th>
                         <th>Aziat uuid</th>
-                        <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_sport_line.data.query" id="tableRepeat1">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_sport_line.data.query" id="tableRepeat_event_sport_line">
                     <tr>
-                        <td dmx-text="id"></td>
-                        <td dmx-text="['uuid_sport-line']"></td>
-                        <td dmx-text="['data-time_start']"></td>
-                        <td dmx-text="['data-time_end']"></td>
+                        <td dmx-text="_['uuid_sport-line']"></td>
+                        <td dmx-text="_['data-time_start'].formatDate('dd-MM-yyyy HH:mm')"></td>
+                        <td dmx-text="_['data-time_end'].formatDate('dd-MM-yyyy HH:mm')"></td>
                         <td dmx-text="UUID_event"></td>
                         <td dmx-text="vid_sporta"></td>
                         <td dmx-text="name_playrs"></td>
                         <td dmx-text="tip_stavki"></td>
+                        <td dmx-text="bukmaker"></td>
+                        <td dmx-text="practik_kef"></td>
+                        <td dmx-text="stavka"></td>
                         <td dmx-text="stratery"></td>
                         <td dmx-text="vid_stsvki"></td>
                         <td dmx-text="tsikl_uuid"></td>
@@ -101,12 +208,36 @@
                         <td dmx-text="spread_uuid"></td>
                         <td dmx-text="skrap_uuid"></td>
                         <td dmx-text="aziat_uuid"></td>
-                        <td dmx-text="description"></td>
+                        <td>
+                            <form is="dmx-serverconnect-form" id="form_del_event" method="post" action="/api/sport_line/new_sport_line/del_event_sport_line" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="sc_sport_line.load({});notifies1.danger('Error')" dmx-on:success="sc_sport_line.load({});notifies1.success('OK!!! Deleted')">
+                                <div class="form-group mb-3 row" dmx-show="">
+                                    <label for="inp_delet" class="col-sm-2 col-form-label">Delet</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inp_delet" name="delet" aria-describedby="inp_delet_help" placeholder="Enter Delet" dmx-bind:value="id">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary bg-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxValidator:{},dmxNotifications:{}}" -->
+<dmx-notifications id="notifies1"></dmx-notifications>
+<dmx-toggle id="toggle_event"></dmx-toggle>
+<dmx-toggle id="toggle_filter"></dmx-toggle>
+
+
+
+
+
+
+
 
 <meta name="ac:route" content="/spotr_line/new_sport_line">

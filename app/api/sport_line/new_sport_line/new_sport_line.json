@@ -1,0 +1,337 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "datetime",
+        "name": "data_time_start"
+      },
+      {
+        "type": "datetime",
+        "name": "data_time_end"
+      },
+      {
+        "type": "text",
+        "name": "UUID_event"
+      },
+      {
+        "type": "text",
+        "name": "vid_sporta"
+      },
+      {
+        "type": "text",
+        "name": "name_playrs"
+      },
+      {
+        "type": "text",
+        "name": "tip_stavki"
+      },
+      {
+        "type": "number",
+        "name": "practik_kef"
+      },
+      {
+        "type": "number",
+        "name": "stavka"
+      },
+      {
+        "type": "text",
+        "name": "bukmaker"
+      },
+      {
+        "type": "text",
+        "name": "stratery"
+      },
+      {
+        "type": "text",
+        "name": "vid_stsvki"
+      },
+      {
+        "type": "text",
+        "name": "tsikl_uuid"
+      },
+      {
+        "type": "number",
+        "name": "tsikl_sector"
+      },
+      {
+        "type": "text",
+        "name": "spread_uuid"
+      },
+      {
+        "type": "text",
+        "name": "skrap_uuid"
+      },
+      {
+        "type": "text",
+        "name": "aziat_uuid"
+      },
+      {
+        "type": "text",
+        "name": "description"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "UUiD_event_sport_line",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{UUID.substr(-10, 12)}}"
+        },
+        "meta": [],
+        "outputType": "text"
+      },
+      {
+        "name": "insert",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db_demo",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "sport_line",
+                "column": "user_uuid",
+                "type": "text",
+                "value": "{{identity}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "uuid_sport-line",
+                "type": "text",
+                "value": "{{UUiD_event_sport_line}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "data-time_start",
+                "type": "datetime",
+                "value": "{{$_POST.data_time_start}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "data-time_end",
+                "type": "datetime",
+                "value": "{{$_POST.data_time_end}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "UUID_event",
+                "type": "text",
+                "value": "{{$_POST.UUID_event}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "vid_sporta",
+                "type": "text",
+                "value": "{{$_POST.vid_sporta}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "name_playrs",
+                "type": "text",
+                "value": "{{$_POST.name_playrs}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "tip_stavki",
+                "type": "text",
+                "value": "{{$_POST.tip_stavki}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "practik_kef",
+                "type": "number",
+                "value": "{{$_POST.practik_kef}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "stavka",
+                "type": "number",
+                "value": "{{$_POST.stavka}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "bukmaker",
+                "type": "text",
+                "value": "{{$_POST.bukmaker}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "stratery",
+                "type": "text",
+                "value": "{{$_POST.stratery}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "vid_stsvki",
+                "type": "text",
+                "value": "{{$_POST.vid_stsvki}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "tsikl_uuid",
+                "type": "text",
+                "value": "{{$_POST.tsikl_uuid}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "tsikl_sector",
+                "type": "number",
+                "value": "{{$_POST.tsikl_sector}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "spread_uuid",
+                "type": "text",
+                "value": "{{$_POST.spread_uuid}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "skrap_uuid",
+                "type": "text",
+                "value": "{{$_POST.skrap_uuid}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "aziat_uuid",
+                "type": "text",
+                "value": "{{$_POST.aziat_uuid}}"
+              },
+              {
+                "table": "sport_line",
+                "column": "status",
+                "type": "text",
+                "value": "Open"
+              },
+              {
+                "table": "sport_line",
+                "column": "raschet",
+                "type": "text",
+                "value": "No calculeted"
+              },
+              {
+                "table": "sport_line",
+                "column": "description",
+                "type": "text",
+                "value": "{{$_POST.description}}"
+              }
+            ],
+            "table": "sport_line",
+            "returning": "id",
+            "query": "INSERT INTO sport_line\n(user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, practik_kef, stavka, bukmaker, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description) VALUES (:P1 /* {{identity}} */, :P2 /* {{UUiD_event_sport_line}} */, :P3 /* {{$_POST.data_time_start}} */, :P4 /* {{$_POST.data_time_end}} */, :P5 /* {{$_POST.UUID_event}} */, :P6 /* {{$_POST.vid_sporta}} */, :P7 /* {{$_POST.name_playrs}} */, :P8 /* {{$_POST.tip_stavki}} */, :P9 /* {{$_POST.practik_kef}} */, :P10 /* {{$_POST.stavka}} */, :P11 /* {{$_POST.bukmaker}} */, :P12 /* {{$_POST.stratery}} */, :P13 /* {{$_POST.vid_stsvki}} */, :P14 /* {{$_POST.tsikl_uuid}} */, :P15 /* {{$_POST.tsikl_sector}} */, :P16 /* {{$_POST.spread_uuid}} */, :P17 /* {{$_POST.skrap_uuid}} */, :P18 /* {{$_POST.aziat_uuid}} */, 'Open', 'No calculeted', :P19 /* {{$_POST.description}} */)",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{identity}}"
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{UUiD_event_sport_line}}"
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.data_time_start}}"
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.data_time_end}}"
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.UUID_event}}"
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.vid_sporta}}"
+              },
+              {
+                "name": ":P7",
+                "type": "expression",
+                "value": "{{$_POST.name_playrs}}"
+              },
+              {
+                "name": ":P8",
+                "type": "expression",
+                "value": "{{$_POST.tip_stavki}}"
+              },
+              {
+                "name": ":P9",
+                "type": "expression",
+                "value": "{{$_POST.practik_kef}}"
+              },
+              {
+                "name": ":P10",
+                "type": "expression",
+                "value": "{{$_POST.stavka}}"
+              },
+              {
+                "name": ":P11",
+                "type": "expression",
+                "value": "{{$_POST.bukmaker}}"
+              },
+              {
+                "name": ":P12",
+                "type": "expression",
+                "value": "{{$_POST.stratery}}"
+              },
+              {
+                "name": ":P13",
+                "type": "expression",
+                "value": "{{$_POST.vid_stsvki}}"
+              },
+              {
+                "name": ":P14",
+                "type": "expression",
+                "value": "{{$_POST.tsikl_uuid}}"
+              },
+              {
+                "name": ":P15",
+                "type": "expression",
+                "value": "{{$_POST.tsikl_sector}}"
+              },
+              {
+                "name": ":P16",
+                "type": "expression",
+                "value": "{{$_POST.spread_uuid}}"
+              },
+              {
+                "name": ":P17",
+                "type": "expression",
+                "value": "{{$_POST.skrap_uuid}}"
+              },
+              {
+                "name": ":P18",
+                "type": "expression",
+                "value": "{{$_POST.aziat_uuid}}"
+              },
+              {
+                "name": ":P19",
+                "type": "expression",
+                "value": "{{$_POST.description}}"
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  }
+}

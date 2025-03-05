@@ -32,6 +32,10 @@
       {
         "type": "text",
         "name": "filter_calculeted"
+      },
+      {
+        "type": "text",
+        "name": "filter_sport_line"
       }
     ]
   },
@@ -171,7 +175,7 @@
           },
           "primary": "id",
           "joins": [],
-          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, zatrata, teoretic_kef, practik_kef, itog_kef, stavka, stavka_valuta, bukmaker, valuta, kurs_valuti, summa_valuti, itogo, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND \"data-time_start\" >= :P2 /* {{$_GET.filter_to}} */ AND UUID_event LIKE :P3 /* {{$_GET.uuid_event}} */ AND vid_sporta LIKE :P4 /* {{$_GET.filter_vid_sporta}} */ AND name_playrs LIKE :P5 /* {{$_GET.filter_player_name}} */ AND status LIKE :P6 /* {{$_GET.filter_status}} */ AND raschet LIKE :P7 /* {{$_GET.filter_calculeted}} */",
+          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, zatrata, teoretic_kef, practik_kef, itog_kef, stavka, stavka_valuta, bukmaker, valuta, kurs_valuti, summa_valuti, itogo, stratery, vid_stsvki, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid, status, raschet, description\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */ AND \"data-time_start\" >= :P2 /* {{$_GET.filter_to}} */ AND UUID_event LIKE :P3 /* {{$_GET.uuid_event}} */ AND vid_sporta LIKE :P4 /* {{$_GET.filter_vid_sporta}} */ AND name_playrs LIKE :P5 /* {{$_GET.filter_player_name}} */ AND status LIKE :P6 /* {{$_GET.filter_status}} */ AND raschet LIKE :P7 /* {{$_GET.filter_calculeted}} */ AND \"uuid_sport-line\" LIKE :P8 /* {{$_GET.filter_sport_line}} */",
           "params": [
             {
               "operator": "equal",
@@ -214,6 +218,12 @@
               "type": "expression",
               "name": ":P7",
               "value": "{{$_GET.filter_calculeted}}"
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P8",
+              "value": "{{$_GET.filter_sport_line}}"
             }
           ],
           "wheres": {
@@ -354,6 +364,26 @@
                     "primary": false,
                     "nullable": true,
                     "name": "raschet"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "sport_line.uuid_sport-line",
+                "field": "sport_line.uuid_sport-line",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filter_sport_line}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "uuid_sport-line",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "uuid_sport-line"
                   }
                 },
                 "operation": "LIKE"
