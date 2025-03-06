@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "sport_line",
+              "column": "*"
+            }
+          ],
+          "table": {
+            "name": "sport_line"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "sport_line.user_uuid",
+                "field": "sport_line.user_uuid",
+                "type": "string",
+                "operator": "equal",
+                "value": "{{identity}}",
+                "data": {
+                  "table": "sport_line",
+                  "column": "user_uuid",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "primary": false,
+                    "nullable": true,
+                    "name": "user_uuid"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "orders": [
+            {
+              "table": "sport_line",
+              "column": "id",
+              "direction": "DESC",
+              "recid": 1
+            }
+          ],
+          "query": "SELECT *\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "user_uuid"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_start"
+        },
+        {
+          "type": "datetime",
+          "name": "data-time_end"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "vid_sporta"
+        },
+        {
+          "type": "text",
+          "name": "name_playrs"
+        },
+        {
+          "type": "text",
+          "name": "tip_stavki"
+        },
+        {
+          "type": "number",
+          "name": "zatrata"
+        },
+        {
+          "type": "number",
+          "name": "teoretic_kef"
+        },
+        {
+          "type": "number",
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "text",
+          "name": "vid_stsvki"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "raschet"
+        },
+        {
+          "type": "text",
+          "name": "description"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}
