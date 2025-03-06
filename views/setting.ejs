@@ -209,7 +209,7 @@
                                     <td dmx-text="name_valuta"></td>
                                     <td dmx-text="sector"></td>
                                     <td class="text-center">
-                                        <form is="dmx-serverconnect-form" id="form_deleted_valuta" method="post" action="/api/setting/valuta/deleted_valuta" dmx-generator="bootstrap5" dmx-form-type="horizontal">
+                                        <form is="dmx-serverconnect-form" id="form_deleted_valuta" method="post" action="/api/setting/valuta/deleted_valuta" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="sc_valuta.load();notifies1.danger('Error')" dmx-on:success="sc_valuta.load({});notifies1.success('OK!!! Deleted')">
                                             <div class="form-group mb-3 row" dmx-show="">
                                                 <label for="inp_isroi" class="col-sm-2 col-form-label">Isroi</label>
                                                 <div class="col-sm-10">
@@ -218,7 +218,7 @@
                                             </div>
                                             <div class="form-group mb-3 row">
                                                 <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-danger text-center btn-sm">Deleted</button>
+                                                    <button type="submit" class="btn btn-danger text-center btn-sm" dmx-bind:disabled="state.executing">Deleted</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -228,27 +228,27 @@
                         </table>
                     </div>
                     <div class="modal" id="modal_valuta" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">New valuta</h5>
+                                <div class="modal-header text-light bg-primary">
+                                    <h6 class="modal-title">New valuta</h6>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form is="dmx-serverconnect-form" id="form_new_valuta" method="post" action="/api/setting/valuta/new_valuta" dmx-generator="bootstrap5" dmx-form-type="vertical">
+                                    <form is="dmx-serverconnect-form" id="form_new_valuta" method="post" action="/api/setting/valuta/new_valuta" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_valuta.reset();modal_valuta.hide();sc_valuta.load();notifies1.danger('Error')" dmx-on:success="form_new_valuta.reset();modal_valuta.hide();sc_valuta.load();notifies1.success('OK!!! Saving')">
                                         <div class="form-group mb-3">
-                                            <label for="inp_name_valuta">Name valuta</label>
-                                            <input type="text" class="form-control" id="inp_name_valuta" name="name_valuta" aria-describedby="inp_name_valuta_help" placeholder="Enter Name valuta">
+                                            <label for="inp_name_valuta" class="col-form-label-sm">Name valuta</label>
+                                            <input type="text" class="form-control form-control-sm" id="inp_name_valuta" name="name_valuta" aria-describedby="inp_name_valuta_help" placeholder="Enter Name valuta" required="">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="inp_sector">Sector</label>
-                                            <input type="number" class="form-control" id="inp_sector" name="sector" aria-describedby="inp_sector_help" placeholder="Enter Sector">
+                                            <label for="inp_sector" class="col-form-label-sm">Sector</label>
+                                            <input type="number" class="form-control form-control-sm" id="inp_sector" name="sector" aria-describedby="inp_sector_help" placeholder="Enter Sector" required="">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" dmx-on:click="form_new_valuta.submit()">Save changes</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary btn-sm" dmx-on:click="form_new_valuta.submit()" dmx-bind:disabled="form_new_valuta.state.executing">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +275,7 @@
                                     <td dmx-text="currency"></td>
                                     <td dmx-text="sortimg"></td>
                                     <td>
-                                        <form is="dmx-serverconnect-form" id="form_deleted_bulmaker" method="post" action="/api/setting/bukmaker/deleted_bukmaker" dmx-generator="bootstrap5" dmx-form-type="horizontal">
+                                        <form is="dmx-serverconnect-form" id="form_deleted_bulmaker" method="post" action="/api/setting/bukmaker/deleted_bukmaker" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-on:error="sc_bukmaker.load({});notifies1.danger('Error')" dmx-on:success="sc_bukmaker.load();notifies1.success('OK!!! Deleted')">
                                             <div class="form-group mb-3 row" dmx-show="">
                                                 <label for="inp_uso" class="col-sm-2 col-form-label">Uso</label>
                                                 <div class="col-sm-10">
@@ -284,7 +284,7 @@
                                             </div>
                                             <div class="form-group mb-3 row">
                                                 <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-danger btn-sm">Deleted</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" dmx-bind:disabled="state.executing">Deleted</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -294,33 +294,33 @@
                         </table>
                     </div>
                     <div class="modal" id="modal_bukmaker" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">New bukmaker</h5>
+                                <div class="modal-header bg-primary">
+                                    <h6 class="modal-title text-light">New bukmaker</h6>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form is="dmx-serverconnect-form" id="form_new_bukmaker" method="post" action="/api/setting/bukmaker/new_bukmaker" dmx-generator="bootstrap5" dmx-form-type="vertical">
+                                    <form is="dmx-serverconnect-form" id="form_new_bukmaker" method="post" action="/api/setting/bukmaker/new_bukmaker" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_bukmaker.reset();modal_bukmaker.hide();sc_bukmaker.load();notifies1.danger('Error')" dmx-on:success="form_new_bukmaker.reset();modal_bukmaker.hide();sc_bukmaker.load();notifies1.success('OK!!! Saving')">
                                         <div class="form-group mb-3">
-                                            <label for="inp_bukamaker">Bukamaker</label>
-                                            <input type="text" class="form-control" id="inp_bukamaker" name="bukamaker" aria-describedby="inp_bukamaker_help" placeholder="Enter Bukamaker">
+                                            <label for="inp_bukamaker" class="col-form-label-sm">Bukamaker</label>
+                                            <input type="text" class="form-control form-control-sm" id="inp_bukamaker" name="bukamaker" aria-describedby="inp_bukamaker_help" placeholder="Enter Bukamaker" required="">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="inp_currency">Currency</label>
-                                            <select id="inp_currency" class="form-select" name="currency" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis">
+                                            <label for="inp_currency" class="col-form-label-sm">Currency</label>
+                                            <select id="inp_currency" class="form-select form-select-sm" name="currency" dmx-bind:options="sc_valuta.data.query" optiontext="name_valuta" optionvalue="name_valuta_sis" required="">
                                                 <option selected="" value=""></option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="inp_sortimg">Sortimg</label>
-                                            <input type="number" class="form-control" id="inp_sortimg" name="sortimg" aria-describedby="inp_sortimg_help" placeholder="Enter Sortimg">
+                                            <label for="inp_sortimg" class="col-form-label-sm">Sortimg</label>
+                                            <input type="number" class="form-control form-control-sm" id="inp_sortimg" name="sortimg" aria-describedby="inp_sortimg_help" placeholder="Enter Sortimg" required="">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" dmx-on:click="form_new_bukmaker.submit()">Save changes</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary btn-sm" dmx-on:click="form_new_bukmaker.submit()" dmx-bind:disabled="form_new_bukmaker.state.executing">Save changes</button>
                                 </div>
                             </div>
                         </div>
