@@ -1,0 +1,100 @@
+<dmx-serverconnect id="sc_kef_sport_line" url="/api/sport_line/kef_sport_line/get_kef_sport-line"></dmx-serverconnect>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">Kef. sport-line</h5>
+        </div>
+    </div>
+</div>
+<div class="container" id="table">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Id</th>
+                        <th>Uuid sport line</th>
+                        <th>Uuid event</th>
+                        <th>Status</th>
+                        <th>Stratery</th>
+                        <th>Zatrata</th>
+                        <th>Teoretic kef</th>
+                        <th>Practik kef</th>
+                        <th>Itog kef</th>
+                        <th>Spread uuid</th>
+                        <th>Tsikl uuid</th>
+                        <th>Skrap uuid</th>
+                        <th>Aziat uuid</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_kef_sport_line.data.query" id="table_kef_sport_line">
+                    <tr>
+                        <td>
+                            <button id="btn_kef_sport_line" class="btn btn-sm btn-outline-info w-100" dmx-on:click="modal_kef_sport_line.data_detail_kef_sport_line.select(id)" data-bs-toggle="modal" data-bs-target="#modal_kef_sport_line">Calculate</button>
+                        </td>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="_['uuid_sport-line']"></td>
+                        <td dmx-text="UUID_event"></td>
+                        <td dmx-text="status"></td>
+                        <td dmx-text="stratery"></td>
+                        <td dmx-text="zatrata"></td>
+                        <td dmx-text="teoretic_kef"></td>
+                        <td dmx-text="practik_kef"></td>
+                        <td dmx-text="itog_kef"></td>
+                        <td dmx-text="spread_uuid"></td>
+                        <td dmx-text="tsikl_uuid"></td>
+                        <td dmx-text="skrap_uuid"></td>
+                        <td dmx-text="aziat_uuid"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="kef_sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxDataTraversal:{},dmxFormatter:{}}" -->
+
+
+<div class="modal" id="modal_kef_sport_line" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-light bg-info">
+                <h6 class="modal-title">Calculate kef sport-line</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col" is="dmx-data-detail" id="data_detail_kef_sport_line" dmx-bind:data="sc_kef_sport_line.data.query" key="id">
+                            <form is="dmx-serverconnect-form" id="Form_update_kef_sport_line" method="post" action="/api/sport_line/kef_sport_line/update_kef_sport-line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_kef_sport_line.data">
+                                <div class="form-group mb-3">
+                                    <label for="inp_zatrata">Zatrata</label>
+                                    <input type="number" class="form-control" id="inp_zatrata" name="zatrata" dmx-bind:value="data_detail_kef_sport_line.data.zatrata" aria-describedby="inp_zatrata_help" placeholder="Enter Zatrata">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_teoretic_kef">Teoretic kef</label>
+                                    <input type="number" class="form-control" id="inp_teoretic_kef" name="teoretic_kef" dmx-bind:value="data_detail_kef_sport_line.data.teoretic_kef" aria-describedby="inp_teoretic_kef_help" placeholder="Enter Teoretic kef">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_practik_kef">Practik kef</label>
+                                    <input type="number" class="form-control" id="inp_practik_kef" name="practik_kef" dmx-bind:value="data_detail_kef_sport_line.data.practik_kef" aria-describedby="inp_practik_kef_help" placeholder="Enter Practik kef">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_itog_kef">Itog kef</label>
+                                    <input type="number" class="form-control" id="inp_itog_kef" name="itog_kef" aria-describedby="inp_itog_kef_help" placeholder="Enter Itog kef" dmx-bind:value="inp_teoretic_kef.value.toNumber()*inp_practik_kef.value.toNumber()">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_id">Id</label>
+                                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_kef_sport_line.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-primary" dmx-bind:value="data_detail_kef_sport_line.data.Save">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/spotr_line/kef_sport_line">

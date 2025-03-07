@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "tsikl_uuid"
+      },
+      {
+        "type": "number",
+        "name": "tsikl_sector"
+      },
+      {
+        "type": "text",
+        "name": "spread_uuid"
+      },
+      {
+        "type": "text",
+        "name": "skrap_uuid"
+      },
+      {
+        "type": "text",
+        "name": "aziat_uuid"
+      },
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "sport_line",
+              "column": "tsikl_uuid",
+              "type": "text",
+              "value": "{{$_POST.tsikl_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "tsikl_sector",
+              "type": "number",
+              "value": "{{$_POST.tsikl_sector}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "spread_uuid",
+              "type": "text",
+              "value": "{{$_POST.spread_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "skrap_uuid",
+              "type": "text",
+              "value": "{{$_POST.skrap_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "aziat_uuid",
+              "type": "text",
+              "value": "{{$_POST.aziat_uuid}}"
+            }
+          ],
+          "table": "sport_line",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.id}}",
+                "data": {
+                  "column": "id"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "id",
+          "query": "UPDATE sport_line\nSET tsikl_uuid = :P1 /* {{$_POST.tsikl_uuid}} */, tsikl_sector = :P2 /* {{$_POST.tsikl_sector}} */, spread_uuid = :P3 /* {{$_POST.spread_uuid}} */, skrap_uuid = :P4 /* {{$_POST.skrap_uuid}} */, aziat_uuid = :P5 /* {{$_POST.aziat_uuid}} */\nWHERE id = :P6 /* {{$_POST.id}} */",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.tsikl_uuid}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.tsikl_sector}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.spread_uuid}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.skrap_uuid}}"
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.aziat_uuid}}"
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P6",
+              "value": "{{$_POST.id}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

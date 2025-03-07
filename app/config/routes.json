@@ -111,6 +111,26 @@
       "path": "/spotr_line/bukmaker_sport_line",
       "page": "spotr_line/bukmaker_sport_line",
       "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/kef_sport_line",
+      "page": "spotr_line/kef_sport_line",
+      "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/strategy_sport_line",
+      "page": "spotr_line/strategy_sport_line",
+      "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/summa_sporting_line",
+      "page": "spotr_line/summa_sporting_line",
+      "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/summa_sport_line",
+      "page": "spotr_line/summa_sport_line",
+      "layout": "la_sport_line"
     }
   ],
   "layouts": {

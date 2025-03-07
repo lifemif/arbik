@@ -1,0 +1,101 @@
+<dmx-serverconnect id="sc_strategy_sport_line" url="/api/sport_line/strategy_sport_line/get_strategy_sport_line"></dmx-serverconnect><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="strategy_sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Offcanvas:{},dmxBootstrap5Modal:{},dmxDataTraversal:{}}" -->
+
+
+<div class="container" id="table">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">Стартегия спортивных линий</h5>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal_strategy_sport_line" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h6 class="modal-title text-light">Статегии спортивных линий</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col" is="dmx-data-detail" id="data_detail_strategy_sport_line" dmx-bind:data="sc_strategy_sport_line.data.query" key="id">
+                            <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="/api/sport_line/strategy_sport_line/update_strategy_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_strategy_sport_line.data">
+                                <div class="form-group mb-3">
+                                    <label for="inp_tsikl_uuid">Tsikl uuid</label>
+                                    <input type="text" class="form-control" id="inp_tsikl_uuid" name="tsikl_uuid" dmx-bind:value="data_detail_strategy_sport_line.data.tsikl_uuid" aria-describedby="inp_tsikl_uuid_help" placeholder="Enter Tsikl uuid">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_tsikl_sector">Tsikl sector</label>
+                                    <input type="number" class="form-control" id="inp_tsikl_sector" name="tsikl_sector" dmx-bind:value="data_detail_strategy_sport_line.data.tsikl_sector" aria-describedby="inp_tsikl_sector_help" placeholder="Enter Tsikl sector">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_spread_uuid">Spread uuid</label>
+                                    <input type="text" class="form-control" id="inp_spread_uuid" name="spread_uuid" dmx-bind:value="data_detail_strategy_sport_line.data.spread_uuid" aria-describedby="inp_spread_uuid_help" placeholder="Enter Spread uuid">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_skrap_uuid">Skrap uuid</label>
+                                    <input type="text" class="form-control" id="inp_skrap_uuid" name="skrap_uuid" dmx-bind:value="data_detail_strategy_sport_line.data.skrap_uuid" aria-describedby="inp_skrap_uuid_help" placeholder="Enter Skrap uuid">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_aziat_uuid">Aziat uuid</label>
+                                    <input type="text" class="form-control" id="inp_aziat_uuid" name="aziat_uuid" dmx-bind:value="data_detail_strategy_sport_line.data.aziat_uuid" aria-describedby="inp_aziat_uuid_help" placeholder="Enter Aziat uuid">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_id">Id</label>
+                                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_strategy_sport_line.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-primary" dmx-bind:value="data_detail_strategy_sport_line.data.Save">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/spotr_line/strategy_sport_line">
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Id</th>
+                        <th>Uuid линии</th>
+                        <th>Uuid события</th>
+                        <th>Статус</th>
+                        <th>Стратегия</th>
+                        <th>Букмекер</th>
+                        <th>Цикл uuid</th>
+                        <th>Цикл сектор</th>
+                        <th>Спред uuid</th>
+                        <th>Скрап uuid</th>
+                        <th>Азиат uuid</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_strategy_sport_line.data.query" id="table_strategy_sport_line">
+                    <tr>
+                        <td>
+                            <button id="btn1" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal_strategy_sport_line" dmx-on:click="modal_strategy_sport_line.data_detail_strategy_sport_line.select(id)">Расчитать</button>
+                        </td>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="_['uuid_sport-line']"></td>
+                        <td dmx-text="UUID_event"></td>
+                        <td dmx-text="status"></td>
+                        <td dmx-text="stratery"></td>
+                        <td dmx-text="bukmaker"></td>
+                        <td dmx-text="tsikl_uuid"></td>
+                        <td dmx-text="tsikl_sector"></td>
+                        <td dmx-text="spread_uuid"></td>
+                        <td dmx-text="skrap_uuid"></td>
+                        <td dmx-text="aziat_uuid"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

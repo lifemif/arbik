@@ -1,0 +1,108 @@
+<dmx-serverconnect id="sc_summa_sport_line" url="/api/sport_line/summa_sport_line/get_summa_spor_tline"></dmx-serverconnect><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="summa_sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxDataTraversal:{},dmxFormatter:{}}" -->
+<div class="modal" id="modal_summa_sport_line" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <form is="dmx-serverconnect-form" id="form_summa_sport_line" method="post" action="/api/sport_line/summa_sport_line/update_summa_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_summa_sport_line.data">
+                                <div class="form-group mb-3">
+                                    <label for="inp_itog_kef">Itog kef</label>
+                                    <input type="number" class="form-control" id="inp_itog_kef" name="itog_kef" dmx-bind:value="data_detail_summa_sport_line.data.itog_kef" aria-describedby="inp_itog_kef_help" placeholder="Enter Itog kef">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_stavka">Stavka</label>
+                                    <input type="number" class="form-control" id="inp_stavka" name="stavka" dmx-bind:value="data_detail_summa_sport_line.data.stavka" aria-describedby="inp_stavka_help" placeholder="Enter Stavka">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_stavka_valuta">Stavka valuta</label>
+                                    <input type="number" class="form-control" id="inp_stavka_valuta" name="stavka_valuta" dmx-bind:value="data_detail_summa_sport_line.data.stavka_valuta" aria-describedby="inp_stavka_valuta_help" placeholder="Enter Stavka valuta">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_kurs_valuti">Kurs valuti</label>
+                                    <input type="number" class="form-control" id="inp_kurs_valuti" name="kurs_valuti" dmx-bind:value="data_detail_summa_sport_line.data.kurs_valuti" aria-describedby="inp_kurs_valuti_help" placeholder="Enter Kurs valuti">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_summa_valuti">Summa valuti</label>
+                                    <input type="number" class="form-control" id="inp_summa_valuti" name="summa_valuti" dmx-bind:value="inp_itog_kef.value*inp_stavka_valuta.value" aria-describedby="inp_summa_valuti_help" placeholder="Enter Summa valuti">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_itogo">Itogo</label>
+                                    <input type="number" class="form-control" id="inp_itogo" name="itogo" dmx-bind:value="inp_itog_kef.value*inp_stavka.value" aria-describedby="inp_itogo_help" placeholder="Enter Itogo">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_id">Id</label>
+                                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_summa_sport_line.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-primary" dmx-bind:value="data_detail_summa_sport_line.data.Save">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h5 class="text-center">Сумма ставок спортивных событий&nbsp;</h5>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col" is="dmx-data-detail" id="data_detail_summa_sport_line" dmx-bind:data="sc_summa_sport_line.data.query" key="id">
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Id</th>
+                        <th>Uuid sport line</th>
+                        <th>Uuid event</th>
+                        <th>Status</th>
+                        <th>Stratery</th>
+                        <th>Itog kef</th>
+                        <th>Stavka</th>
+                        <th>Kurs valuti</th>
+                        <th>Stavka valuta</th>
+                        <th>Summa valuti</th>
+                        <th>Itogo</th>
+                        <th>Tsikl uuid</th>
+                        <th>Spread uuid</th>
+                        <th>Skrap uuid</th>
+                        <th>Aziat uuid</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_summa_sport_line.data.query" id="table_summa_sport_line">
+                    <tr>
+                        <td>
+                            <button id="btn_summa_sport_line" class="btn btn-outline-info btn-sm w-100" data-bs-toggle="modal" data-bs-target="#modal_summa_sport_line" dmx-on:click="data_detail_summa_sport_line.select(id)">Расчитать</button>
+                        </td>
+                        <td dmx-text="id"></td>
+                        <td dmx-text="_['uuid_sport-line']"></td>
+                        <td dmx-text="UUID_event"></td>
+                        <td dmx-text="status"></td>
+                        <td dmx-text="stratery"></td>
+                        <td dmx-text="itog_kef"></td>
+                        <td dmx-text="stavka"></td>
+                        <td dmx-text="kurs_valuti"></td>
+                        <td dmx-text="stavka_valuta"></td>
+                        <td dmx-text="summa_valuti"></td>
+                        <td dmx-text="itogo"></td>
+                        <td dmx-text="tsikl_uuid"></td>
+                        <td dmx-text="spread_uuid"></td>
+                        <td dmx-text="skrap_uuid"></td>
+                        <td dmx-text="aziat_uuid"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/spotr_line/summa_sport_line">
+<!-- New Wappler Page -->

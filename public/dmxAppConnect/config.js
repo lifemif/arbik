@@ -867,5 +867,249 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "kef_sport_line": {
+    "data_detail1": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "number",
+          "name": "zatrata"
+        },
+        {
+          "type": "number",
+          "name": "teoretic_kef"
+        },
+        {
+          "type": "number",
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    }
+  },
+  "summa_sporting_line": {
+    "data_detail_summa_sport_line": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    }
+  },
+  "strategy_sport_line": {
+    "data_detail_strategy_sport_line": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    }
+  },
+  "summa_sport_line": {
+    "data_detail1": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "stratery"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "number",
+          "name": "summa_valuti"
+        },
+        {
+          "type": "number",
+          "name": "itogo"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });

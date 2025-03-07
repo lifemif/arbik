@@ -10,5 +10,21 @@
   "bukmaker_sport_line.ejs": {
     "layoutPage": "la_sport_line",
     "description": ""
+  },
+  "kef_sport_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
+  },
+  "summa_sport_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
+  },
+  "strategy_sport_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
+  },
+  "summa_sporting_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
   }
 }

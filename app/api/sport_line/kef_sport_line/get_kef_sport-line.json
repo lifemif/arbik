@@ -39,31 +39,27 @@
             },
             {
               "table": "sport_line",
-              "column": "bukmaker"
+              "column": "stratery"
             },
             {
               "table": "sport_line",
-              "column": "stavka"
+              "column": "zatrata"
             },
             {
               "table": "sport_line",
-              "column": "valuta"
+              "column": "teoretic_kef"
             },
             {
               "table": "sport_line",
-              "column": "kurs_valuti"
+              "column": "practik_kef"
             },
             {
               "table": "sport_line",
-              "column": "stavka_valuta"
+              "column": "itog_kef"
             },
             {
               "table": "sport_line",
               "column": "tsikl_uuid"
-            },
-            {
-              "table": "sport_line",
-              "column": "tsikl_sector"
             },
             {
               "table": "sport_line",
@@ -83,6 +79,22 @@
           },
           "primary": "id",
           "joins": [],
+          "query": "SELECT id, \"uuid_sport-line\", UUID_event, status, stratery, zatrata, teoretic_kef, practik_kef, itog_kef, tsikl_uuid, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
+          "orders": [
+            {
+              "table": "sport_line",
+              "column": "id",
+              "direction": "DESC"
+            }
+          ],
           "wheres": {
             "condition": "AND",
             "rules": [
@@ -109,24 +121,7 @@
             ],
             "conditional": null,
             "valid": true
-          },
-          "query": "SELECT id, \"uuid_sport-line\", UUID_event, status, bukmaker, stavka, valuta, kurs_valuti, stavka_valuta, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
-          "params": [
-            {
-              "operator": "equal",
-              "type": "expression",
-              "name": ":P1",
-              "value": "{{identity}}"
-            }
-          ],
-          "orders": [
-            {
-              "table": "sport_line",
-              "column": "id",
-              "direction": "DESC",
-              "condition": ""
-            }
-          ]
+          }
         }
       },
       "output": true,
@@ -149,31 +144,27 @@
         },
         {
           "type": "text",
-          "name": "bukmaker"
+          "name": "stratery"
         },
         {
           "type": "number",
-          "name": "stavka"
-        },
-        {
-          "type": "text",
-          "name": "valuta"
+          "name": "zatrata"
         },
         {
           "type": "number",
-          "name": "kurs_valuti"
+          "name": "teoretic_kef"
         },
         {
           "type": "number",
-          "name": "stavka_valuta"
+          "name": "practik_kef"
+        },
+        {
+          "type": "number",
+          "name": "itog_kef"
         },
         {
           "type": "text",
           "name": "tsikl_uuid"
-        },
-        {
-          "type": "number",
-          "name": "tsikl_sector"
         },
         {
           "type": "text",

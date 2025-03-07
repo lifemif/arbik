@@ -39,23 +39,11 @@
             },
             {
               "table": "sport_line",
+              "column": "stratery"
+            },
+            {
+              "table": "sport_line",
               "column": "bukmaker"
-            },
-            {
-              "table": "sport_line",
-              "column": "stavka"
-            },
-            {
-              "table": "sport_line",
-              "column": "valuta"
-            },
-            {
-              "table": "sport_line",
-              "column": "kurs_valuti"
-            },
-            {
-              "table": "sport_line",
-              "column": "stavka_valuta"
             },
             {
               "table": "sport_line",
@@ -83,6 +71,15 @@
           },
           "primary": "id",
           "joins": [],
+          "query": "SELECT id, \"uuid_sport-line\", UUID_event, status, stratery, bukmaker, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{identity}}"
+            }
+          ],
           "wheres": {
             "condition": "AND",
             "rules": [
@@ -110,21 +107,11 @@
             "conditional": null,
             "valid": true
           },
-          "query": "SELECT id, \"uuid_sport-line\", UUID_event, status, bukmaker, stavka, valuta, kurs_valuti, stavka_valuta, tsikl_uuid, tsikl_sector, spread_uuid, skrap_uuid, aziat_uuid\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
-          "params": [
-            {
-              "operator": "equal",
-              "type": "expression",
-              "name": ":P1",
-              "value": "{{identity}}"
-            }
-          ],
           "orders": [
             {
               "table": "sport_line",
               "column": "id",
-              "direction": "DESC",
-              "condition": ""
+              "direction": "DESC"
             }
           ]
         }
@@ -149,23 +136,11 @@
         },
         {
           "type": "text",
-          "name": "bukmaker"
-        },
-        {
-          "type": "number",
-          "name": "stavka"
+          "name": "stratery"
         },
         {
           "type": "text",
-          "name": "valuta"
-        },
-        {
-          "type": "number",
-          "name": "kurs_valuti"
-        },
-        {
-          "type": "number",
-          "name": "stavka_valuta"
+          "name": "bukmaker"
         },
         {
           "type": "text",
