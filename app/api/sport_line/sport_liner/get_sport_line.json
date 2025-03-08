@@ -23,7 +23,55 @@
           "columns": [
             {
               "table": "sport_line",
-              "column": "*"
+              "column": "id"
+            },
+            {
+              "table": "sport_line",
+              "column": "user_uuid"
+            },
+            {
+              "table": "sport_line",
+              "column": "uuid_sport-line"
+            },
+            {
+              "table": "sport_line",
+              "column": "data-time_start"
+            },
+            {
+              "table": "sport_line",
+              "column": "data-time_end"
+            },
+            {
+              "table": "sport_line",
+              "column": "UUID_event"
+            },
+            {
+              "table": "sport_line",
+              "column": "vid_sporta"
+            },
+            {
+              "table": "sport_line",
+              "column": "name_playrs"
+            },
+            {
+              "table": "sport_line",
+              "column": "tip_stavki"
+            },
+            {
+              "table": "sport_line",
+              "column": "stratery"
+            },
+            {
+              "table": "sport_line",
+              "column": "status"
+            },
+            {
+              "table": "sport_line",
+              "column": "raschet"
+            },
+            {
+              "table": "sport_line",
+              "column": "description"
             }
           ],
           "table": {
@@ -62,11 +110,10 @@
             {
               "table": "sport_line",
               "column": "id",
-              "direction": "DESC",
-              "recid": 1
+              "direction": "DESC"
             }
           ],
-          "query": "SELECT *\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, stratery, status, raschet, description\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -116,76 +163,8 @@
           "name": "tip_stavki"
         },
         {
-          "type": "number",
-          "name": "zatrata"
-        },
-        {
-          "type": "number",
-          "name": "teoretic_kef"
-        },
-        {
-          "type": "number",
-          "name": "practik_kef"
-        },
-        {
-          "type": "number",
-          "name": "itog_kef"
-        },
-        {
-          "type": "number",
-          "name": "stavka"
-        },
-        {
-          "type": "number",
-          "name": "stavka_valuta"
-        },
-        {
-          "type": "text",
-          "name": "bukmaker"
-        },
-        {
-          "type": "text",
-          "name": "valuta"
-        },
-        {
-          "type": "number",
-          "name": "kurs_valuti"
-        },
-        {
-          "type": "number",
-          "name": "summa_valuti"
-        },
-        {
-          "type": "number",
-          "name": "itogo"
-        },
-        {
           "type": "text",
           "name": "stratery"
-        },
-        {
-          "type": "text",
-          "name": "vid_stsvki"
-        },
-        {
-          "type": "text",
-          "name": "tsikl_uuid"
-        },
-        {
-          "type": "number",
-          "name": "tsikl_sector"
-        },
-        {
-          "type": "text",
-          "name": "spread_uuid"
-        },
-        {
-          "type": "text",
-          "name": "skrap_uuid"
-        },
-        {
-          "type": "text",
-          "name": "aziat_uuid"
         },
         {
           "type": "text",

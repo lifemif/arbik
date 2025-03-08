@@ -26,5 +26,9 @@
   "summa_sporting_line.ejs": {
     "layoutPage": "la_sport_line",
     "description": ""
+  },
+  "update_sport_line.ejs": {
+    "layoutPage": "la_sport_line",
+    "description": ""
   }
 }

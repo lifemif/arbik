@@ -1,31 +1,47 @@
-<!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxNotifications:{},dmxStateManagement:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{}}" -->
-<dmx-serverconnect id="sc_get_sport_line" url="/api/sport_line/sport_liner/get_sport_line"></dmx-serverconnect>
+<dmx-serverconnect id="sc_get_sport_line" url="/api/sport_line/sport_liner/get_sport_line"></dmx-serverconnect><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxNotifications:{},dmxStateManagement:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{}}" -->
 <div class="container">
-    <div class="row mb-2">
-        <div class="col">
-            <a href="/spotr_line/new_sport_line" class="btn btn-primary btn-sm w-100">New sporting-line</a>
-
-
-        </div>
-        <div class="col"><a href="/spotr_line/bukmaker_sport_line" class="btn btn-sm w-100 btn-outline-success">bukmaker sporting-line</a></div>
-        <div class="col"><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-outline-success">Kef sporting-line</a></div>
-    </div>
     <div class="row">
         <div class="col">
-            <a href="/spotr_line/summa_sport_line" class="btn btn-sm btn-outline-success w-100">Summa sporting-line</a>
-
-
+            <h5 class="text-center">Базовые функции спортивных линий {{query.new}}</h5>
         </div>
-        <div class="col"><a href="/spotr_line/strategy_sport_line" class="btn btn-sm w-100 btn-outline-success">Strategy sporting-line</a></div>
-        <div class="col"><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-outline-danger">Kef sporting-line</a></div>
+    </div>
+    <div class="row mt-2 mb-2 row-cols-lg-12">
+        <div class="col-12 col-lg-6">
+
+            <button id="btn_nastroiki" class="btn w-100 mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line">Настройки спортивных линий</button>
+        </div>
+        <div class="col-12 col-lg-6">
+            <a href="/spotr_line/update_sport_line" class="btn w-100 btn-info mb-2" target="_blank" id="btn_nastroiki_razdel">Разделочный стол</a>
+        </div>
     </div>
 </div>
+<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header">
+        <h6 class="offcanvas-title">Настройки спортивных линий</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="d-block"><a href="/spotr_line/new_sport_line" class="btn btn-primary btn-sm w-100 mt-2 mb-2">New sporting-line</a><a href="/spotr_line/bukmaker_sport_line" class="btn btn-sm w-100 btn-outline-success mb-2">Курсовая букмекерская линия</a><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-outline-success mb-2">Коеффициент спортивной линии</a><a href="/spotr_line/summa_sport_line" class="btn btn-sm btn-outline-success w-100 mb-2">Сумма спортивной линии</a><a href="/spotr_line/strategy_sport_line" class="btn btn-sm w-100 btn-outline-success mb-1">Стратегия спортивных линий</a><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-danger mb-2">Финансовый результат</a></div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
     <div class="row">
         <div class="col">
             <table class="table table-striped table-bordered table-hover table-sm">
                 <thead>
                     <tr>
+                        <th>Action</th>
                         <th>Id</th>
                         <th>User uuid</th>
                         <th>Uuid sport line</th>
@@ -35,31 +51,17 @@
                         <th>Vid sporta</th>
                         <th>Name playrs</th>
                         <th>Tip stavki</th>
-                        <th>Zatrata</th>
-                        <th>Teoretic kef</th>
-                        <th>Practik kef</th>
-                        <th>Itog kef</th>
-                        <th>Stavka</th>
-                        <th>Stavka valuta</th>
-                        <th>Bukmaker</th>
-                        <th>Valuta</th>
-                        <th>Kurs valuti</th>
-                        <th>Summa valuti</th>
-                        <th>Itogo</th>
                         <th>Stratery</th>
-                        <th>Vid stsvki</th>
-                        <th>Tsikl uuid</th>
-                        <th>Tsikl sector</th>
-                        <th>Spread uuid</th>
-                        <th>Skrap uuid</th>
-                        <th>Aziat uuid</th>
                         <th>Status</th>
                         <th>Raschet</th>
                         <th>Description</th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_get_sport_line.data.query" id="tableRepeat1">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_get_sport_line.data.query" id="table_sport_line">
                     <tr>
+                        <td>
+                            <button id="btn_update_sport_line" class="btn" dmx-on:click="session_update.set();br_layouts.goto('/spotr_line/update_sport_line')">Update</button>
+                        </td>
                         <td dmx-text="id"></td>
                         <td dmx-text="user_uuid"></td>
                         <td dmx-text="_['uuid_sport-line']"></td>
@@ -69,24 +71,7 @@
                         <td dmx-text="vid_sporta"></td>
                         <td dmx-text="name_playrs"></td>
                         <td dmx-text="tip_stavki"></td>
-                        <td dmx-text="zatrata"></td>
-                        <td dmx-text="teoretic_kef"></td>
-                        <td dmx-text="practik_kef"></td>
-                        <td dmx-text="itog_kef"></td>
-                        <td dmx-text="stavka"></td>
-                        <td dmx-text="stavka_valuta"></td>
-                        <td dmx-text="bukmaker"></td>
-                        <td dmx-text="valuta"></td>
-                        <td dmx-text="kurs_valuti"></td>
-                        <td dmx-text="summa_valuti"></td>
-                        <td dmx-text="itogo"></td>
                         <td dmx-text="stratery"></td>
-                        <td dmx-text="vid_stsvki"></td>
-                        <td dmx-text="tsikl_uuid"></td>
-                        <td dmx-text="tsikl_sector"></td>
-                        <td dmx-text="spread_uuid"></td>
-                        <td dmx-text="skrap_uuid"></td>
-                        <td dmx-text="aziat_uuid"></td>
                         <td dmx-text="status"></td>
                         <td dmx-text="raschet"></td>
                         <td dmx-text="description"></td>

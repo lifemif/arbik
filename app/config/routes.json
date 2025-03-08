@@ -131,6 +131,12 @@
       "path": "/spotr_line/summa_sport_line",
       "page": "spotr_line/summa_sport_line",
       "layout": "la_sport_line"
+    },
+    {
+      "path": "/spotr_line/update_sport_line",
+      "page": "spotr_line/update_sport_line",
+      "layout": "la_sport_line",
+      "exec": "/api/sport_line/update_sport_line/get_update_sport_line"
     }
   ],
   "layouts": {

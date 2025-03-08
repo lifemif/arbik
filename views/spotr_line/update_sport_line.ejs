@@ -1,0 +1,17 @@
+<!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxDataTraversal:{}}" -->
+<dmx-serverconnect id="sc_update_sport_line" url="/api/sport_line/update_sport_line/get_update_sport_line" dmx-param:id="session_update.data.id"></dmx-serverconnect>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">Разделочный стол для спортивных линий {{session1.data.id}}</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center">{{sc_update_sport_line.data.query[0].name_playrs}}</h5>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/spotr_line/update_sport_line">
