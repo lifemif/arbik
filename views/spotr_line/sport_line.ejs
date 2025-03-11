@@ -8,15 +8,14 @@
     <div class="row mt-2 mb-2 row-cols-lg-12">
         <div class="col-12 col-lg-6">
 
-            <button id="btn_nastroiki" class="btn w-100 mb-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line">Настройки спортивных линий</button>
+            <a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="dashbord3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a>
         </div>
         <div class="col-12 col-lg-6">
-            <a href="/spotr_line/update_sport_line" class="btn w-100 btn-info mb-2" target="_blank" id="btn_nastroiki_razdel">Разделочный стол</a>
         </div>
     </div>
 </div>
 <div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
-    <div class="offcanvas-header">
+    <div class="offcanvas-header text-light bg-info">
         <h6 class="offcanvas-title">Настройки спортивных линий</h6>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -24,7 +23,15 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col">
-                    <div class="d-block"><a href="/spotr_line/new_sport_line" class="btn btn-primary btn-sm w-100 mt-2 mb-2">New sporting-line</a><a href="/spotr_line/bukmaker_sport_line" class="btn btn-sm w-100 btn-outline-success mb-2">Курсовая букмекерская линия</a><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-outline-success mb-2">Коеффициент спортивной линии</a><a href="/spotr_line/summa_sport_line" class="btn btn-sm btn-outline-success w-100 mb-2">Сумма спортивной линии</a><a href="/spotr_line/strategy_sport_line" class="btn btn-sm w-100 btn-outline-success mb-1">Стратегия спортивных линий</a><a href="/spotr_line/kef_sport_line" class="btn btn-sm w-100 btn-danger mb-2">Финансовый результат</a></div>
+                    <div class="d-block">
+                        <a class="nav-item nav-link active text-lg-center align-self-center text-start bg-primary text-light" href="/spotr_line/new_sport_line" id="dashbord2"><img src="/assets/images/new_sport_line.jpg" width="50" height="45" wappler-command="updateImage">&nbsp; &nbsp;Новая&nbsp;букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="dashbord"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
+
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/kef_sport_line" id="dashbord"><img src="/assets/images/prosent.jpeg" width="50" height="45" wappler-command="updateImage">Коеффициент букмекерской линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="dashbord"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="dashbord"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
+                        <a class="nav-item nav-link active text-lg-center align-self-center bg-danger text-light" href="/spotr_line/strategy_sport_line" id="dashbord1"><img src="/assets/images/Fin_rez_bukmaker.jpeg" width="60" height="50" wappler-command="updateImage">&nbsp; &nbsp;Финансовый результат</a>
+                    </div>
 
 
 
@@ -60,7 +67,7 @@
                 <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_get_sport_line.data.query" id="table_sport_line">
                     <tr>
                         <td>
-                            <button id="btn_update_sport_line" class="btn" dmx-on:click="session_update.set();br_layouts.goto('/spotr_line/update_sport_line')">Update</button>
+                            <button id="btn_update_sport_line" class="btn btn-sm btn-outline-warning text-center" dmx-on:click="session_update.set();br_layouts.goto('/spotr_line/update_sport_line')">Изменить</button>
                         </td>
                         <td dmx-text="id"></td>
                         <td dmx-text="user_uuid"></td>
@@ -71,7 +78,7 @@
                         <td dmx-text="vid_sporta"></td>
                         <td dmx-text="name_playrs"></td>
                         <td dmx-text="tip_stavki"></td>
-                        <td dmx-text="stratery"></td>
+                        <td dmx-text="stratery"><a href="#">#</a></td>
                         <td dmx-text="status"></td>
                         <td dmx-text="raschet"></td>
                         <td dmx-text="description"></td>
