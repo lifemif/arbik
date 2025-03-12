@@ -72,6 +72,14 @@
             {
               "table": "sport_line",
               "column": "description"
+            },
+            {
+              "table": "sport_line",
+              "column": "bukmaker"
+            },
+            {
+              "table": "sport_line",
+              "column": "vid_stsvki"
             }
           ],
           "table": {
@@ -110,10 +118,11 @@
             {
               "table": "sport_line",
               "column": "id",
-              "direction": "DESC"
+              "direction": "DESC",
+              "recid": 1
             }
           ],
-          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, stratery, status, raschet, description\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
+          "query": "SELECT id, user_uuid, \"uuid_sport-line\", \"data-time_start\", \"data-time_end\", UUID_event, vid_sporta, name_playrs, tip_stavki, stratery, status, raschet, description, bukmaker, vid_stsvki\nFROM sport_line\nWHERE user_uuid = :P1 /* {{identity}} */\nORDER BY id DESC",
           "params": [
             {
               "operator": "equal",
@@ -177,6 +186,14 @@
         {
           "type": "text",
           "name": "description"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "text",
+          "name": "vid_stsvki"
         }
       ],
       "outputType": "array"

@@ -447,6 +447,10 @@ dmx.config({
         },
         {
           "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
           "name": "vid_sporta"
         },
         {
@@ -458,64 +462,8 @@ dmx.config({
           "name": "tip_stavki"
         },
         {
-          "type": "number",
-          "name": "zatrata"
-        },
-        {
-          "type": "number",
-          "name": "teoretic_kef"
-        },
-        {
-          "type": "number",
-          "name": "practik_kef"
-        },
-        {
-          "type": "number",
-          "name": "stavka"
-        },
-        {
-          "type": "text",
-          "name": "bukmaker"
-        },
-        {
-          "type": "text",
-          "name": "valuta"
-        },
-        {
-          "type": "number",
-          "name": "kurs_valuti"
-        },
-        {
-          "type": "number",
-          "name": "summa_valuti"
-        },
-        {
-          "type": "number",
-          "name": "itogo"
-        },
-        {
           "type": "text",
           "name": "stratery"
-        },
-        {
-          "type": "text",
-          "name": "vid_stsvki"
-        },
-        {
-          "type": "text",
-          "name": "tsikl_uuid"
-        },
-        {
-          "type": "number",
-          "name": "tsikl_sector"
-        },
-        {
-          "type": "text",
-          "name": "skrap_uuid"
-        },
-        {
-          "type": "text",
-          "name": "aziat_uuid"
         },
         {
           "type": "text",
@@ -696,76 +644,8 @@ dmx.config({
           "name": "tip_stavki"
         },
         {
-          "type": "number",
-          "name": "zatrata"
-        },
-        {
-          "type": "number",
-          "name": "teoretic_kef"
-        },
-        {
-          "type": "number",
-          "name": "practik_kef"
-        },
-        {
-          "type": "number",
-          "name": "itog_kef"
-        },
-        {
-          "type": "number",
-          "name": "stavka"
-        },
-        {
-          "type": "number",
-          "name": "stavka_valuta"
-        },
-        {
-          "type": "text",
-          "name": "bukmaker"
-        },
-        {
-          "type": "text",
-          "name": "valuta"
-        },
-        {
-          "type": "number",
-          "name": "kurs_valuti"
-        },
-        {
-          "type": "number",
-          "name": "summa_valuti"
-        },
-        {
-          "type": "number",
-          "name": "itogo"
-        },
-        {
           "type": "text",
           "name": "stratery"
-        },
-        {
-          "type": "text",
-          "name": "vid_stsvki"
-        },
-        {
-          "type": "text",
-          "name": "tsikl_uuid"
-        },
-        {
-          "type": "number",
-          "name": "tsikl_sector"
-        },
-        {
-          "type": "text",
-          "name": "spread_uuid"
-        },
-        {
-          "type": "text",
-          "name": "skrap_uuid"
-        },
-        {
-          "type": "text",
-          "name": "aziat_uuid"
         },
         {
           "type": "text",
@@ -778,6 +658,10 @@ dmx.config({
         {
           "type": "text",
           "name": "description"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
         }
       ],
       "outputType": "array"
@@ -904,12 +788,73 @@ dmx.config({
     "sessionStorage": [
       {
         "type": "text",
-        "name": "id"
+        "name": "UUID"
       }
     ]
   },
   "bukmaker_sport_line": {
     "data_detail_bukmaker": {
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "uuid_sport-line"
+        },
+        {
+          "type": "text",
+          "name": "UUID_event"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        },
+        {
+          "type": "text",
+          "name": "bukmaker"
+        },
+        {
+          "type": "number",
+          "name": "stavka"
+        },
+        {
+          "type": "text",
+          "name": "valuta"
+        },
+        {
+          "type": "number",
+          "name": "kurs_valuti"
+        },
+        {
+          "type": "number",
+          "name": "stavka_valuta"
+        },
+        {
+          "type": "text",
+          "name": "tsikl_uuid"
+        },
+        {
+          "type": "number",
+          "name": "tsikl_sector"
+        },
+        {
+          "type": "text",
+          "name": "spread_uuid"
+        },
+        {
+          "type": "text",
+          "name": "skrap_uuid"
+        },
+        {
+          "type": "text",
+          "name": "aziat_uuid"
+        }
+      ],
+      "outputType": "array"
+    },
+    "repeat1": {
       "meta": [
         {
           "type": "number",

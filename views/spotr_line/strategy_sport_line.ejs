@@ -8,6 +8,14 @@
         </div>
     </div>
 </div>
+<div class="container" id="button">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="bt_setting_sport_line" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 <div class="modal" id="modal_strategy_sport_line" is="dmx-bs5-modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
@@ -96,6 +104,28 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header text-light bg-info">
+        <h6 class="offcanvas-title">Настройки спортивных линий</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="d-block">
+                        <a class="nav-item nav-link active text-lg-center align-self-center text-start bg-primary text-light" href="/spotr_line/new_sport_line" id="dashbord2"><img src="/assets/images/new_sport_line.jpg" width="50" height="45" wappler-command="updateImage">&nbsp; &nbsp;Новая&nbsp;букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="corrent_sport_line"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/kef_sport_line" id="dashbord"><img src="/assets/images/prosent.jpeg" width="50" height="45" wappler-command="updateImage">Коеффициент букмекерской линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="summa_sport_line"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="strategy_sport_line"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
+                        <a class="nav-item nav-link active text-lg-center align-self-center bg-danger text-light" href="/spotr_line/strategy_sport_line" id="dashbord1"><img src="/assets/images/Fin_rez_bukmaker.jpeg" width="60" height="50" wappler-command="updateImage">&nbsp; &nbsp;Финансовый результат</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

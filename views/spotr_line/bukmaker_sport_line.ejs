@@ -1,95 +1,36 @@
 <dmx-serverconnect id="sc_bukmaker_sp_line" url="/api/sport_line/bukmaker_sport_line/get_bukmaker_sport_line"></dmx-serverconnect>
 <dmx-serverconnect id="sc_bukmaker" url="/api/sport_line/bukmaker_sport_line/get_bukmaker" dmx-param:bukmaker="modal_bukamaker.data_detail_bukmaker.form_update_bukmaker.inp_bukmaker.value"></dmx-serverconnect>
 <dmx-serverconnect id="sc_name_curse" url="/api/sport_line/bukmaker_sport_line/get_bukmaker_curret_curse" dmx-param:name_valuta="modal_bukamaker.data_detail_bukmaker.form_update_bukmaker.inp_valuta.value"></dmx-serverconnect>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h4 class="text-center">Bookmaker sport-line&nbsp;</h4>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-
-
-
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped table-bordered table-hover table-sm">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Id</th>
-                        <th>Uuid sport line</th>
-                        <th>Uuid event</th>
-                        <th>Status</th>
-                        <th>Bukmaker</th>
-                        <th>Stavka</th>
-                        <th>Valuta</th>
-                        <th>Kurs valuti</th>
-                        <th>Stavka valuta</th>
-                        <th>Tsikl uuid</th>
-                        <th>Tsikl sector</th>
-                        <th>Spread uuid</th>
-                        <th>Skrap uuid</th>
-                        <th>Aziat uuid</th>
-                    </tr>
-                </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_bukmaker_sp_line.data.query" id="table_bukmaker_sport_line">
-                    <tr>
-                        <td>
-                            <button id="btn_update" class="btn btn-sm w-100 btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal_bukamaker" dmx-on:click="modal_bukamaker.data_detail_bukmaker.select(id)">Calculate</button>
-                        </td>
-                        <td dmx-text="id"></td>
-                        <td dmx-text="_['uuid_sport-line']"></td>
-                        <td dmx-text="UUID_event"></td>
-                        <td dmx-text="status"></td>
-                        <td dmx-text="bukmaker"></td>
-                        <td dmx-text="stavka"></td>
-                        <td dmx-text="valuta"></td>
-                        <td dmx-text="kurs_valuti"></td>
-                        <td dmx-text="stavka_valuta"></td>
-                        <td dmx-text="tsikl_uuid"></td>
-                        <td dmx-text="tsikl_sector"></td>
-                        <td dmx-text="spread_uuid"></td>
-                        <td dmx-text="skrap_uuid"></td>
-                        <td dmx-text="aziat_uuid"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="bukmaker_sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxDataTraversal:{},dmxFormatter:{},dmxValidator:{},dmxNotifications:{}}" -->
-
 <div class="modal" id="modal_bukamaker" is="dmx-bs5-modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header text-light bg-info">
-                <h6 class="modal-title">Calculate bukmaker</h6>
+                <h6 class="modal-title">Расчёт курсовой линии&nbsp;</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
                         <div class="col" is="dmx-data-detail" id="data_detail_bukmaker" dmx-bind:data="sc_bukmaker_sp_line.data.query" key="id">
-                            <form is="dmx-serverconnect-form" id="form_update_bukmaker" method="post" action="/api/sport_line/bukmaker_sport_line/update_bukmaaker_kurse" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_bukmaker.data">
+                            <form is="dmx-serverconnect-form" id="form_update_bukmaker" method="post" action="/api/sport_line/bukmaker_sport_line/update_bukmaaker_kurse" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail_bukmaker.data" dmx-on:error="modal_bukamaker.hide();sc_bukmaker_sp_line.load();notifies1.danger('Ошибка')" dmx-on:success="modal_bukamaker.hide();sc_bukmaker_sp_line.load();notifies1.warning('Изменено')">
                                 <div class="form-group mb-3">
-                                    <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker</label>
+                                    <label for="inp_bukmaker" class="col-form-label-sm">Букмекер</label>
                                     <input type="text" class="form-control form-control-sm" id="inp_bukmaker" name="bukmaker" dmx-bind:value="data_detail_bukmaker.data.bukmaker" aria-describedby="inp_bukmaker_help" placeholder="Enter Bukmaker" required="">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="inp_stavka" class="col-form-label-sm">Stavka</label>
+                                    <label for="inp_stavka" class="col-form-label-sm">Ставка</label>
                                     <input type="number" class="form-control form-control-sm" id="inp_stavka" name="stavka" dmx-bind:value="data_detail_bukmaker.data.stavka" aria-describedby="inp_stavka_help" placeholder="Enter Stavka" required="">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="inp_valuta" class="col-form-label-sm">Valuta</label>
+                                    <label for="inp_valuta" class="col-form-label-sm">Валюта</label>
                                     <input type="text" class="form-control form-control-sm" id="inp_valuta" name="valuta" dmx-bind:value="sc_bukmaker.data.query[0].currency" aria-describedby="inp_valuta_help" placeholder="Enter Valuta" required="">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="inp_kurs_valuti" class="col-form-label-sm">Kurs valuti</label>
+                                    <label for="inp_kurs_valuti" class="col-form-label-sm">Курс валюты</label>
                                     <input type="number" class="form-control form-control-sm" id="inp_kurs_valuti" name="kurs_valuti" dmx-bind:value="sc_name_curse.data.query[0].curse" aria-describedby="inp_kurs_valuti_help" placeholder="Enter Kurs valuti" required="">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="inp_stavka_valuta" class="col-form-label-sm">Stavka valuta</label>
+                                    <label for="inp_stavka_valuta" class="col-form-label-sm">Ставка в валюте</label>
                                     <input type="number" class="form-control form-control-sm" id="inp_stavka_valuta" name="stavka_valuta" dmx-bind:value="inp_stavka.value.toNumber()/inp_kurs_valuti.value.toNumber()" aria-describedby="inp_stavka_valuta_help" placeholder="Enter Stavka valuta" required="">
                                 </div>
                                 <div class="form-group mb-3" dmx-show="">
@@ -97,7 +38,7 @@
                                     <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail_bukmaker.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
                                 </div>
                                 <div class="form-group mb-3 text-end">
-                                    <button type="submit" class="btn btn-sm btn-outline-info" dmx-bind:value="data_detail_bukmaker.data.Save">Calculate</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-info w-100" dmx-bind:value="data_detail_bukmaker.data.Save">Рассчитать</button>
                                 </div>
                             </form>
                         </div>
@@ -107,9 +48,67 @@
         </div>
     </div>
 </div>
+<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header text-light bg-info">
+        <h6 class="offcanvas-title">Настройки спортивных линий</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="d-block">
+                        <a class="nav-item nav-link active text-lg-center align-self-center text-start bg-primary text-light" href="/spotr_line/new_sport_line" id="dashbord2"><img src="/assets/images/new_sport_line.jpg" width="50" height="45" wappler-command="updateImage">&nbsp; &nbsp;Новая&nbsp;букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="corrent_sport_line"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/kef_sport_line" id="dashbord"><img src="/assets/images/prosent.jpeg" width="50" height="45" wappler-command="updateImage">Коеффициент букмекерской линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="summa_sport_line"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="strategy_sport_line"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
+                        <a class="nav-item nav-link active text-lg-center align-self-center bg-danger text-light" href="/spotr_line/strategy_sport_line" id="dashbord1"><img src="/assets/images/Fin_rez_bukmaker.jpeg" width="60" height="50" wappler-command="updateImage">&nbsp; &nbsp;Финансовый результат</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4 class="text-center">Курсовая букмекерская линия</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="bt_setting_sport_line" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row mt-2 mb-2 row-cols-lg-12" is="dmx-repeat" id="repeat1" dmx-bind:repeat="sc_bukmaker_sp_line.data.query">
+
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="d-block">
+                <h5 class="text-xxl-center fst-italic mark">Курсовая линия № {{id}}</h5>
+                <h6 class="text-xxl-start">UUID линии: {{_['uuid_sport-line']}}</h6>
+                <h6 class="text-xxl-start">UUID события: {{UUID_event}}</h6>
+                <h6 class="text-xxl-start">Статус: {{status}}</h6>
+                <h6 class="text-xxl-start">Букмекер: {{bukmaker}}</h6>
+                <h6 class="text-xxl-start">Ставка: {{stavka}}</h6>
+                <h6 class="text-xxl-start">Валюта: {{valuta}}</h6>
+                <h6 class="text-xxl-start">Курс валюты: {{kurs_valuti}}</h6>
+                <h6 class="text-xxl-start">Ставка в валюте: {{stavka_valuta}}</h6>
+                <button id="btn_update" class="btn btn-sm w-100 btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal_bukamaker" dmx-on:click="modal_bukamaker.data_detail_bukmaker.select(id)">Детали...</button>
+            </div>
+        </div>
+    </div>
+    <!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="bukmaker_sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxDataTraversal:{},dmxFormatter:{},dmxValidator:{},dmxNotifications:{},dmxBootstrap5Offcanvas:{}}" -->
+    <dmx-notifications id="notifies2"></dmx-notifications>
 
 
 
-<dmx-notifications id="notifies1"></dmx-notifications>
 
-<meta name="ac:route" content="/spotr_line/bukmaker_sport_line">
+    <dmx-notifications id="notifies1"></dmx-notifications>
+
+    <meta name="ac:route" content="/spotr_line/bukmaker_sport_line">

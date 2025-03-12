@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "uuid_sport"
+      },
+      {
+        "type": "datetime",
+        "name": "data_time_start"
+      },
+      {
+        "type": "datetime",
+        "name": "data_time_end"
+      },
+      {
+        "type": "text",
+        "name": "UUID_event"
+      },
+      {
+        "type": "text",
+        "name": "vid_sporta"
+      },
+      {
+        "type": "text",
+        "name": "name_playrs"
+      },
+      {
+        "type": "text",
+        "name": "tip_stavki"
+      },
+      {
+        "type": "number",
+        "name": "zatrata"
+      },
+      {
+        "type": "number",
+        "name": "teoretic_kef"
+      },
+      {
+        "type": "number",
+        "name": "practik_kef"
+      },
+      {
+        "type": "number",
+        "name": "itog_kef"
+      },
+      {
+        "type": "number",
+        "name": "stavka"
+      },
+      {
+        "type": "number",
+        "name": "stavka_valuta"
+      },
+      {
+        "type": "text",
+        "name": "bukmaker"
+      },
+      {
+        "type": "text",
+        "name": "valuta"
+      },
+      {
+        "type": "number",
+        "name": "kurs_valuti"
+      },
+      {
+        "type": "number",
+        "name": "summa_valuti"
+      },
+      {
+        "type": "number",
+        "name": "itogo"
+      },
+      {
+        "type": "text",
+        "name": "stratery"
+      },
+      {
+        "type": "text",
+        "name": "vid_stsvki"
+      },
+      {
+        "type": "text",
+        "name": "tsikl_uuid"
+      },
+      {
+        "type": "number",
+        "name": "tsikl_sector"
+      },
+      {
+        "type": "text",
+        "name": "spread_uuid"
+      },
+      {
+        "type": "text",
+        "name": "skrap_uuid"
+      },
+      {
+        "type": "text",
+        "name": "aziat_uuid"
+      },
+      {
+        "type": "text",
+        "name": "status"
+      },
+      {
+        "type": "text",
+        "name": "description"
+      },
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "update",
+      "module": "dbupdater",
+      "action": "update",
+      "options": {
+        "connection": "db_demo",
+        "sql": {
+          "type": "update",
+          "values": [
+            {
+              "table": "sport_line",
+              "column": "user_uuid",
+              "type": "text",
+              "value": "{{identity}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "uuid_sport-line",
+              "type": "text",
+              "value": "{{$_POST.uuid_sport-line}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "data-time_start",
+              "type": "datetime",
+              "value": "{{$_POST.data_time_start}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "data-time_end",
+              "type": "datetime",
+              "value": "{{$_POST.data_time_end}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "UUID_event",
+              "type": "text",
+              "value": "{{$_POST.UUID_event}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "vid_sporta",
+              "type": "text",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "name_playrs",
+              "type": "text",
+              "value": "{{$_POST.name_playrs}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "tip_stavki",
+              "type": "text",
+              "value": "{{$_POST.tip_stavki}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "zatrata",
+              "type": "number",
+              "value": "{{$_POST.zatrata}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "teoretic_kef",
+              "type": "number",
+              "value": "{{$_POST.teoretic_kef}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "practik_kef",
+              "type": "number",
+              "value": "{{$_POST.practik_kef}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "itog_kef",
+              "type": "number",
+              "value": "{{$_POST.itog_kef}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka",
+              "type": "number",
+              "value": "{{$_POST.stavka}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "stavka_valuta",
+              "type": "number",
+              "value": "{{$_POST.stavka_valuta}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "bukmaker",
+              "type": "text",
+              "value": "{{$_POST.bukmaker}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "valuta",
+              "type": "text",
+              "value": "{{$_POST.valuta}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "kurs_valuti",
+              "type": "number",
+              "value": "{{$_POST.kurs_valuti}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "summa_valuti",
+              "type": "number",
+              "value": "{{$_POST.summa_valuti}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "itogo",
+              "type": "number",
+              "value": "{{$_POST.itogo}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "stratery",
+              "type": "text",
+              "value": "{{$_POST.stratery}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "vid_stsvki",
+              "type": "text",
+              "value": "{{$_POST.vid_stsvki}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "tsikl_uuid",
+              "type": "text",
+              "value": "{{$_POST.tsikl_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "tsikl_sector",
+              "type": "number",
+              "value": "{{$_POST.tsikl_sector}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "spread_uuid",
+              "type": "text",
+              "value": "{{$_POST.spread_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "skrap_uuid",
+              "type": "text",
+              "value": "{{$_POST.skrap_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "aziat_uuid",
+              "type": "text",
+              "value": "{{$_POST.aziat_uuid}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "status",
+              "type": "text",
+              "value": "{{$_POST.status}}"
+            },
+            {
+              "table": "sport_line",
+              "column": "raschet",
+              "type": "text",
+              "value": "Не расчитано"
+            },
+            {
+              "table": "sport_line",
+              "column": "description",
+              "type": "text",
+              "value": "{{$_POST.description}}"
+            }
+          ],
+          "table": "sport_line",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_POST.id}}",
+                "data": {
+                  "column": "id"
+                },
+                "operation": "="
+              }
+            ]
+          },
+          "returning": "id",
+          "query": "UPDATE sport_line\nSET user_uuid = :P1 /* {{identity}} */, \"uuid_sport-line\" = :P2 /* {{$_POST.uuid_sport-line}} */, \"data-time_start\" = :P3 /* {{$_POST.data_time_start}} */, \"data-time_end\" = :P4 /* {{$_POST.data_time_end}} */, UUID_event = :P5 /* {{$_POST.UUID_event}} */, vid_sporta = :P6 /* {{$_POST.vid_sporta}} */, name_playrs = :P7 /* {{$_POST.name_playrs}} */, tip_stavki = :P8 /* {{$_POST.tip_stavki}} */, zatrata = :P9 /* {{$_POST.zatrata}} */, teoretic_kef = :P10 /* {{$_POST.teoretic_kef}} */, practik_kef = :P11 /* {{$_POST.practik_kef}} */, itog_kef = :P12 /* {{$_POST.itog_kef}} */, stavka = :P13 /* {{$_POST.stavka}} */, stavka_valuta = :P14 /* {{$_POST.stavka_valuta}} */, bukmaker = :P15 /* {{$_POST.bukmaker}} */, valuta = :P16 /* {{$_POST.valuta}} */, kurs_valuti = :P17 /* {{$_POST.kurs_valuti}} */, summa_valuti = :P18 /* {{$_POST.summa_valuti}} */, itogo = :P19 /* {{$_POST.itogo}} */, stratery = :P20 /* {{$_POST.stratery}} */, vid_stsvki = :P21 /* {{$_POST.vid_stsvki}} */, tsikl_uuid = :P22 /* {{$_POST.tsikl_uuid}} */, tsikl_sector = :P23 /* {{$_POST.tsikl_sector}} */, spread_uuid = :P24 /* {{$_POST.spread_uuid}} */, skrap_uuid = :P25 /* {{$_POST.skrap_uuid}} */, aziat_uuid = :P26 /* {{$_POST.aziat_uuid}} */, status = :P27 /* {{$_POST.status}} */, raschet = 'Не расчитано', description = :P28 /* {{$_POST.description}} */\nWHERE id = :P29 /* {{$_POST.id}} */",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{identity}}"
+            },
+            {
+              "name": ":P2",
+              "type": "expression",
+              "value": "{{$_POST.uuid_sport-line}}"
+            },
+            {
+              "name": ":P3",
+              "type": "expression",
+              "value": "{{$_POST.data_time_start}}"
+            },
+            {
+              "name": ":P4",
+              "type": "expression",
+              "value": "{{$_POST.data_time_end}}"
+            },
+            {
+              "name": ":P5",
+              "type": "expression",
+              "value": "{{$_POST.UUID_event}}"
+            },
+            {
+              "name": ":P6",
+              "type": "expression",
+              "value": "{{$_POST.vid_sporta}}"
+            },
+            {
+              "name": ":P7",
+              "type": "expression",
+              "value": "{{$_POST.name_playrs}}"
+            },
+            {
+              "name": ":P8",
+              "type": "expression",
+              "value": "{{$_POST.tip_stavki}}"
+            },
+            {
+              "name": ":P9",
+              "type": "expression",
+              "value": "{{$_POST.zatrata}}"
+            },
+            {
+              "name": ":P10",
+              "type": "expression",
+              "value": "{{$_POST.teoretic_kef}}"
+            },
+            {
+              "name": ":P11",
+              "type": "expression",
+              "value": "{{$_POST.practik_kef}}"
+            },
+            {
+              "name": ":P12",
+              "type": "expression",
+              "value": "{{$_POST.itog_kef}}"
+            },
+            {
+              "name": ":P13",
+              "type": "expression",
+              "value": "{{$_POST.stavka}}"
+            },
+            {
+              "name": ":P14",
+              "type": "expression",
+              "value": "{{$_POST.stavka_valuta}}"
+            },
+            {
+              "name": ":P15",
+              "type": "expression",
+              "value": "{{$_POST.bukmaker}}"
+            },
+            {
+              "name": ":P16",
+              "type": "expression",
+              "value": "{{$_POST.valuta}}"
+            },
+            {
+              "name": ":P17",
+              "type": "expression",
+              "value": "{{$_POST.kurs_valuti}}"
+            },
+            {
+              "name": ":P18",
+              "type": "expression",
+              "value": "{{$_POST.summa_valuti}}"
+            },
+            {
+              "name": ":P19",
+              "type": "expression",
+              "value": "{{$_POST.itogo}}"
+            },
+            {
+              "name": ":P20",
+              "type": "expression",
+              "value": "{{$_POST.stratery}}"
+            },
+            {
+              "name": ":P21",
+              "type": "expression",
+              "value": "{{$_POST.vid_stsvki}}"
+            },
+            {
+              "name": ":P22",
+              "type": "expression",
+              "value": "{{$_POST.tsikl_uuid}}"
+            },
+            {
+              "name": ":P23",
+              "type": "expression",
+              "value": "{{$_POST.tsikl_sector}}"
+            },
+            {
+              "name": ":P24",
+              "type": "expression",
+              "value": "{{$_POST.spread_uuid}}"
+            },
+            {
+              "name": ":P25",
+              "type": "expression",
+              "value": "{{$_POST.skrap_uuid}}"
+            },
+            {
+              "name": ":P26",
+              "type": "expression",
+              "value": "{{$_POST.aziat_uuid}}"
+            },
+            {
+              "name": ":P27",
+              "type": "expression",
+              "value": "{{$_POST.status}}"
+            },
+            {
+              "name": ":P28",
+              "type": "expression",
+              "value": "{{$_POST.description}}"
+            },
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P29",
+              "value": "{{$_POST.id}}"
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

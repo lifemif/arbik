@@ -1,4 +1,9 @@
-<dmx-serverconnect id="sc_get_sport_line" url="/api/sport_line/sport_liner/get_sport_line"></dmx-serverconnect><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxNotifications:{},dmxStateManagement:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{}}" -->
+<dmx-serverconnect id="sc_get_sport_line" url="/api/sport_line/sport_liner/get_sport_line"></dmx-serverconnect>
+<dmx-serverconnect id="sc_get_tip_stavki" url="/api/sport_line/sport_liner/get_tip_stavki" dmx-param:vid_sporta="modal_sport_line.data_detail1.data.vid_sporta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_sporta" url="/api/sport_line/sport_liner/get_vid_sporta"></dmx-serverconnect>
+<dmx-serverconnect id="sc_bukmaker" url="/api/sport_line/sport_liner/get_bukmaker"></dmx-serverconnect>
+<dmx-serverconnect id="sc_strategy" url="/api/sport_line/sport_liner/get_strategy"></dmx-serverconnect>
+<dmx-serverconnect id="sc_vid_stavki" url="/api/sport_line/sport_liner/get_vid_stavki"></dmx-serverconnect>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -6,15 +11,130 @@
         </div>
     </div>
     <div class="row mt-2 mb-2 row-cols-lg-12">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 align-self-center">
 
-            <a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="dashbord3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a>
+            <a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="bt_setting_sport_line" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a>
         </div>
         <div class="col-12 col-lg-6">
         </div>
     </div>
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="sport_line" appConnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxNotifications:{},dmxStateManagement:{},dmxBootstrap5Offcanvas:{},dmxDataTraversal:{},dmxBootstrap5Modal:{},dmxValidator:{}}" -->
+
+
+<div class="container">
+
+
+    <div class="row" is="dmx-repeat" id="repeat1" dmx-bind:repeat="sc_get_sport_line.data.query">
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="d-block" dmx-on:click="modal_sport_line.data_detail1.select(id)">
+
+                <h5 class="text-center fst-italic mark">Спортивная линия № {{id}}</h5>
+                <button id="btn_detail" class="btn btn-sm btn-outline-info w-100" data-bs-toggle="modal" data-bs-target="#modal_sport_line" dmx-on:click="">Детали...&nbsp;</button>
+                <h6>UUID спорт. линия: {{_['uuid_sport-line']}}</h6>
+
+                <h6>Дата и время начала: {{_['data-time_start'].formatDate('dd-MM-yyyy HH:mm')}}</h6>
+                <h6>Дата и время конца: {{_['data-time_end'].formatDate('dd-MM-yyyy HH:mm')}}</h6>
+                <h6>UUID события: {{UUID_event}}</h6>
+                <h6>Вид спорта: {{vid_sporta}}</h6>
+                <h6>Наим. игроков: {{name_playrs}}</h6>
+                <h6>Букмекер: {{bukmaker}}</h6>
+                <h6>Тип ставки: {{tip_stavki}}</h6>
+                <h6>Стратегия: {{stratery}}</h6>
+                <h6>Вид ставки: {{vid_stsvki}}</h6>
+                <h6>Статус: {{status}}</h6>
+                <h6>Расчёт: {{raschet}}</h6>
+                <h6>Описание: {{description}}</h6>
+                <button id="btn_update_sport_line" class="btn btn-sm btn-outline-warning text-center w-100" dmx-on:click="session_update.set('UUID',_['uuid_sport-line']);br_layouts.goto('/spotr_line/update_sport_line')">Изменить</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+<dmx-notifications id="notifies1"></dmx-notifications>
+<div class="modal" id="modal_sport_line" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h6 class="modal-title text-light">Детали спортивной линии</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form is="dmx-serverconnect-form" id="form_deleted_sport_line" method="post" action="/api/sport_line/sport_liner/deleted_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="modal_sport_line.hide();sc_get_sport_line.load();notifies1.info('Ошибка')" dmx-on:success="modal_sport_line.hide();sc_get_sport_line.load({});notifies1.danger('Спортивная линия удалена!!!')">
+                        <div class="form-group mb-3" dmx-show="">
+                            <label for="inp_id">Id</label>
+                            <input type="text" class="form-control" id="inp_id" name="id" aria-describedby="inp_id_help" placeholder="Enter Id" dmx-bind:value="data_detail1.form_update_sport_line.inp_id.value">
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-danger btn-sm w-100">Удалить</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col" is="dmx-data-detail" id="data_detail1" dmx-bind:data="sc_get_sport_line.data.query" key="id">
+                            <form is="dmx-serverconnect-form" id="form_update_sport_line" method="post" action="/api/sport_line/sport_liner/modal_update_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-populate="data_detail1.data" dmx-on:error="modal_sport_line.hide();sc_get_sport_line.load();notifies1.info('Ошибка')" dmx-on:success="modal_sport_line.hide();sc_get_sport_line.load();notifies1.warning('Обновлено успешно!!!')">
+                                <div class="form-group mb-3">
+                                    <label for="inp_vid_sporta" class="col-form-label-sm">Вид спорта</label>
+                                    <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:value="data_detail1.data.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query" optiontext="vid_sporta" optionvalue="vid_sporta_sis" required="">
+                                        <option selected="" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_name_playrs" class="col-form-label-sm">Наименование игроков</label>
+                                    <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" dmx-bind:value="data_detail1.data.name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs" required="">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_tip_stavki" class="col-form-label-sm">Тип ставки</label>
+                                    <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:value="data_detail1.data.tip_stavki" dmx-bind:options="sc_get_tip_stavki.data.query" optiontext="line" optionvalue="line_sis" required="">
+                                        <option selected="" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_bukmaker" class="col-form-label-sm">Букмекер</label>
+                                    <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" dmx-bind:value="data_detail1.data.bukmaker" dmx-bind:options="sc_bukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis" required="">
+                                        <option selected="" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_stratery" class="col-form-label-sm">Стратегия</label>
+                                    <select id="inp_stratery" class="form-select form-select-sm" name="stratery" dmx-bind:value="data_detail1.data.stratery" required="" dmx-bind:options="sc_strategy.data.query" optiontext="strategi" optionvalue="strategi_sis">
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_vid_stsvki" class="col-form-label-sm">Вид ставки</label>
+                                    <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" dmx-bind:value="data_detail1.data.vid_stsvki" required="" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
+                                        <option selected="" value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_status" class="col-form-label-sm">Статус</label>
+                                    <select id="inp_status" class="form-select form-select-sm" name="status" dmx-bind:value="data_detail1.data.status" required="">
+                                        <option selected="" value=""></option>
+                                        <option value="Планирование">Планирование</option>
+                                        <option value="Открыто">Открыто</option>
+                                        <option value="Закрыто">Закрыто</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inp_description" class="col-form-label-sm">Описание</label>
+                                    <textarea id="inp_description" name="description" dmx-bind:value="data_detail1.data.description" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group mb-3" dmx-show="">
+                                    <label for="inp_id">Id</label>
+                                    <input type="number" class="form-control" id="inp_id" name="id" dmx-bind:value="data_detail1.data.id" aria-describedby="inp_id_help" placeholder="Enter Id">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-outline-info w-100 btn-sm" dmx-bind:value="data_detail1.data.Save">Обновить детали</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1" dmx-on:click="session_update.set('UUID',table_sport_line[0]['uuid_sport-line']);br_layouts.goto('/spotr_line/update_sport_line')">
     <div class="offcanvas-header text-light bg-info">
         <h6 class="offcanvas-title">Настройки спортивных линий</h6>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -25,69 +145,18 @@
                 <div class="col">
                     <div class="d-block">
                         <a class="nav-item nav-link active text-lg-center align-self-center text-start bg-primary text-light" href="/spotr_line/new_sport_line" id="dashbord2"><img src="/assets/images/new_sport_line.jpg" width="50" height="45" wappler-command="updateImage">&nbsp; &nbsp;Новая&nbsp;букмекерская линия</a>
-                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="dashbord"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
-
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="corrent_sport_line"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
                         <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/kef_sport_line" id="dashbord"><img src="/assets/images/prosent.jpeg" width="50" height="45" wappler-command="updateImage">Коеффициент букмекерской линии</a>
-                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="dashbord"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
-                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="dashbord"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="summa_sport_line"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="strategy_sport_line"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
                         <a class="nav-item nav-link active text-lg-center align-self-center bg-danger text-light" href="/spotr_line/strategy_sport_line" id="dashbord1"><img src="/assets/images/Fin_rez_bukmaker.jpeg" width="60" height="50" wappler-command="updateImage">&nbsp; &nbsp;Финансовый результат</a>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped table-bordered table-hover table-sm">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Id</th>
-                        <th>User uuid</th>
-                        <th>Uuid sport line</th>
-                        <th>Data time start</th>
-                        <th>Data time end</th>
-                        <th>Uuid event</th>
-                        <th>Vid sporta</th>
-                        <th>Name playrs</th>
-                        <th>Tip stavki</th>
-                        <th>Stratery</th>
-                        <th>Status</th>
-                        <th>Raschet</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_get_sport_line.data.query" id="table_sport_line">
-                    <tr>
-                        <td>
-                            <button id="btn_update_sport_line" class="btn btn-sm btn-outline-warning text-center" dmx-on:click="session_update.set();br_layouts.goto('/spotr_line/update_sport_line')">Изменить</button>
-                        </td>
-                        <td dmx-text="id"></td>
-                        <td dmx-text="user_uuid"></td>
-                        <td dmx-text="_['uuid_sport-line']"></td>
-                        <td dmx-text="_['data-time_start'].formatDate('dd-MM-yyyy HH:mm')"></td>
-                        <td dmx-text="_['data-time_end'].formatDate('dd-MM-yyyy HH:mm')"></td>
-                        <td dmx-text="UUID_event"></td>
-                        <td dmx-text="vid_sporta"></td>
-                        <td dmx-text="name_playrs"></td>
-                        <td dmx-text="tip_stavki"></td>
-                        <td dmx-text="stratery"><a href="#">#</a></td>
-                        <td dmx-text="status"></td>
-                        <td dmx-text="raschet"></td>
-                        <td dmx-text="description"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
 
 

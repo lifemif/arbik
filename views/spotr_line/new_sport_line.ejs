@@ -11,14 +11,17 @@
         <div class="col">
 
 
-            <h5 class="text-center">New event sporting-line</h5>
+            <h5 class="text-center">&nbsp;Создание нового спортивное событие</h5>
         </div>
     </div>
     <div class="row">
-        <div class="col d-flex justify-content-between">
-            <button id="btn_event" class="btn btn-primary btn-sm mt-2 mb-2" dmx-on:click="toggle_event.toggle()">Event</button>
-            <button id="btn_filter" class="btn mt-2 mb-2" dmx-on:click="toggle_filter.toggle()"><i class="fas fa-filter"></i></button>
+        <div class="d-flex justify-content-between col">
+            <button id="btn_event" class="btn btn-primary btn-sm mt-2 mb-2" dmx-on:click="toggle_event.toggle()">Новое спортивное событие</button>
+
         </div>
+        <div class="col"><a class="nav-item nav-link active text-lg-center align-self-center text-start" href="#" id="bt_setting_sport_line" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_sport_line"><img src="/assets/images/setting_sport_line.jpg" width="50" height="45" wappler-command="updateImage">Настройка букмекерская линия</a></div>
+
+        <div class="col text-end align-self-center"><button id="btn_filter" class="btn mt-2 mb-2 text-end" dmx-on:click="toggle_filter.toggle()"><i class="fas fa-filter"></i></button></div>
     </div>
 
 </div>
@@ -27,42 +30,42 @@
         <div class="col-12">
             <form is="dmx-serverconnect-form" id="form_new_event_sport_line" method="post" action="/api/sport_line/new_sport_line/new_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical" dmx-on:error="form_new_event_sport_line.reset();sc_sport_line.load();notifies1.danger('Error')" dmx-on:success="form_new_event_sport_line.reset();sc_sport_line.load({});notifies1.success('OK!!! Saving');toggle_filter.check()">
                 <div class="form-group mb-3">
-                    <label for="inp_UUID_event" class="col-form-label-sm">Uuid event</label>
+                    <label for="inp_UUID_event" class="col-form-label-sm">Uuid события*</label>
                     <input type="text" class="form-control form-control-sm" id="inp_UUID_event" name="UUID_event" aria-describedby="inp_UUID_event_help" placeholder="Enter Uuid event">
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="form-group mb-3">
-                            <label for="inp_data_time_start" class="col-form-label-sm">Data time start*</label>
+                            <label for="inp_data_time_start" class="col-form-label-sm">Дата и время начала*</label>
                             <input class="form-control form-control-sm" id="inp_data_time_start" name="data_time_start" aria-describedby="inp_data_time_start_help" placeholder="Enter Data time start" dmx-bind:value="sc_event.data.query.data_time_start" required="">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_data_time_end" class="col-form-label-sm">Data time end*</label>
+                            <label for="inp_data_time_end" class="col-form-label-sm">Дата и время конца*</label>
                             <input type="text" class="form-control form-control-sm" id="inp_data_time_end" name="data_time_end" aria-describedby="inp_data_time_end_help" placeholder="Enter Data time end" dmx-bind:value="sc_event.data.query.data_time_end" required="">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_vid_sporta" class="col-form-label-sm">Vid sporta*</label>
+                            <label for="inp_vid_sporta" class="col-form-label-sm">Вид спорта*</label>
                             <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta" dmx-bind:value="sc_event.data.query.vid_sporta" dmx-bind:options="sc_vid_sporta.data.query" optiontext="vid_sporta" optionvalue="vid_sporta_sis" required="">
                                 <option selected="" value=""></option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_name_playrs" class="col-form-label-sm">Name playrs*</label>
+                            <label for="inp_name_playrs" class="col-form-label-sm">Наименование игроков*</label>
                             <input type="text" class="form-control form-control-sm" id="inp_name_playrs" name="name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs" dmx-bind:value="sc_event.data.query.name_sobitie" required="">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_tip_stavki" class="col-form-label-sm">Tip stavki*</label>
+                            <label for="inp_tip_stavki" class="col-form-label-sm">Тип ставки*</label>
                             <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki" dmx-bind:options="sc_line.data.query" optiontext="line" optionvalue="line_sis" required="">
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_stratery" class="col-form-label-sm">Stratery*</label>
+                            <label for="inp_stratery" class="col-form-label-sm">Стратегия*</label>
                             <select id="inp_stratery" class="form-select form-select-sm" name="stratery" required="" dmx-bind:options="sc_strategy.data.query" optiontext="strategi" optionvalue="strategi_sis">
                                 <option selected="" value=""></option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_vid_stsvki" class="col-form-label-sm">Vid stsvki*</label>
+                            <label for="inp_vid_stsvki" class="col-form-label-sm">Вид ставки*</label>
                             <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki" required="" dmx-bind:options="sc_vid_stavki.data.query" optiontext="vid_stavki" optionvalue="vid_stavki_sis">
                                 <option selected="" value=""></option>
                             </select>
@@ -72,7 +75,7 @@
                     <div class="col-12 col-lg-6">
 
                         <div class="form-group mb-3">
-                            <label for="inp_bukmaker" class="col-form-label-sm">Bukmaker*</label>
+                            <label for="inp_bukmaker" class="col-form-label-sm">Букмекер*</label>
                             <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker" required="" dmx-bind:options="sc_buukmaker.data.query" optiontext="bukamaker" optionvalue="bukmaker_sis">
                                 <option selected="" value=""></option>
                             </select>
@@ -80,74 +83,56 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label for="inp_practik_kef" class="col-form-label-sm">Practik kef*</label>
+                                    <label for="inp_practik_kef" class="col-form-label-sm">Практический коеффициент*</label>
                                     <input type="number" step="any" class="form-control form-control-sm" id="inp_practik_kef" name="practik_kef" aria-describedby="inp_practik_kef_help" placeholder="Enter Practik kef" required="" data-rule-number="">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label for="inp_stavka" class="col-form-label-sm">Stavka*</label>
+                                    <label for="inp_stavka" class="col-form-label-sm">Ставка*</label>
                                     <input type="number" step="any" class="form-control form-control-sm" id="inp_stavka" name="stavka" aria-describedby="inp_stavka_help" placeholder="Enter Stavka" required="" data-rule-number="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_tsikl_uuid" class="col-form-label-sm">Tsikl uuid</label>
+                            <label for="inp_tsikl_uuid" class="col-form-label-sm">Цикл uuid</label>
                             <input type="text" class="form-control form-control-sm" id="inp_tsikl_uuid" name="tsikl_uuid" aria-describedby="inp_tsikl_uuid_help" placeholder="Enter Tsikl uuid">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_tsikl_sector" class="col-form-label-sm">Tsikl sector</label>
+                            <label for="inp_tsikl_sector" class="col-form-label-sm">Цикл сектор</label>
                             <input type="number" class="form-control form-control-sm" id="inp_tsikl_sector" name="tsikl_sector" aria-describedby="inp_tsikl_sector_help" placeholder="Enter Tsikl sector">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_spread_uuid" class="col-form-label-sm">Spread uuid</label>
+                            <label for="inp_spread_uuid" class="col-form-label-sm">Спред uuid</label>
                             <input type="text" class="form-control form-control-sm" id="inp_spread_uuid" name="spread_uuid" aria-describedby="inp_spread_uuid_help" placeholder="Enter Spread uuid">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_skrap_uuid" class="col-form-label-sm">Skrap uuid</label>
+                            <label for="inp_skrap_uuid" class="col-form-label-sm">Скрап uuid</label>
                             <input type="text" class="form-control form-control-sm" id="inp_skrap_uuid" name="skrap_uuid" aria-describedby="inp_skrap_uuid_help" placeholder="Enter Skrap uuid">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="inp_aziat_uuid" class="col-form-label-sm">Aziat uuid</label>
+                            <label for="inp_aziat_uuid" class="col-form-label-sm">Азиат uuid</label>
                             <input type="text" class="form-control form-control-sm" id="inp_aziat_uuid" name="aziat_uuid" aria-describedby="inp_aziat_uuid_help" placeholder="Enter Aziat uuid">
                         </div>
 
 
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="form-group mb-3">
-                    <label for="inp_status" class="col-form-label-sm">Status*</label>
+                    <label for="inp_status" class="col-form-label-sm">Статус*</label>
                     <select id="inp_status" class="form-select form-select-sm" name="inp_status" required="">
                         <option selected="" value=""></option>
-                        <option value="Planing">Planing</option>
-                        <option value="Open">Open</option>
-                        <option value="Close">Close</option>
+                        <option value="Планирование">Планирование</option>
+                        <option value="Открыто">Открыто</option>
+                        <option value="Закрыто">Закрыто</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="inp_description" class="col-form-label-sm">Description</label>
+                    <label for="inp_description" class="col-form-label-sm">Описание</label>
                     <textarea id="inp_description" name="description" class="form-control" dmx-bind:value="sc_event.data.query.discription"></textarea>
                 </div>
                 <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary w-100 btn-sm" dmx-bind:disabled="sc_sport_line.state.executing">Save</button>
+                    <button type="submit" class="btn btn-primary w-100 btn-sm" dmx-bind:disabled="sc_sport_line.state.executing">Создать</button>
                 </div>
             </form>
         </div>
@@ -156,19 +141,19 @@
 <div class="container mb-2" id="filter" dmx-show="toggle_filter.checked">
     <div class="row">
         <div class="col-12 col-md-6 col-lg-3">
-            <h6 class="text-center">Uuid sport line</h6>
+            <h6 class="text-center">Uuid спортивной линии</h6>
             <input id="filter_sport_line" name="filter_sport_line" type="search" class="form-control form-control-sm">
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-            <h6 class="text-center">Uuid event</h6>
+            <h6 class="text-center">Uuid события</h6>
             <input id="filter_event" name="filter_event" type="search" class="form-control form-control-sm">
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-            <h6 class="text-center">Name players</h6>
+            <h6 class="text-center">Наименование игроков</h6>
             <input id="filter_playrs" name="filter_playrs" type="search" class="form-control form-control-sm">
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-            <h6 class="text-center">Strategy UUID</h6>
+            <h6 class="text-center">Стратегия UUID</h6>
             <input id="filter_StrategyUUID" name="filter_Strategy UUID" type="search" class="form-control form-control-sm">
         </div>
     </div>
@@ -176,27 +161,27 @@
 <div class="container-fluid" id="table">
     <div class="row">
         <div class="col">
-            <table class="table table-bordered table-hover table-sm">
+            <table class="table table-bordered table-hover table-sm text-start">
                 <thead>
-                    <tr>
-                        <th>Uuid sport line</th>
-                        <th>Data time start</th>
-                        <th>Data time end</th>
-                        <th>Uuid event</th>
-                        <th>Vid sporta</th>
-                        <th>Name playrs</th>
-                        <th>Tip stavki</th>
-                        <th>Bukmaker</th>
-                        <th>Practik kef</th>
-                        <th>Stavka</th>
-                        <th>Stratery</th>
-                        <th>Vid stsvki</th>
-                        <th>Tsikl uuid</th>
-                        <th>Tsikl sector</th>
-                        <th>Spread uuid</th>
-                        <th>Skrap uuid</th>
-                        <th>Aziat uuid</th>
-                        <th>Action</th>
+                    <tr class="text-center">
+                        <th class="text-center">Uuid линии</th>
+                        <th>Дата и время старта</th>
+                        <th>Дата и время конца</th>
+                        <th>Uuid события</th>
+                        <th>Вид спорта</th>
+                        <th>Наименование игроков</th>
+                        <th>Тип ставки</th>
+                        <th>Букмекер</th>
+                        <th>Практик. кеф</th>
+                        <th>Ставка</th>
+                        <th>Стратегия</th>
+                        <th>Вид ставки</th>
+                        <th>Цикл uuid</th>
+                        <th>Цикл сект.</th>
+                        <th>Спред uuid</th>
+                        <th>Скрап uuid</th>
+                        <th>Азиат uuid</th>
+                        <th>Удалить</th>
                     </tr>
                 </thead>
                 <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="sc_sport_line.data.query" id="tableRepeat_event_sport_line">
@@ -228,7 +213,7 @@
                                 </div>
                                 <div class="form-group mb-3 row">
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary bg-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn btn-primary bg-danger btn-sm w-100"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -238,7 +223,29 @@
             </table>
         </div>
     </div>
-</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxValidator:{},dmxNotifications:{}}" -->
+</div><!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxValidator:{},dmxNotifications:{},dmxBootstrap5Offcanvas:{}}" -->
+<div class="offcanvas offcanvas-start" id="offcanvas_sport_line" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header text-light bg-info">
+        <h6 class="offcanvas-title">Настройки спортивных линий</h6>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="d-block">
+                        <a class="nav-item nav-link active text-lg-center align-self-center text-start bg-primary text-light" href="/spotr_line/new_sport_line" id="dashbord2"><img src="/assets/images/new_sport_line.jpg" width="50" height="45" wappler-command="updateImage">&nbsp; &nbsp;Новая&nbsp;букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center text-start" href="/spotr_line/bukmaker_sport_line" id="corrent_sport_line"><img src="/assets/images/curse_buk.png" width="50" height="45" wappler-command="updateImage">Курсовая букмекерская линия</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/kef_sport_line" id="dashbord"><img src="/assets/images/prosent.jpeg" width="50" height="45" wappler-command="updateImage">Коеффициент букмекерской линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/summa_sport_line" id="summa_sport_line"><img src="/assets/images/suuma_buk.png" width="80" height="45" wappler-command="updateImage">Сумма спортивной линии</a>
+                        <a class="nav-item nav-link active text-muted text-lg-center align-self-center" href="/spotr_line/strategy_sport_line" id="strategy_sport_line"><img src="/assets/images/strategu_buk.png" width="50" height="45" wappler-command="updateImage">Стратегии спортивных&nbsp;линии</a>
+                        <a class="nav-item nav-link active text-lg-center align-self-center bg-danger text-light" href="/spotr_line/strategy_sport_line" id="dashbord1"><img src="/assets/images/Fin_rez_bukmaker.jpeg" width="60" height="50" wappler-command="updateImage">&nbsp; &nbsp;Финансовый результат</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <dmx-notifications id="notifies1"></dmx-notifications>
 <dmx-toggle id="toggle_event"></dmx-toggle>
 <dmx-toggle id="toggle_filter"></dmx-toggle>

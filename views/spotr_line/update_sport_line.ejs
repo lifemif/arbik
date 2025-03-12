@@ -1,16 +1,216 @@
 <!-- Wappler include head-page="layouts/la_sport_line" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="update_sport_line" appConnect="local" components="{dmxStateManagement:{},dmxDataTraversal:{}}" -->
-<dmx-serverconnect id="sc_update_sport_line" url="/api/sport_line/update_sport_line/get_update_sport_line" dmx-param:id="session_update.data.id"></dmx-serverconnect>
+<dmx-serverconnect id="sc_update_sport_line" url="/api/sport_line/update_sport_line/get_update_sport_line" dmx-param:id="session_update.data.id" dmx-param:uuid_sport_line="session_update.data.UUID"></dmx-serverconnect>
 <div class="container">
     <div class="row">
         <div class="col">
             <h5 class="text-center">Разделочный стол для спортивных линий {{session1.data.id}}</h5>
         </div>
     </div>
+    <form is="dmx-serverconnect-form" id="form_update_sport_line" method="post" action="/api/sport_line/update_sport_line/update_sport_line" dmx-generator="bootstrap5" dmx-form-type="vertical">
+        <div class="row">
+            <div class="col">
+                <div class="d-block">
+                    <h6 class="text-center fst-italic mark">Общие сведения</h6>
+                    <div class="form-group mb-3">
+                        <label for="inp_uuid_sport" class="col-form-label-sm">Uuid спортивной линии</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_uuid_sport" name="uuid_sport" aria-describedby="inp_uuid_sport_help" placeholder="Enter Uuid sport" dmx-bind:value="sc_update_sport_line.data.query[0]['uuid_sport-line']">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_UUID_event" class="col-form-label-sm">Uuid события</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_UUID_event" name="UUID_event" aria-describedby="inp_UUID_event_help" placeholder="Enter Uuid event" dmx-bind:value="sc_update_sport_line.data.query[0].UUID_event">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_data_time_start" class="col-form-label-sm">Дата и время начала события</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_data_time_start" name="data_time_start" aria-describedby="inp_data_time_start_help" placeholder="Enter Data time start">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_data_time_end" class="col-form-label-sm">Дата и время конца события</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_data_time_end" name="data_time_end" aria-describedby="inp_data_time_end_help" placeholder="Enter Data time end">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_name_playrs" class="col-form-label-sm">Наименование игроков</label>
+                        <input type="text" class="form-control" id="inp_name_playrs" name="name_playrs" aria-describedby="inp_name_playrs_help" placeholder="Enter Name playrs">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_tip_stavki" class="col-form-label-sm">Тип ставки</label>
+                        <select id="inp_tip_stavki" class="form-select form-select-sm" name="tip_stavki">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_vid_sporta" class="col-form-label-sm">Вид спорта</label>
+                        <select id="inp_vid_sporta" class="form-select form-select-sm" name="vid_sporta">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_stratery" class="col-form-label-sm">Стратегия</label>
+                        <select id="inp_stratery" class="form-select form-select-sm" name="stratery">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_status" class="col-form-label-sm">Статус</label>
+                        <select id="inp_status" class="form-select form-select-sm" name="status">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_vid_stsvki" class="col-form-label-sm">Вид ставки</label>
+                        <select id="inp_vid_stsvki" class="form-select form-select-sm" name="vid_stsvki">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+            <div class="col">
+                <div class="d-block">
+                    <h6 class="text-center fst-italic mark">Букмекер + Курс валют</h6>
+                    <div class="form-group mb-3">
+                        <label for="inp_bukmaker" class="col-form-label-sm">Букмекер</label>
+                        <select id="inp_bukmaker" class="form-select form-select-sm" name="bukmaker">
+                            <option value="1">Option One</option>
+                            <option value="2">Option Two</option>
+                            <option value="3">Option Three</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_valuta" class="col-form-label-sm">Валюта</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_valuta" name="valuta" aria-describedby="inp_valuta_help" placeholder="Enter Valuta">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_kurs_valuti" class="col-form-label-sm">Курс валюты</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_kurs_valuti" name="kurs_valuti" aria-describedby="inp_kurs_valuti_help" placeholder="Enter Kurs valuti">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_stavka" class="col-form-label-sm">Ставка</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_stavka" name="stavka" aria-describedby="inp_stavka_help" placeholder="Enter Stavka">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_stavka_valuta" class="col-form-label-sm">Ставка в валюте</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_stavka_valuta" name="stavka_valuta" aria-describedby="inp_stavka_valuta_help" placeholder="Enter Stavka valuta">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_summa_valuti" class="col-form-label-sm">Сумма в валюте</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_summa_valuti" name="summa_valuti" aria-describedby="inp_summa_valuti_help" placeholder="Enter Summa valuti">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_itogo" class="col-form-label-sm">Итоговая сумма</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_itogo" name="itogo" aria-describedby="inp_itogo_help" placeholder="Enter Itogo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-block">
+                    <h6 class="text-center fst-italic mark">Букмекерские коеффициенты</h6>
+                    <div class="form-group mb-3">
+                        <label for="inp_zatrata" class="col-form-label-sm">Затрата</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_zatrata" name="zatrata" aria-describedby="inp_zatrata_help" placeholder="Enter Zatrata">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_teoretic_kef" class="col-form-label-sm">Теоретические коеффициент</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_teoretic_kef" name="teoretic_kef" aria-describedby="inp_teoretic_kef_help" placeholder="Enter Teoretic kef">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_practik_kef" class="col-form-label-sm">Практический коеффициент</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_practik_kef" name="practik_kef" aria-describedby="inp_practik_kef_help" placeholder="Enter Practik kef">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_itog_kef" class="col-form-label-sm">Итоговый коеффициент</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_itog_kef" name="itog_kef" aria-describedby="inp_itog_kef_help" placeholder="Enter Itog kef">
+                    </div>
+                    <h6>Расчёт: {{sc_update_sport_line.data.query[0].raschet}}</h6>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-block">
+                    <h6 class="text-center fst-italic mark">Букмекерские стратегии&nbsp;</h6>
+                    <div class="form-group mb-3">
+                        <label for="inp_tsikl_uuid" class="col-form-label-sm">Циклы uuid</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_tsikl_uuid" name="tsikl_uuid" aria-describedby="inp_tsikl_uuid_help" placeholder="Enter Tsikl uuid">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_tsikl_sector" class="col-form-label-sm">Цыклы сектор</label>
+                        <input type="number" class="form-control form-control-sm" id="inp_tsikl_sector" name="tsikl_sector" aria-describedby="inp_tsikl_sector_help" placeholder="Enter Tsikl sector">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_spread_uuid" class="col-form-label-sm">Спред uuid</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_spread_uuid" name="spread_uuid" aria-describedby="inp_spread_uuid_help" placeholder="Enter Spread uuid">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_skrap_uuid" class="col-form-label-sm">Скрап uuid</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_skrap_uuid" name="skrap_uuid" aria-describedby="inp_skrap_uuid_help" placeholder="Enter Skrap uuid">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inp_aziat_uuid" class="col-form-label-sm">Азиат uuid</label>
+                        <input type="text" class="form-control form-control-sm" id="inp_aziat_uuid" name="aziat_uuid" aria-describedby="inp_aziat_uuid_help" placeholder="Enter Aziat uuid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="form-group mb-3">
+            <label for="inp_description" class="col-form-label-sm">Описание</label>
+            <textarea id="inp_description" name="description" class="form-control"></textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="inp_id">Id</label>
+            <input type="number" class="form-control" id="inp_id" name="id" aria-describedby="inp_id_help" placeholder="Enter Id">
+        </div>
+        <div class="form-group mb-3">
+            <button type="submit" class="btn w-100 btn-outline-warning">Обновить</button>
+        </div>
+    </form>
 </div>
 <div class="container">
+
     <div class="row">
         <div class="col">
-            <h5 class="text-center">{{sc_update_sport_line.data.query[0].name_playrs}}</h5>
+
         </div>
     </div>
 </div>
